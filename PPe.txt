@@ -1,0 +1,19 @@
+Le cahier de charges
+Fax pas nécessaire
+Faire un ERP  (Progiciel de gestion intégrée)
+Budget Rs5M
+Préférence Mac
+Sécurité prioritaire
+
+Wifi partout
+Couleur de Leal (charte graphique, user friendly(pas de sous menu emcombrant,contrôle de saisie)
+Onglet aide
+Admin 35 postes
+Gestion de patrimoine
+Spicework
+Veille technologique
+Help desk(ticket)
+Dans la part Aide(lien vers la page helpdesk pour déposer un ticket) et option redirection sur la doc client pour la formation.
+
+
+
