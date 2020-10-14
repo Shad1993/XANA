@@ -1,19 +1,55 @@
 Le cahier de charges
-Fax pas nécessaire
-Faire un ERP  (Progiciel de gestion intégrée)
+Fax pas nï¿½cessaire
+Faire un ERP  (Progiciel de gestion intï¿½grï¿½e)
 Budget Rs5M
-Préférence Mac
-Sécurité prioritaire
+Prï¿½fï¿½rence Mac
+Sï¿½curitï¿½ prioritaire
 
 Wifi partout
-Couleur de Leal (charte graphique, user friendly(pas de sous menu emcombrant,contrôle de saisie)
+Couleur de Leal (charte graphique, user friendly(pas de sous menu emcombrant,contrï¿½le de saisie)
 Onglet aide
 Admin 35 postes
 Gestion de patrimoine
 Spicework
 Veille technologique
 Help desk(ticket)
-Dans la part Aide(lien vers la page helpdesk pour déposer un ticket) et option redirection sur la doc client pour la formation.
+Dans la part Aide(lien vers la page helpdesk pour dï¿½poser un ticket) et option redirection sur la doc client pour la formation.
 
 
+Questions and answer sessions
+.....................................
+veille technologique Ã  faire
 
+DEPT ADMIN:35
+CPMTABILITE:13
+ENTREPOT:25X4 =100BCP DE TRAVAIL)
+VNTE: 15
+RH:17
+GARAGE:70
+
+TOT:250 EMPS
+
+100MB/S BUSINESS BOOST
+
+PDF DEVIS(QUOTATION),ENVOYER PAR MAIL OU IMPRIMER,CACHET STAMPLE
+
+BUDGET 10M AVEC LE COVIDE 5M  [ENLEVER LA FAX]
+
+SecuritÃ©  contre les concurrents,
+
+wifi- partou si possib.
+
+USER FRIENDLY POUR LES UTILISATEUR,SIMPLE,CONTROL DE SAisie,
+
+help mode.
+
+SPICEWORK: >      GESTION PATRIMOINE
+BOUTTON AIDER		VEILLE TECHNO
+			HELP DESK
+			TICKETS
+			FORMATION EN LIGNE
+
+		   HTTPS...(DANS LE BROWSER)
+
+
+ADMIN: MDP PAR DEFAUT PUIS FORCER LE CLIENT A CHANGER.
