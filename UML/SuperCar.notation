@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmi:id="_MmCpICm_Eeu9qeimajp6eg" type="PapyrusUMLClassDiagram" name="SuperCarDiagram" measurementUnit="Pixel">
+  <children xsi:type="notation:Shape" xmi:id="_gTS24Cm_Eeu9qeimajp6eg" type="Package_Shape">
+    <children xsi:type="notation:DecorationNode" xmi:id="_gTS24im_Eeu9qeimajp6eg" type="Package_NameLabel"/>
+    <children xsi:type="notation:BasicCompartment" xmi:id="_gTTd8Cm_Eeu9qeimajp6eg" type="Package_PackagedElementCompartment">
+      <children xsi:type="notation:Shape" xmi:id="_pmNzwCm_Eeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_pmOa0Cm_Eeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_pmOa0Sm_Eeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_pmOa0im_Eeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_pmOa0ym_Eeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_Yz52sCnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_YzXrMCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_Yz52sSnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_eERkICnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_eDvYoCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_eERkISnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_iGmxICnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_iGKFMCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_iGmxISnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_jg6L8CnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_jgacsCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_jg6L8SnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_lTLa0CnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_lSs5sCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_lTLa0SnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_ozeRwCnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_ozDbACnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_ozeRwSnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_proo0CnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_prOZICnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_proo0SnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_re7ycCnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_refGgCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_re7ycSnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_sj85wCnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_sjj4MCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_sj85wSnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_uarx4CnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_uaBDgCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_uarx4SnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_vRI4wCnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_vQq-sCnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_vRI4wSnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_wZ2NQCnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_wZXsICnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_wZ2NQSnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_zkMpYCnLEeu9qeimajp6eg" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_zjrE8CnLEeu9qeimajp6eg"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_zkMpYSnLEeu9qeimajp6eg"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_O72LYDlAEeu2w6m8Uoq08g" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_O62F0DlAEeu2w6m8Uoq08g"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_O72LYTlAEeu2w6m8Uoq08g"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_pmOa1Cm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_pmPB4Cm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_pmPB4Sm_Eeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_pmPB4im_Eeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_pmPB4ym_Eeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_pmPB5Cm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_pmPB5Sm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_pmPB5im_Eeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_pmPB5ym_Eeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_pmPB6Cm_Eeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_pmPB6Sm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_pmPB6im_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_pmPB6ym_Eeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_pmPB7Cm_Eeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_pmI7QCm_Eeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_pmNzwSm_Eeu9qeimajp6eg" x="474" y="308" width="221" height="265"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_p-Wm8Cm_Eeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_p-XOACm_Eeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_p-XOASm_Eeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_p-XOAim_Eeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_p-XOAym_Eeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_wDVHQDQqEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_wBfUMDQqEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_wDVHQTQqEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_wf_1IDQqEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_wfcbgDQqEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_wf_1ITQqEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_x-gagDQqEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_x9_dIDQqEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_x-gagTQqEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_ygklwDQqEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_ygBzMDQqEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_ygklwTQqEeuI7plqgOPPwQ"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_p-XOBCm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_p-XOBSm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_p-XOBim_Eeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_p-XOBym_Eeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_p-XOCCm_Eeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_p-XOCSm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_p-XOCim_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_p-XOCym_Eeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_p-XODCm_Eeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_p-X1ECm_Eeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_p-X1ESm_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_p-X1Eim_Eeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_p-X1Eym_Eeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_p-X1FCm_Eeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_p-OrICm_Eeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_p-Wm8Sm_Eeu9qeimajp6eg" x="754" y="432" width="184" height="160"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_avYs8CnAEeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_avZUACnAEeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_avZUASnAEeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_avZUAinAEeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_avZUAynAEeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_KhfYUCs8Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_Kg7-sCs8Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_KhfYUSs8Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_K_FTQCs8Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_K-qcgCs8Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_K_FTQSs8Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_LrTgECs8Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_Lq7FkCs8Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_LrTgESs8Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_MJZKQCs8Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_MJCk8Cs8Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_MJZKQSs8Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_MzWtQCs8Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_My4zMCs8Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_MzWtQSs8Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_NmezUCs8Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_NmIOACs8Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_NmezUSs8Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_Ocq0cCs8Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_OcTBACs8Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_Ocq0cSs8Eeu62Olr6dB6TA"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_avZUBCnAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_avZUBSnAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_avZUBinAEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_avZUBynAEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_avZUCCnAEeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_avZUCSnAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_avZUCinAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_avZUCynAEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_avZUDCnAEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_avZ7ECnAEeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_avZ7ESnAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_avZ7EinAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_avZ7EynAEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_avZ7FCnAEeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_avL4oCnAEeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_avYs8SnAEeu9qeimajp6eg" x="894" y="712"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_109MECnAEeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_109zICnAEeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_109zISnAEeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_109zIinAEeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_109zIynAEeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_NWf0cDQtEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_NWEWoDQtEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_NWf0cTQtEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_R4CtADQtEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_R3q5kDQtEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_R4CtATQtEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_Nouz8DQtEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_NoXAgDQtEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_Nouz8TQtEeuI7plqgOPPwQ"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_109zJCnAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_109zJSnAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_109zJinAEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_109zJynAEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_109zKCnAEeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_109zKSnAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_109zKinAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_109zKynAEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_109zLCnAEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_109zLSnAEeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_109zLinAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_109zLynAEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_109zMCnAEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_109zMSnAEeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_10vJoCnAEeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_109MESnAEeu9qeimajp6eg" x="994" y="372"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_HLwf0CnBEeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_HLxG4CnBEeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_HLxG4SnBEeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_HLxG4inBEeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_HLxG4ynBEeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_7eGscCntEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_7c8O0CntEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_7eGscSntEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_8AtqQCntEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_7_uLwCntEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_8AtqQSntEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_81YBYCntEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_80TqYCntEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_81YBYSntEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_KXT8YCnuEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_KWSBoCnuEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_KXT8YSnuEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_MGFLUCnuEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_MFD3oCnuEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_MGFLUSnuEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_P_FdMCnuEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_P-XEcCnuEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_P_FdMSnuEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_SN8hcCnuEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_SM7NwCnuEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_SN8hcSnuEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_UB_R8CnuEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_UA3QkCnuEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_UB_R8SnuEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_Naa_cDlBEeu2w6m8Uoq08g" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_NZ3l0DlBEeu2w6m8Uoq08g"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_Naa_cTlBEeu2w6m8Uoq08g"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_QubRYDlCEeu2w6m8Uoq08g" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_Qt9XUDlCEeu2w6m8Uoq08g"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_QubRYTlCEeu2w6m8Uoq08g"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_GlgrMDlDEeu2w6m8Uoq08g" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_GlD_QDlDEeu2w6m8Uoq08g"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_GlgrMTlDEeu2w6m8Uoq08g"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_HLxG5CnBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_HLxG5SnBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_HLxG5inBEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_HLxG5ynBEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_HLxG6CnBEeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_HLxG6SnBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_HLxG6inBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_HLxG6ynBEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_HLxG7CnBEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_HLxG7SnBEeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_HLxG7inBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_HLxG7ynBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_HLxG8CnBEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_HLxG8SnBEeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_HLgBICnBEeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_HLwf0SnBEeu9qeimajp6eg" x="494" y="1015"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_KQbKsCnBEeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_KQbKsinBEeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_KQbxwCnBEeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_KQbxwSnBEeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_KQbxwinBEeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_4NnxoCs2Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_4GU20Cs2Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_4NnxoSs2Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_5H2lQCs2Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_5GjkwCs2Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_5H2lQSs2Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_8j6ccCs2Eeu62Olr6dB6TA" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_8jYQ8Cs2Eeu62Olr6dB6TA"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_8j6ccSs2Eeu62Olr6dB6TA"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_eCWbADlBEeu2w6m8Uoq08g" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_eByaUDlBEeu2w6m8Uoq08g"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_eCWbATlBEeu2w6m8Uoq08g"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_KQbxwynBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_KQbxxCnBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_KQbxxSnBEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_KQbxxinBEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_KQbxxynBEeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_KQbxyCnBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_KQbxySnBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_KQbxyinBEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_KQbxyynBEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_KQbxzCnBEeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_KQbxzSnBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_KQbxzinBEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_KQbxzynBEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_KQbx0CnBEeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_KQCJICnBEeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_KQbKsSnBEeu9qeimajp6eg" x="834" y="972"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_o6v4ECnDEeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_o6wfICnDEeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_o6wfISnDEeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_o6wfIinDEeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_o6wfIynDEeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_gBbUcDQrEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_gA-BcDQrEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_gBbUcTQrEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_g9c30DQrEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_g9CBEDQrEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_g9c30TQrEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_hYgcIDQrEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_hYIBoDQrEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_hYgcITQrEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_IEHKQDQsEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_IDopIDQsEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_IEHKQTQsEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_Gl0psDlCEeu2w6m8Uoq08g" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_GlX9wDlCEeu2w6m8Uoq08g"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_Gl0psTlCEeu2w6m8Uoq08g"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_o6wfJCnDEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_o6wfJSnDEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_o6wfJinDEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_o6wfJynDEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_o6wfKCnDEeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_o6wfKSnDEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_o6wfKinDEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_o6wfKynDEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_o6wfLCnDEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_o6wfLSnDEeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_o6wfLinDEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_o6wfLynDEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_o6wfMCnDEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_o6wfMSnDEeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_o6ZSwCnDEeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_o6v4ESnDEeu9qeimajp6eg" x="254" y="872"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_I3d-QCnCEeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_I3d-QinCEeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_I3elUCnCEeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_I3elUSnCEeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_I3elUinCEeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_YTG-UCntEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_YOSvwCntEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_YTG-USntEeusp6CfrQ_szw"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_qUanoCntEeusp6CfrQ_szw" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_qTPi8CntEeusp6CfrQ_szw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_qUanoSntEeusp6CfrQ_szw"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_I3elUynCEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_I3elVCnCEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_I3elVSnCEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_I3elVinCEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_I3elVynCEeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_I3elWCnCEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_I3elWSnCEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_I3elWinCEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_I3elWynCEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_I3elXCnCEeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_I3elXSnCEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_I3elXinCEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_I3elXynCEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_I3elYCnCEeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_I3JOICnCEeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_I3d-QSnCEeu9qeimajp6eg" x="94" y="392"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_UgDYsCnHEeu9qeimajp6eg" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_UgDYsinHEeu9qeimajp6eg" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_UgDYsynHEeu9qeimajp6eg" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_UgDYtCnHEeu9qeimajp6eg" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_UgDYtSnHEeu9qeimajp6eg" type="Class_AttributeCompartment_CN">
+          <children xsi:type="notation:Shape" xmi:id="_NKB7MDQsEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_NJfvsDQsEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_NKB7MTQsEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_NePQoDQsEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_Nd1oADQsEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_NePQoTQsEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_N33RkDQsEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_N3do8DQsEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_N33RkTQsEeuI7plqgOPPwQ"/>
+          </children>
+          <children xsi:type="notation:Shape" xmi:id="_OPThMDQsEeuI7plqgOPPwQ" type="Property_ClassAttributeLabel">
+            <element href="SuperCar.uml#_OO6foDQsEeuI7plqgOPPwQ"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_OPThMTQsEeuI7plqgOPPwQ"/>
+          </children>
+          <styles xsi:type="notation:TitleStyle" xmi:id="_UgDYtinHEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_UgDYtynHEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_UgDYuCnHEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_UgDYuSnHEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_UgDYuinHEeu9qeimajp6eg" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_UgDYuynHEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_UgDYvCnHEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_UgDYvSnHEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_UgDYvinHEeu9qeimajp6eg"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_UgDYvynHEeu9qeimajp6eg" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_UgDYwCnHEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_UgDYwSnHEeu9qeimajp6eg"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_UgDYwinHEeu9qeimajp6eg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_UgDYwynHEeu9qeimajp6eg"/>
+        </children>
+        <element href="SuperCar.uml#_UfsMUCnHEeu9qeimajp6eg"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_UgDYsSnHEeu9qeimajp6eg" x="854" y="1133"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_mG9HcDk9Eeu2w6m8Uoq08g" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_mHD1IDk9Eeu2w6m8Uoq08g" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_mHD1ITk9Eeu2w6m8Uoq08g" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_mHD1Ijk9Eeu2w6m8Uoq08g" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_mHD1Izk9Eeu2w6m8Uoq08g" type="Class_AttributeCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_mHD1JDk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_mHD1JTk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_mHD1Jjk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_mHD1Jzk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_mHEcMDk9Eeu2w6m8Uoq08g" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_mHEcMTk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_mHEcMjk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_mHEcMzk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_mHEcNDk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_mHEcNTk9Eeu2w6m8Uoq08g" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_mHEcNjk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_mHEcNzk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_mHEcODk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_mHEcOTk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <element href="SuperCar.uml#_mFLl0Dk9Eeu2w6m8Uoq08g"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_mG9HcTk9Eeu2w6m8Uoq08g" x="14" y="588"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_mzI4ADk9Eeu2w6m8Uoq08g" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_mzJfEDk9Eeu2w6m8Uoq08g" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_mzJfETk9Eeu2w6m8Uoq08g" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_mzJfEjk9Eeu2w6m8Uoq08g" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_mzJfEzk9Eeu2w6m8Uoq08g" type="Class_AttributeCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_mzJfFDk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_mzJfFTk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_mzJfFjk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_mzJfFzk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_mzJfGDk9Eeu2w6m8Uoq08g" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_mzJfGTk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_mzJfGjk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_mzJfGzk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_mzJfHDk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_mzJfHTk9Eeu2w6m8Uoq08g" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_mzJfHjk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_mzJfHzk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_mzJfIDk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_mzJfITk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <element href="SuperCar.uml#_myILYDk9Eeu2w6m8Uoq08g"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_mzI4ATk9Eeu2w6m8Uoq08g" x="154" y="592"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_nPmxkDk9Eeu2w6m8Uoq08g" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_nPmxkjk9Eeu2w6m8Uoq08g" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_nPmxkzk9Eeu2w6m8Uoq08g" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_nPnYoDk9Eeu2w6m8Uoq08g" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_nPnYoTk9Eeu2w6m8Uoq08g" type="Class_AttributeCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_nPnYojk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_nPnYozk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_nPnYpDk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_nPnYpTk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_nPnYpjk9Eeu2w6m8Uoq08g" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_nPnYpzk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_nPnYqDk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_nPnYqTk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_nPnYqjk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_nPnYqzk9Eeu2w6m8Uoq08g" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_nPnYrDk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_nPnYrTk9Eeu2w6m8Uoq08g"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_nPnYrjk9Eeu2w6m8Uoq08g"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_nPnYrzk9Eeu2w6m8Uoq08g"/>
+        </children>
+        <element href="SuperCar.uml#_nOmsADk9Eeu2w6m8Uoq08g"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_nPmxkTk9Eeu2w6m8Uoq08g" x="294" y="581"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_cagB8Ds6EeuGPpdwmgO_og" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_caieMDs6EeuGPpdwmgO_og" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_cajFQDs6EeuGPpdwmgO_og" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_cajFQTs6EeuGPpdwmgO_og" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_cajFQjs6EeuGPpdwmgO_og" type="Class_AttributeCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_cajFQzs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_cajFRDs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_cajFRTs6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_cajFRjs6EeuGPpdwmgO_og"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_cajsUDs6EeuGPpdwmgO_og" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_cajsUTs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_cajsUjs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_cajsUzs6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_cajsVDs6EeuGPpdwmgO_og"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_cajsVTs6EeuGPpdwmgO_og" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_cajsVjs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_cajsVzs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_cajsWDs6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_cajsWTs6EeuGPpdwmgO_og"/>
+        </children>
+        <element href="SuperCar.uml#_cX5Z4Ds6EeuGPpdwmgO_og"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_cagB8Ts6EeuGPpdwmgO_og" x="374" y="732"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_c4m6QDs6EeuGPpdwmgO_og" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_c4nhUDs6EeuGPpdwmgO_og" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_c4nhUTs6EeuGPpdwmgO_og" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_c4nhUjs6EeuGPpdwmgO_og" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_c4nhUzs6EeuGPpdwmgO_og" type="Class_AttributeCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_c4nhVDs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_c4nhVTs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_c4nhVjs6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_c4nhVzs6EeuGPpdwmgO_og"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_c4nhWDs6EeuGPpdwmgO_og" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_c4nhWTs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_c4nhWjs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_c4nhWzs6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_c4nhXDs6EeuGPpdwmgO_og"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_c4ovcDs6EeuGPpdwmgO_og" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_c4ovcTs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_c4ovcjs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_c4ovczs6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_c4ovdDs6EeuGPpdwmgO_og"/>
+        </children>
+        <element href="SuperCar.uml#_c2ezUDs6EeuGPpdwmgO_og"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_c4m6QTs6EeuGPpdwmgO_og" x="654" y="701"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_dX9IsDs6EeuGPpdwmgO_og" type="Class_Shape_CN">
+        <children xsi:type="notation:DecorationNode" xmi:id="_dX9vwDs6EeuGPpdwmgO_og" type="Class_NameLabel_CN"/>
+        <children xsi:type="notation:DecorationNode" xmi:id="_dX9vwTs6EeuGPpdwmgO_og" type="Class_FloatingNameLabel_CN">
+          <layoutConstraint xsi:type="notation:Location" xmi:id="_dX9vwjs6EeuGPpdwmgO_og" y="15"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_dX9vwzs6EeuGPpdwmgO_og" type="Class_AttributeCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_dX9vxDs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_dX9vxTs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_dX9vxjs6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_dX9vxzs6EeuGPpdwmgO_og"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_dX-W0Ds6EeuGPpdwmgO_og" type="Class_OperationCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_dX-W0Ts6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_dX-W0js6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_dX-W0zs6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_dX-W1Ds6EeuGPpdwmgO_og"/>
+        </children>
+        <children xsi:type="notation:BasicCompartment" xmi:id="_dX-W1Ts6EeuGPpdwmgO_og" type="Class_NestedClassifierCompartment_CN">
+          <styles xsi:type="notation:TitleStyle" xmi:id="_dX-W1js6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:SortingStyle" xmi:id="_dX-W1zs6EeuGPpdwmgO_og"/>
+          <styles xsi:type="notation:FilteringStyle" xmi:id="_dX-W2Ds6EeuGPpdwmgO_og"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_dX-W2Ts6EeuGPpdwmgO_og"/>
+        </children>
+        <element href="SuperCar.uml#_dWrWUDs6EeuGPpdwmgO_og"/>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_dX9IsTs6EeuGPpdwmgO_og" x="514" y="732"/>
+      </children>
+      <styles xsi:type="notation:TitleStyle" xmi:id="_gTTd8Sm_Eeu9qeimajp6eg"/>
+      <layoutConstraint xsi:type="notation:Bounds" xmi:id="_gTTd8im_Eeu9qeimajp6eg"/>
+    </children>
+    <element href="SuperCar.uml#_gTRBsCm_Eeu9qeimajp6eg"/>
+    <layoutConstraint xsi:type="notation:Bounds" xmi:id="_gTS24Sm_Eeu9qeimajp6eg" x="-20" y="-500" width="1261" height="1081"/>
+  </children>
+  <styles xsi:type="notation:StringValueStyle" xmi:id="_MmCpISm_Eeu9qeimajp6eg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+  <styles xsi:type="notation:DiagramStyle" xmi:id="_MmCpIim_Eeu9qeimajp6eg"/>
+  <styles xsi:type="style:PapyrusDiagramStyle" xmi:id="_MmCpIym_Eeu9qeimajp6eg" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
+    <owner href="SuperCar.uml#_I66tICm9Eeu0o6ZQtODeTw"/>
+  </styles>
+  <element href="SuperCar.uml#_I66tICm9Eeu0o6ZQtODeTw"/>
+  <edges xsi:type="notation:Connector" xmi:id="_2jjz8Cm_Eeu9qeimajp6eg" type="Association_Edge" source="_pmNzwCm_Eeu9qeimajp6eg" target="_p-Wm8Cm_Eeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_2jkbACm_Eeu9qeimajp6eg" type="Association_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_4uA5UCm_Eeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_2jkbASm_Eeu9qeimajp6eg" x="1" y="-18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_2jkbAim_Eeu9qeimajp6eg" type="Association_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_4uL4cCm_Eeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_2jkbAym_Eeu9qeimajp6eg" y="19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_2jkbBCm_Eeu9qeimajp6eg" type="Association_TargetRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_4uYFsCm_Eeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_2jkbBSm_Eeu9qeimajp6eg" x="54" y="-18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_2jkbBim_Eeu9qeimajp6eg" type="Association_SourceRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_4ulhECm_Eeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_2jkbBym_Eeu9qeimajp6eg" x="-53" y="19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_2jkbCCm_Eeu9qeimajp6eg" type="Association_SourceMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_4uy8cCm_Eeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_2jkbCSm_Eeu9qeimajp6eg" x="54" y="19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_2jkbCim_Eeu9qeimajp6eg" type="Association_TargetMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_4u9UgCm_Eeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_2jkbCym_Eeu9qeimajp6eg" x="-53" y="-18"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_2jjz8Sm_Eeu9qeimajp6eg"/>
+    <element href="SuperCar.uml#_2jPD0Cm_Eeu9qeimajp6eg"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_2jjz8im_Eeu9qeimajp6eg" points="[521, 260, -643984, -643984]$[880, 280, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_2kN7QCm_Eeu9qeimajp6eg" id="(1.0,0.24150943396226415)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_2kN7QSm_Eeu9qeimajp6eg" id="(0.0,0.75)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_mlD6cCnAEeu9qeimajp6eg" type="Association_Edge" source="_avYs8CnAEeu9qeimajp6eg" target="_p-Wm8Cm_Eeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_mlEhgCnAEeu9qeimajp6eg" type="Association_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_0XKYYCnAEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_mlEhgSnAEeu9qeimajp6eg" x="-1" y="-19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_mlEhginAEeu9qeimajp6eg" type="Association_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_0XZo8CnAEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_mlEhgynAEeu9qeimajp6eg" x="1" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_mlEhhCnAEeu9qeimajp6eg" type="Association_TargetRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_0XpgkCnAEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_mlEhhSnAEeu9qeimajp6eg" x="29" y="-19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_mlEhhinAEeu9qeimajp6eg" type="Association_SourceRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_0X5YMCnAEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_mlEhhynAEeu9qeimajp6eg" x="-29" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_mlEhiCnAEeu9qeimajp6eg" type="Association_SourceMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_0YJP0CnAEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_mlEhiSnAEeu9qeimajp6eg" x="31" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_mlEhiinAEeu9qeimajp6eg" type="Association_TargetMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_0YYgYCnAEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_mlEhiynAEeu9qeimajp6eg" x="-31" y="-19"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_mlD6cSnAEeu9qeimajp6eg"/>
+    <element href="SuperCar.uml#_mkq44CnAEeu9qeimajp6eg"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_mlD6cinAEeu9qeimajp6eg" points="[880, 100, -643984, -643984]$[860, -80, -643984, -643984]$[960, -80, -643984, -643984]$[980, -100, -643984, -643984]$[960, -120, -643984, -643984]$[924, -140, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_ml1WgCnAEeu9qeimajp6eg" id="(0.0,0.4635416666666667)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_ml1WgSnAEeu9qeimajp6eg" id="(1.0,0.80625)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_fYRHICnBEeu9qeimajp6eg" type="Association_Edge" source="_HLwf0CnBEeu9qeimajp6eg" target="_KQbKsCnBEeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_fYSVQCnBEeu9qeimajp6eg" type="Association_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_nXIbICnBEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_fYSVQSnBEeu9qeimajp6eg" y="-20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_fYSVQinBEeu9qeimajp6eg" type="Association_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_nXY50CnBEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_fYSVQynBEeu9qeimajp6eg" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_fYSVRCnBEeu9qeimajp6eg" type="Association_TargetRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_nXqmoCnBEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_fYSVRSnBEeu9qeimajp6eg" x="42" y="-20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_fYSVRinBEeu9qeimajp6eg" type="Association_SourceRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_nX8TcCnBEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_fYSVRynBEeu9qeimajp6eg" x="-42" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_fYSVSCnBEeu9qeimajp6eg" type="Association_SourceMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_nYPOYCnBEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_fYSVSSnBEeu9qeimajp6eg" x="42" y="20"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_fYSVSinBEeu9qeimajp6eg" type="Association_TargetMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_nYhiQCnBEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_fYSVSynBEeu9qeimajp6eg" x="-42" y="-20"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_fYRHISnBEeu9qeimajp6eg"/>
+    <element href="SuperCar.uml#_fXx-8CnBEeu9qeimajp6eg"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_fYRHIinBEeu9qeimajp6eg" points="[477, 340, -643984, -643984]$[580, 320, -643984, -643984]$[720, 280, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_fZE_cCnBEeu9qeimajp6eg" id="(1.0,0.3125)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_fZE_cSnBEeu9qeimajp6eg" id="(0.0,0.4166666666666667)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_Nro34CnCEeu9qeimajp6eg" type="Association_Edge" source="_pmNzwCm_Eeu9qeimajp6eg" target="_I3d-QCnCEeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_Nro34ynCEeu9qeimajp6eg" type="Association_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_f8P2kCnEEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_Nro35CnCEeu9qeimajp6eg" y="-19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_Nro35SnCEeu9qeimajp6eg" type="Association_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_f8lNwCnEEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_Nro35inCEeu9qeimajp6eg" x="-1" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_Nro35ynCEeu9qeimajp6eg" type="Association_TargetRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_f87MACnEEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_Nrpe8CnCEeu9qeimajp6eg" x="17" y="-19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_Nrpe8SnCEeu9qeimajp6eg" type="Association_SourceRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_f9RKQCnEEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_Nrpe8inCEeu9qeimajp6eg" x="-15" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_Nrpe8ynCEeu9qeimajp6eg" type="Association_SourceMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_f9l6YCnEEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_Nrpe9CnCEeu9qeimajp6eg" x="16" y="17"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_Nrpe9SnCEeu9qeimajp6eg" type="Association_TargetMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_f96qgCnEEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_Nrpe9inCEeu9qeimajp6eg" x="-15" y="-19"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_Nro34SnCEeu9qeimajp6eg"/>
+    <element href="SuperCar.uml#_NrGFUCnCEeu9qeimajp6eg"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_Nro34inCEeu9qeimajp6eg" points="[320, 80, -643984, -643984]$[218, 80, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_Nsd-UCnCEeu9qeimajp6eg" id="(0.0,0.24150943396226415)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_NselYCnCEeu9qeimajp6eg" id="(1.0,0.35714285714285715)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_KELhoCnFEeu9qeimajp6eg" type="Association_Edge" source="_p-Wm8Cm_Eeu9qeimajp6eg" target="_o6v4ECnDEeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_KELhoynFEeu9qeimajp6eg" type="Association_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_KyVBECnFEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_KELhpCnFEeu9qeimajp6eg" x="-1" y="-18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_KEMIsCnFEeu9qeimajp6eg" type="Association_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_KyrmYCnFEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_KEMIsSnFEeu9qeimajp6eg" x="-1" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_KEMIsinFEeu9qeimajp6eg" type="Association_TargetRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_KzCywCnFEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_KEMIsynFEeu9qeimajp6eg" x="31" y="-18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_KEMItCnFEeu9qeimajp6eg" type="Association_SourceRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_KzZYECnFEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_KEMItSnFEeu9qeimajp6eg" x="-29" y="17"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_KEMItinFEeu9qeimajp6eg" type="Association_SourceMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_Kzs6ECnFEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_KEMItynFEeu9qeimajp6eg" x="29" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_KEMIuCnFEeu9qeimajp6eg" type="Association_TargetMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_K0CRQCnFEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_KEMIuSnFEeu9qeimajp6eg" x="-29" y="-19"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_KELhoSnFEeu9qeimajp6eg"/>
+    <element href="SuperCar.uml#_KDng8CnFEeu9qeimajp6eg"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_KELhoinFEeu9qeimajp6eg" points="[840, -180, -643984, -643984]$[800, 20, -643984, -643984]$[700, 220, -643984, -643984]$[600, 220, -643984, -643984]$[540, 220, -643984, -643984]$[271, 80, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_KFCdQCnFEeu9qeimajp6eg" id="(0.21739130434782608,1.0)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_KFCdQSnFEeu9qeimajp6eg" id="(1.0,0.5)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_q4jWoCnFEeu9qeimajp6eg" type="Association_Edge" source="_HLwf0CnBEeu9qeimajp6eg" target="_o6v4ECnDEeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_q4jWoynFEeu9qeimajp6eg" type="Association_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_aKOisCnGEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_q4jWpCnFEeu9qeimajp6eg" y="-19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_q4jWpSnFEeu9qeimajp6eg" type="Association_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_aKjS0CnGEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_q4jWpinFEeu9qeimajp6eg" x="-1" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_q4jWpynFEeu9qeimajp6eg" type="Association_TargetRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_aK200CnGEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_q4jWqCnFEeu9qeimajp6eg" x="21" y="-19"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_q4jWqSnFEeu9qeimajp6eg" type="Association_SourceRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_aLKW0CnGEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_q4jWqinFEeu9qeimajp6eg" x="-20" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_q4jWqynFEeu9qeimajp6eg" type="Association_SourceMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_aLd40CnGEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_q4j9sCnFEeu9qeimajp6eg" x="22" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_q4j9sSnFEeu9qeimajp6eg" type="Association_TargetMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_aLyB4CnGEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_q4j9sinFEeu9qeimajp6eg" x="-21" y="-18"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_q4jWoSnFEeu9qeimajp6eg"/>
+    <element href="SuperCar.uml#_q31k8CnFEeu9qeimajp6eg"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_q4jWoinFEeu9qeimajp6eg" points="[480, 323, -643984, -643984]$[380, 380, -643984, -643984]$[320, 400, -643984, -643984]$[340, 260, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_q5dVkCnFEeu9qeimajp6eg" id="(0.0,0.3125)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_q5dVkSnFEeu9qeimajp6eg" id="(0.5847953216374269,1.0)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_cBV_4CnHEeu9qeimajp6eg" type="Association_Edge" source="_UgDYsCnHEeu9qeimajp6eg" target="_HLwf0CnBEeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_cBV_4ynHEeu9qeimajp6eg" type="Association_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_l-p9kCnHEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_cBV_5CnHEeu9qeimajp6eg" y="-18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_cBV_5SnHEeu9qeimajp6eg" type="Association_NameLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_l_GCcCnHEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_cBV_5inHEeu9qeimajp6eg" x="-1" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_cBV_5ynHEeu9qeimajp6eg" type="Association_TargetRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_l_YWUCnHEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_cBV_6CnHEeu9qeimajp6eg" x="56" y="-18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_cBV_6SnHEeu9qeimajp6eg" type="Association_SourceRoleLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_l_x-8CnHEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_cBV_6inHEeu9qeimajp6eg" x="-57" y="16"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_cBV_6ynHEeu9qeimajp6eg" type="Association_SourceMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_mAE54CnHEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_cBV_7CnHEeu9qeimajp6eg" x="56" y="18"/>
+    </children>
+    <children xsi:type="notation:DecorationNode" xmi:id="_cBV_7SnHEeu9qeimajp6eg" type="Association_TargetMultiplicityLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_mAbfMCnHEeu9qeimajp6eg" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_cBV_7inHEeu9qeimajp6eg" x="-58" y="-19"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_cBV_4SnHEeu9qeimajp6eg"/>
+    <element href="SuperCar.uml#_cAcA8CnHEeu9qeimajp6eg"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_cBV_4inHEeu9qeimajp6eg" points="[900, 340, -643984, -643984]$[540, 460, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_cCTpMCnHEeu9qeimajp6eg" id="(0.0,0.4097222222222222)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_cCTpMSnHEeu9qeimajp6eg" id="(1.0,0.78125)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_jvlZIDs6EeuGPpdwmgO_og" type="Generalization_Edge" source="_cagB8Ds6EeuGPpdwmgO_og" target="_pmNzwCm_Eeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_jvmAMDs6EeuGPpdwmgO_og" type="Generalization_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_DEhmQDs8EeuGPpdwmgO_og" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_jvmAMTs6EeuGPpdwmgO_og" x="1" y="38"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_jvlZITs6EeuGPpdwmgO_og"/>
+    <element href="SuperCar.uml#_jubikDs6EeuGPpdwmgO_og"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_jvlZIjs6EeuGPpdwmgO_og" points="[420, -40, -643984, -643984]$[500, -119, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_jyPEgDs6EeuGPpdwmgO_og" id="(0.6,0.0)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_jyPEgTs6EeuGPpdwmgO_og" id="(0.18099547511312217,1.0)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_kg46QDs6EeuGPpdwmgO_og" type="Generalization_Edge" source="_dX9IsDs6EeuGPpdwmgO_og" target="_pmNzwCm_Eeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_kg46Qzs6EeuGPpdwmgO_og" type="Generalization_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_DF3qEDs8EeuGPpdwmgO_og" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_kg46RDs6EeuGPpdwmgO_og" y="40"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_kg46QTs6EeuGPpdwmgO_og"/>
+    <element href="SuperCar.uml#_kfX3UDs6EeuGPpdwmgO_og"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_kg46Qjs6EeuGPpdwmgO_og" points="[560, -40, -643984, -643984]$[560, -119, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_kjPqsDs6EeuGPpdwmgO_og" id="(0.6,0.0)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_kjPqsTs6EeuGPpdwmgO_og" id="(0.45248868778280543,1.0)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_mco1QDs6EeuGPpdwmgO_og" type="Generalization_Edge" source="_c4m6QDs6EeuGPpdwmgO_og" target="_pmNzwCm_Eeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_mco1Qzs6EeuGPpdwmgO_og" type="Generalization_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_DG-dUDs8EeuGPpdwmgO_og" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_mco1RDs6EeuGPpdwmgO_og" x="-1" y="38"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_mco1QTs6EeuGPpdwmgO_og"/>
+    <element href="SuperCar.uml#_mbEH8Ds6EeuGPpdwmgO_og"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_mco1Qjs6EeuGPpdwmgO_og" points="[700, -40, -643984, -643984]$[620, -119, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_mfD3IDs6EeuGPpdwmgO_og" id="(0.4,0.0)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_mfEeMDs6EeuGPpdwmgO_og" id="(0.7239819004524887,1.0)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_81ajMDs8EeuGPpdwmgO_og" type="Generalization_Edge" source="_mzI4ADk9Eeu2w6m8Uoq08g" target="_I3d-QCnCEeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_81bKQDs8EeuGPpdwmgO_og" type="Generalization_StereotypeLabel">
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_81bKQTs8EeuGPpdwmgO_og" y="40"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_81ajMTs8EeuGPpdwmgO_og"/>
+    <element href="SuperCar.uml#_80FGcDs8EeuGPpdwmgO_og"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_81ajMjs8EeuGPpdwmgO_og" points="[200, -109, -643984, -643984]$[160, -197, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_83iDEDs8EeuGPpdwmgO_og" id="(0.6,0.0)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_83iDETs8EeuGPpdwmgO_og" id="(0.5369127516778524,1.0)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_92PHADs8EeuGPpdwmgO_og" type="Generalization_Edge" source="_nPmxkDk9Eeu2w6m8Uoq08g" target="_I3d-QCnCEeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_92PHAzs8EeuGPpdwmgO_og" type="Generalization_StereotypeLabel">
+      <styles xsi:type="notation:BooleanValueStyle" xmi:id="_-Yii0Ds8EeuGPpdwmgO_og" name="IS_UPDATED_POSITION" booleanValue="true"/>
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_92PHBDs8EeuGPpdwmgO_og" x="-1" y="38"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_92PHATs8EeuGPpdwmgO_og"/>
+    <element href="SuperCar.uml#_902m8Ds8EeuGPpdwmgO_og"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_92PHAjs8EeuGPpdwmgO_og" points="[300, -189, -643984, -643984]$[200, -197, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_94zS0Ds8EeuGPpdwmgO_og" id="(0.2,0.0)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_94zS0Ts8EeuGPpdwmgO_og" id="(0.8053691275167785,1.0)"/>
+  </edges>
+  <edges xsi:type="notation:Connector" xmi:id="_B4KEUDs9EeuGPpdwmgO_og" type="Generalization_Edge" source="_mG9HcDk9Eeu2w6m8Uoq08g" target="_I3d-QCnCEeu9qeimajp6eg">
+    <children xsi:type="notation:DecorationNode" xmi:id="_B4KEUzs9EeuGPpdwmgO_og" type="Generalization_StereotypeLabel">
+      <layoutConstraint xsi:type="notation:Location" xmi:id="_B4KEVDs9EeuGPpdwmgO_og" y="40"/>
+    </children>
+    <styles xsi:type="notation:FontStyle" xmi:id="_B4KEUTs9EeuGPpdwmgO_og"/>
+    <element href="SuperCar.uml#_B245ADs9EeuGPpdwmgO_og"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_B4KEUjs9EeuGPpdwmgO_og" points="[60, -113, -643984, -643984]$[120, -197, -643984, -643984]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_B6NSwDs9EeuGPpdwmgO_og" id="(0.594059405940594,0.0)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_B6NSwTs9EeuGPpdwmgO_og" id="(0.2684563758389262,1.0)"/>
+  </edges>
+</notation:Diagram>
