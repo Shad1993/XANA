@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_WUCkMDrxEeu-YLugmluWpQ" name="COOLIO">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_WWpzUDrxEeu-YLugmluWpQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_SopOgDsHEeu5FPpQZdvo3Q" name="Guns">
+    <packagedElement xmi:type="uml:Class" xmi:id="_iKGxQDsHEeu5FPpQZdvo3Q" name="Armes">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_dKb80DsIEeu5FPpQZdvo3Q" name="NoGun" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_d4U9kDsIEeu5FPpQZdvo3Q" name="Nom">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_eSAo4DsIEeu5FPpQZdvo3Q" name="Puisssance">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_eo9JQDsIEeu5FPpQZdvo3Q" name="Capacite">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_h42acDsNEeu5FPpQZdvo3Q" name="Armes" visibility="package">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_f67GcDsTEeuuNtrweSjp0w" name="Nom">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_kHZt8DsTEeuuNtrweSjp0w" name="Puissance">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_nyRdMDsTEeuuNtrweSjp0w" name="Capacite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_VQbnwDsVEeuuNtrweSjp0w" name="Armes"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_prGdgDsHEeu5FPpQZdvo3Q" name="ArmeBlanche">
+      <generalization xmi:type="uml:Generalization" xmi:id="_RUaKADsIEeu5FPpQZdvo3Q" general="_iKGxQDsHEeu5FPpQZdvo3Q"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_zdmncDsJEeu5FPpQZdvo3Q" name="Lame">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_chbwMDsVEeuuNtrweSjp0w" name="ArmesBlanches"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_e7kQUDsVEeuuNtrweSjp0w" name="ArmesBlanches"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ENKm8DsIEeu5FPpQZdvo3Q" name="ArmeTir">
+      <generalization xmi:type="uml:Generalization" xmi:id="_R2p7cDsIEeu5FPpQZdvo3Q" general="_iKGxQDsHEeu5FPpQZdvo3Q"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_MyfMEDsKEeu5FPpQZdvo3Q" name="Poudre">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_H2jIcDsIEeu5FPpQZdvo3Q" name="ArmeJet">
+      <generalization xmi:type="uml:Generalization" xmi:id="_ShwG4DsIEeu5FPpQZdvo3Q" general="_iKGxQDsHEeu5FPpQZdvo3Q"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_p0mF0DsJEeu5FPpQZdvo3Q" name="ImpactDexplo">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_TBifUDu6EeuaxIUB9MAEJg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TBlioDu6EeuaxIUB9MAEJg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/Codegen/1#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://Codegen_PROFILES/Codegen.profile.uml#_fPDsIBa-EearhdjjJ6cVzQ"/>
+    </profileApplication>
+  </packagedElement>
+</uml:Model>
