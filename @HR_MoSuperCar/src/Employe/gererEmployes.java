@@ -808,7 +808,7 @@ public class gererEmployes {
 			
 			
 		});
-		txtRechercher.setBounds(409, 106, 319, 29);
+		txtRechercher.setBounds(397, 106, 331, 29);
 		frame.getContentPane().add(txtRechercher);
 		txtRechercher.setColumns(10);
 		
