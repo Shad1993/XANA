@@ -558,7 +558,7 @@ public class gererEmployes {
 		cmbTitre.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbTitre.setBounds(129, 330, 197, 25);
 		layeredPane.add(cmbTitre);
-		cmbTitre.setModel(new DefaultComboBoxModel(new String[] {"", "Hr Manager", "Manager", "Vendeur", "Comptable", "Formateur", "Chauffeur", "Nettoyeur", "Stagiaire"}));
+		cmbTitre.setModel(new DefaultComboBoxModel(new String[] {"", "Administrateur", "HR Manager", "Manager", "Vendeur", "Comptable", "Formateur", "Mécanicien", "Chauffeur", "Nettoyeur", "Stagiaire"}));
 		
 		JLabel lblNewLabel_4 = new JLabel("Departement");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 12));
