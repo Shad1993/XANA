@@ -342,7 +342,7 @@ public class gererEmployes {
 		 txtNIC.setText("");
 		 txtNoContact.setText("");
 		 txtSalaire.setText("");
-		 txtNomDep.setVisible(false);
+		 txtNomDep.setVisible(false);// champ departement invisible
 		 txtEmail.setText("");
 		 txtCommission.setText("");
 		 dateChooserDOB.setCalendar(null);
@@ -685,6 +685,7 @@ public class gererEmployes {
 			public void actionPerformed(ActionEvent e) {
 				
 				
+				
 				boolean error = false;
 
 			    NoEmp = txtNoEmp.getText();
@@ -703,7 +704,8 @@ public class gererEmployes {
 					if (confirm == JOptionPane.YES_OPTION) {
 						DBUtil.deleteEmploye(empInfos(CRUDMode.DELETE));
 						JFrame frame = new JFrame("retour");
-						JOptionPane.showMessageDialog(frame, "Employé(e) effacé(e)");
+						JOptionPane.showMessageDialog(frame, "Employé(e) supprimé(e)");
+						effaceChamps();
 					}else {
 						
 						System.out.println(""); // reste dans le programme
