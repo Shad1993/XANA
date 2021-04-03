@@ -787,6 +787,8 @@ public class gererEmployes {
 				
 				
 				
+				
+				
 				//JFrame frame = new JFrame("error");
 				//NoEmp= txtNoEmp.getText();
 				//getEmpInfos();
