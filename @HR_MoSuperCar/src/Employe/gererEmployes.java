@@ -109,7 +109,7 @@ public class gererEmployes {
 	
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	private final JLayeredPane layeredPane_1 = new JLayeredPane();
-	private JTextField txtRechercher;
+	private static JTextField txtRechercher;
 	private JTextField txtNomDep;
 
 	/**
@@ -907,7 +907,9 @@ public class gererEmployes {
 			JFrame frame = new JFrame("0 résultat");
 			JOptionPane.showMessageDialog(frame,"Aucun résultat obtenu..");
 			
-			
+			 txtRechercher.requestFocusInWindow(); //place curseur dans txtbox rechercher
+			 txtRechercher.setText("");//effacer textbox recherche
+
 			
 		}else {
 			
