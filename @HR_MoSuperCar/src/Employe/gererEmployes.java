@@ -332,8 +332,28 @@ public class gererEmployes {
 		
 	}
 	
-	
-	
+	// méthode qui éfface tous les champs pour insertion
+	public void effaceChamps() {
+		
+		 txtNoEmp.setText("");
+		 txtNom.setText("");
+		 txtPrenom.setText("");
+		 txtAdresse.setText("");
+		 txtNIC.setText("");
+		 txtNoContact.setText("");
+		 txtSalaire.setText("");
+		 txtNomDep.setVisible(false);
+		 txtEmail.setText("");
+		 txtCommission.setText("");
+		 dateChooserDOB.setCalendar(null);
+		 dateChooserAnne.setCalendar(null);
+		 cmbTitre.setSelectedIndex(0);
+		 cmbSexe.setSelectedIndex(0);
+		 cmbDep.setSelectedIndex(0);	
+		 
+		 txtNom.requestFocusInWindow();// place le curseeur sur le champ Nom
+		
+	}
 	
 
 	/**
@@ -786,15 +806,10 @@ public class gererEmployes {
 			public void actionPerformed(ActionEvent e) {
 				
 				
+				 //appel méthode
+				 effaceChamps();
+				 
 				
-				
-				
-				//JFrame frame = new JFrame("error");
-				//NoEmp= txtNoEmp.getText();
-				//getEmpInfos();
-				
-				//String val = NoEmp+Nom+Prenom+ Adresse+Email+Salaire+Commission+DOB+Embauche+Sexe+Titre+ Dep+ NIC;
-				//JOptionPane.showMessageDialog(frame,val);
 				
 				
 				
