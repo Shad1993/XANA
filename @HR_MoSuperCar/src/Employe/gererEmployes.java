@@ -482,7 +482,7 @@ public class gererEmployes {
 		txtNoEmp.setEditable(false);
 		txtNoEmp.setForeground(Color.RED);
 		txtNoEmp.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtNoEmp.setBounds(131, 7, 78, 25);
+		txtNoEmp.setBounds(131, 7, 61, 25);
 		layeredPane.add(txtNoEmp);
 		txtNoEmp.setColumns(10);
 
