@@ -51,6 +51,7 @@ import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;  
@@ -79,6 +80,10 @@ public class gererEmployes {
 	private JTextField txtSalaire;
 	private JDateChooser dateChooserDOB ;
 	private JDateChooser dateChooserAnne ;
+	private JTextFieldDateEditor editor;
+	private JTextFieldDateEditor editorx;
+	private JButton btnAjouter;
+
 
 
 	@SuppressWarnings("rawtypes")
@@ -197,45 +202,141 @@ public class gererEmployes {
 			txtNoContact.setBackground(new Color(255, 186, 186));
 			txtNoContact.requestFocusInWindow();
 			
-			
-		
 			SignalErreur = true;
+			
 		//^(0|[1-9]\d*)(\.\d+)?$
 		} else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Adresse) == false || Adresse.equalsIgnoreCase("")) {
-			txtAdresse.setText("");
 			JOptionPane.showMessageDialog(frame, "ERREUR, ADRESSE INVALIDE");
+			txtAdresse.setBackground(new Color(255, 186, 186));
+			txtAdresse.requestFocusInWindow();
+			
 			SignalErreur = true;
 	
 		}else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Nom) == false || Nom.equalsIgnoreCase("")) {
-			txtNom.setText("");
 			JOptionPane.showMessageDialog(frame, "ERREUR, NOM INVALIDE");
+			txtNom.setBackground(new Color(255, 186, 186));
+			txtNom.requestFocusInWindow();
 			SignalErreur = true;
 	
 		}else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Prenom) == false || Prenom.equalsIgnoreCase("")) {
-			txtPrenom.setText("");
 			JOptionPane.showMessageDialog(frame, "ERREUR, PRENOM INVALIDE");
+			
+			txtPrenom.setBackground(new Color(255, 186, 186));
+			txtPrenom.requestFocusInWindow();
 			SignalErreur = true;
+			
+			
 	//[A-Za-z]
 		}else if (Pattern.matches("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{14}$", NIC) == false || NIC.equalsIgnoreCase("")) {
-			txtNIC.setText("");
 			JOptionPane.showMessageDialog(frame, "ERREUR, NIC INVALIDE");
+			txtNIC.setBackground(new Color(255, 186, 186));
+			txtNIC.requestFocusInWindow();
 			SignalErreur = true;
 	
 		}else if (Pattern.matches("\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$", Email) == false || Email.equalsIgnoreCase("")) {
-			txtEmail.setText("");
 			JOptionPane.showMessageDialog(frame, "ERREUR, Email INVALIDE!!");
+			txtEmail.setBackground(new Color(255, 186, 186));
+			txtEmail.requestFocusInWindow();
 			SignalErreur = true;
 			
 		}else if (Pattern.matches("^(0|[1-9]\\d*)(\\.\\d+)?$", Salaire) == false ||Salaire.equalsIgnoreCase("")) {
-			txtNIC.setText("");
 			JOptionPane.showMessageDialog(frame, "ERREUR,SALAIRE INVALIDE");
+			txtSalaire.setBackground(new Color(255, 186, 186));
+			txtSalaire.requestFocusInWindow();
 			SignalErreur = true;
 			
 		}else if (Pattern.matches("^(0|[1-9]\\d*)(\\.\\d+)?$", Commission) == false ||Commission.equalsIgnoreCase("")) {
-			txtCommission.setText("");
 			JOptionPane.showMessageDialog(frame, "ERREUR! COMMISSION INVALIDE!");
+			txtCommission.setBackground(new Color(255, 186, 186));
+			txtCommission.requestFocusInWindow();
 			SignalErreur = true;
 		}
+		
+	     
+        if (DOB.isEmpty()) {
+			
+			JFrame frame = new JFrame("erreur");
+			JOptionPane.showMessageDialog(frame,"Entrez une date de naissance");
+			dateChooserDOB.setBackground(new Color(255, 186, 186));
+			
+		}
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy"); 
+        
+	    Date date1 = new Date();  
+        String dateNow1 = formatter.format(date1);
+        
+	    int dateNowInt1 = Integer.parseInt(dateNow1);
+        
+        
+		// Vérifier si l'année est numérique
+   
+		String saisieDOB = DOB.substring(0,4);    //input string
+		 
+	
+		 int dateIntDOB = Integer.parseInt(saisieDOB); //convertion de l'année string en Integer
+		 
+		 if(dateIntDOB % 1 != 0 || dateIntDOB > dateNowInt1) {
+			 
+
+		    	JFrame frame = new JFrame("erreur");
+				JOptionPane.showMessageDialog(frame,"Erreur date de n'aissance");	
+				SignalErreur = true;
+
+			 	
+		 }
+   
+		 
+		 
+
+		  Embauche = ((JTextField)dateChooserAnne.getDateEditor().getUiComponent()).getText();
+		  
+		  if (Embauche.isEmpty()) {
+				
+				JFrame frame = new JFrame("erreur");
+				JOptionPane.showMessageDialog(frame,"Entrez une date de d'embauche");			
+		  }
+		  
+		  SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy"); 
+		    Date date2 = new Date();  
+	        String dateNow2 = formatter2.format(date2);
+	        
+		    int dateNowInt2 = Integer.parseInt(dateNow2);
+		  
+			
+			String dateEmb = Embauche.substring(0,4);    //input string
+			 
+			int dateInt2= Integer.parseInt(dateEmb); //convertion de l'année string en Integer
+			
+			   
+			// Condition pour interdir les année < ou > à l'année actuelle
+			  if(dateInt2 > dateNowInt2 || dateInt2 < dateNowInt2  ){
+				    
+			    	JFrame frame = new JFrame("erreur");
+					JOptionPane.showMessageDialog(frame, "l'année d'embauche ne peut être supérieure ou infèrieure à l'année actuelle!");	
+					SignalErreur = true;
+					
+					//changer la couleur du datechooser en rouge (warning)
+					editorx.setBackground(new Color(255, 186, 186));
+					
+	
+			  }
+		
+		
+				Dep	=	cmbDep.getSelectedItem().toString();
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		return SignalErreur;
 }	
@@ -253,31 +354,24 @@ public class gererEmployes {
 	        
 	       
 
-	        
-	        if (DOB.isEmpty()) {
-				
-				JFrame frame = new JFrame("erreur");
-				JOptionPane.showMessageDialog(frame,"Entrez une date de naissance");			
-				
-			}
-	        
-	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy"); 
-		    Date date1 = new Date();  
-	        String dateNow1 = formatter.format(date1);
-	        
-		    int dateNowInt1 = Integer.parseInt(dateNow1);
-	        
-	        
-			
-			String saisie = DOB.substring(0,4);    //input string
+	   
 			 
-			 int dateInt1 = Integer.parseInt(saisie); //convertion de l'année string en Integer
 			 
-			  if(dateInt1 > dateNowInt1){
-				    
-			    	JFrame frame = new JFrame("erreur");
-					JOptionPane.showMessageDialog(frame, "Erreur date de n'aissance");	
-			  }
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 		
 		
 		Sexe = cmbSexe.getSelectedItem().toString();
@@ -317,47 +411,6 @@ public class gererEmployes {
 
 		
 		
-	
-		
-		 
-	   
-		
-      
-		  
-		  
-		  Embauche = ((JTextField)dateChooserAnne.getDateEditor().getUiComponent()).getText();
-		  if (Embauche.isEmpty()) {
-				
-				JFrame frame = new JFrame("erreur");
-				JOptionPane.showMessageDialog(frame,"Entrez une date de d'embauche");			
-				
-			}
-		  
-		  SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy"); 
-		    Date date2 = new Date();  
-	        String dateNow2 = formatter2.format(date2);
-	        
-		    int dateNowInt2 = Integer.parseInt(dateNow2);
-		  
-		   
-		  
-			
-			String dateEmb = Embauche.substring(0,4);    //input string
-			 
-			int dateInt2= Integer.parseInt(dateEmb); //convertion de l'année string en Integer
-			
-			   
-			  if(dateInt2 > dateNowInt2){
-				    
-			    	JFrame frame = new JFrame("erreur");
-					JOptionPane.showMessageDialog(frame, "l'année d'embauche ne peut être inférieure à l'anné actuelle!");	
-					
-			  }
-		
-		
-
-				Dep	=	cmbDep.getSelectedItem().toString();
-				
 				//if (Dep.isEmpty()) {
 					
 					//JFrame frame = new JFrame("erreur");
@@ -386,6 +439,8 @@ public class gererEmployes {
 	
 	// méthode qui éfface tous les champs pour insertion
 	public void effaceChamps() {
+		
+		btnAjouter.setEnabled(true);// activer buton ajouter pour insertion
 		
 		 txtNoEmp.setText("");
 		 txtNom.setText("");
@@ -445,7 +500,7 @@ public class gererEmployes {
 				
 		        txtNomDep.setVisible(true);
 
-				
+			     btnAjouter.setEnabled(false);
 				   
 				int i = table.getSelectedRow();
 		        TableModel model = table.getModel();
@@ -465,7 +520,8 @@ public class gererEmployes {
 
 		        
 			    cmbSexe.setSelectedItem(model.getValueAt(i,5).toString());
-
+			    
+			    
 			    
 				//String tc = table.getModel().getValueAt(i, 13).toString();
 				//String tc2 = table.getModel().getValueAt(i, 14).toString();
@@ -673,10 +729,18 @@ public class gererEmployes {
 		dateChooserDOB.setBounds(131, 153, 138, 25);
 		layeredPane.add(dateChooserDOB);
 		
+		// Interdir saisie directement dans datechooser
+		editor = (JTextFieldDateEditor) dateChooserDOB.getDateEditor();
+		editor.setEditable(false);		
 		dateChooserDOB.setDateFormatString("YYYY-MM-dd"); //changer le format en aaaa-mm-jj
 		
 		dateChooserAnne = new JDateChooser();
 		dateChooserAnne.setBounds(131, 477, 140, 27);
+		
+		// Interdir saisie directement dans datechooser
+		 editorx =(JTextFieldDateEditor) dateChooserAnne.getDateEditor();
+		editorx.setEditable(false);		
+
 		layeredPane.add(dateChooserAnne);
 		
 		dateChooserAnne.setDateFormatString("YYYY-MM-dd"); //changer le format en aaaa-mm-jj
@@ -696,7 +760,7 @@ public class gererEmployes {
 		frame.getContentPane().add(layeredPane_1);
 		
 		
-		JButton btnAjouter = new JButton("Ajouter");
+		 btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
