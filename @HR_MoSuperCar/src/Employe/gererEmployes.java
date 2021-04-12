@@ -189,6 +189,62 @@ public class gererEmployes {
 	
 	
 	
+	private boolean controleSaisie(boolean SignalErreur) {
+		frame = new JFrame();
+		if (Pattern.matches("[0-9]{7,}", NoContact) == false || NoContact.equalsIgnoreCase("")) {
+			txtNoContact.setText("");
+
+			JOptionPane.showMessageDialog(frame, "ERREUR, No contact INVALIDE");
+				txtNoContact.setBackground(new Color(255, 186, 186));
+			 txtNoContact.requestFocusInWindow();
+
+			SignalErreur = true;
+		//^(0|[1-9]\d*)(\.\d+)?$
+		} else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Adresse) == false || Adresse.equalsIgnoreCase("")) {
+			txtAdresse.setText("");
+			JOptionPane.showMessageDialog(frame, "ERREUR, ADRESSE INVALIDE");
+			SignalErreur = true;
+	
+		}else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Nom) == false || Nom.equalsIgnoreCase("")) {
+			txtNom.setText("");
+			JOptionPane.showMessageDialog(frame, "ERREUR, NOM INVALIDE");
+			SignalErreur = true;
+	
+		}else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Prenom) == false || Prenom.equalsIgnoreCase("")) {
+			txtPrenom.setText("");
+			JOptionPane.showMessageDialog(frame, "ERREUR, PRENOM INVALIDE");
+			SignalErreur = true;
+	//[A-Za-z]
+		}else if (Pattern.matches("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{14}$", NIC) == false || NIC.equalsIgnoreCase("")) {
+			txtNIC.setText("");
+			JOptionPane.showMessageDialog(frame, "ERREUR, NIC INVALIDE");
+			SignalErreur = true;
+	
+		}else if (Pattern.matches("\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$", Email) == false || Email.equalsIgnoreCase("")) {
+			txtEmail.setText("");
+			JOptionPane.showMessageDialog(frame, "ERREUR, Email INVALIDE!!");
+			SignalErreur = true;
+			
+		}else if (Pattern.matches("^(0|[1-9]\\d*)(\\.\\d+)?$", Salaire) == false ||Salaire.equalsIgnoreCase("")) {
+			txtNIC.setText("");
+			JOptionPane.showMessageDialog(frame, "ERREUR,SALAIRE INVALIDE");
+			SignalErreur = true;
+			
+		}else if (Pattern.matches("^(0|[1-9]\\d*)(\\.\\d+)?$", Commission) == false ||Commission.equalsIgnoreCase("")) {
+			txtCommission.setText("");
+			JOptionPane.showMessageDialog(frame, "ERREUR! COMMISSION INVALIDE!");
+			SignalErreur = true;
+		}
+		
+		return SignalErreur;
+}	
+
+	
+	
+	
+	
+	
+	
 	
 	public void getEmpInfos() 							{
 		
@@ -648,10 +704,10 @@ public class gererEmployes {
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//boolean error = false;
+				boolean error = false;
 				getEmpInfos();
 
-				//if (controleSaisie(error) == false) {
+				if (controleSaisie(error) == false) {
 				try {
 						DBUtil.addEmploye(empInfos(CRUDMode.ADD));
 						
@@ -665,7 +721,7 @@ public class gererEmployes {
 					}
 					refreshTable();
 				
-			//}
+			}
 				
 				
 				
@@ -763,12 +819,26 @@ public class gererEmployes {
 			         ps.setString(12,Commission);
 			         ps.setString(13,Dep);
 			         ps.setString(14,NoEmp);
+			         
+			         
+					boolean error = false;
 
-					ps.executeUpdate();
-					JFrame frame = new JFrame("retour");
-					JOptionPane.showMessageDialog(frame, "Employé(e) modifié(e)");
-					refreshTable();
-					txtNomDep.setVisible(false);
+					
+					
+					if (controleSaisie(error) == false) {
+					
+			         ps.executeUpdate();
+						JFrame frame = new JFrame("retour");
+						
+						JOptionPane.showMessageDialog(frame,"Employé(e) modifié(e)");
+						refreshTable();
+ 
+						txtNomDep.setVisible(false);
+
+					
+				}
+					
+					
 				} catch (SQLException e1) {
 					JFrame frame = new JFrame("error");
 					JOptionPane.showMessageDialog(frame, e1);
