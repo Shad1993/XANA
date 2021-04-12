@@ -192,12 +192,13 @@ public class gererEmployes {
 	private boolean controleSaisie(boolean SignalErreur) {
 		frame = new JFrame();
 		if (Pattern.matches("[0-9]{7,}", NoContact) == false || NoContact.equalsIgnoreCase("")) {
-			txtNoContact.setText("");
 
 			JOptionPane.showMessageDialog(frame, "ERREUR, No contact INVALIDE");
-				txtNoContact.setBackground(new Color(255, 186, 186));
-			 txtNoContact.requestFocusInWindow();
-
+			txtNoContact.setBackground(new Color(255, 186, 186));
+			txtNoContact.requestFocusInWindow();
+			
+			
+		
 			SignalErreur = true;
 		//^(0|[1-9]\d*)(\.\d+)?$
 		} else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Adresse) == false || Adresse.equalsIgnoreCase("")) {
@@ -239,11 +240,6 @@ public class gererEmployes {
 		return SignalErreur;
 }	
 
-	
-	
-	
-	
-	
 	
 	
 	public void getEmpInfos() 							{
@@ -778,14 +774,7 @@ public class gererEmployes {
 				
 				
 				
-				
-				
-				
-				
-				
 			   }
-				
-				
 				
 				
 			}
@@ -832,7 +821,7 @@ public class gererEmployes {
 						
 						JOptionPane.showMessageDialog(frame,"Employé(e) modifié(e)");
 						refreshTable();
- 
+						
 						txtNomDep.setVisible(false);
 
 					
@@ -845,29 +834,7 @@ public class gererEmployes {
 					e1.printStackTrace();
 				}
 				
-				//boolean error = false;
-				//NoEmp = txtNoEmp.getText();
-				//getEmpInfos();
-				//ID = txtID.getText();
-				//Nom = txtNom.getText();
-				//Adresse = txtAdresse.getText();
-				//Sexe = txtSexe.getText();
-				//Age = txtAge.getText();
 				
-				
-				//if (controleSaisie(error) == false) {
-					//try {
-						//DBUtil.updateEmploye(empInfos(CRUDMode.UPDATE));
-						//JFrame frame = new JFrame("retour");
-						//JOptionPane.showMessageDialog(frame,"Employé(e) modifié(e)");
-						//refreshTable();
- 
-					//} catch (SQLException e1) {
-					//	//JFrame frame = new JFrame("error");
-						//JOptionPane.showMessageDialog(frame, e1);
-					//}
-					
-				//}
 			}
 		});
 		btnModifier.setBounds(460, 32, 205, 32);
