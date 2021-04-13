@@ -83,6 +83,7 @@ public class gererEmployes {
 	private JTextFieldDateEditor editor;
 	private JTextFieldDateEditor editorx;
 	private JButton btnAjouter;
+	private JButton btnModifier;
 
 
 
@@ -139,6 +140,9 @@ public class gererEmployes {
 	public gererEmployes()  throws SQLException{
 		initialize();
 		comboDept();
+		btnAjouter.setEnabled(false);//Désactiver bouton insertion
+		btnModifier.setEnabled(false);//Désactiver bouton Mise à jour
+	
 		//checkAnn();
 	}
 	
@@ -484,6 +488,8 @@ public class gererEmployes {
         
 		frame.getContentPane().add(scrollPane);
 		
+		
+		
 		//table.setModel(new DefaultTableModel());//y avait erreur NullPointer
 		//cmbDep = new JComboBox();
 		table = new JTable();
@@ -500,7 +506,8 @@ public class gererEmployes {
 				
 		        txtNomDep.setVisible(true);
 
-			     btnAjouter.setEnabled(false);
+			     btnAjouter.setEnabled(false); //Activer bouton d'insertion
+			     btnModifier.setEnabled(true); // Ativer bouton Mise à jour
 				   
 				int i = table.getSelectedRow();
 		        TableModel model = table.getModel();
@@ -760,7 +767,7 @@ public class gererEmployes {
 		frame.getContentPane().add(layeredPane_1);
 		
 		
-		 btnAjouter = new JButton("Ajouter");
+		 btnAjouter = new JButton(" Ajouter Employé(e)");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -796,57 +803,7 @@ public class gererEmployes {
 		btnAjouter.setBounds(10, 32, 193, 32);
 		layeredPane_1.add(btnAjouter);
 		
-		JButton btnSupprimer = new JButton("Suppimer");
-		btnSupprimer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				boolean error = false;
-
-			    NoEmp = txtNoEmp.getText();
-				
-				if( NoEmp.isEmpty()) {
-					JOptionPane.showMessageDialog(frame, "Vous n'avez rien inséré! Inserez l'INCID!!");
-
-					
-				
-				}
-			
-			   if (verification(error) == false) {
-				 try {
-						int confirm = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment effacer cet enregistrement?","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
-						
-					if (confirm == JOptionPane.YES_OPTION) {
-						DBUtil.deleteEmploye(empInfos(CRUDMode.DELETE));
-						JFrame frame = new JFrame("retour");
-						JOptionPane.showMessageDialog(frame, "Employé(e) supprimé(e)");
-						effaceChamps();
-					}else {
-						
-						System.out.println(""); // reste dans le programme
-
-						
-				    }
-						
-					} catch (SQLException e1) {
-						JFrame frame = new JFrame("error");
-						JOptionPane.showMessageDialog(frame, e1);
-					}
-				 
-					refreshTable();
-				
-				
-				
-			   }
-				
-				
-			}
-		});
-		btnSupprimer.setBounds(235, 32, 193, 32);
-		layeredPane_1.add(btnSupprimer);
-		
-		JButton btnModifier = new JButton("Modifier");
+		btnModifier = new JButton("Mettre à jour");
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -901,7 +858,7 @@ public class gererEmployes {
 				
 			}
 		});
-		btnModifier.setBounds(460, 32, 205, 32);
+		btnModifier.setBounds(450, 32, 205, 32);
 		layeredPane_1.add(btnModifier);
 		
 		JButton btnEffChamps = new JButton("Effacer champs");
@@ -918,8 +875,58 @@ public class gererEmployes {
 				
 			}
 		});
-		btnEffChamps.setBounds(695, 32, 193, 32);
+		btnEffChamps.setBounds(232, 32, 193, 32);
 		layeredPane_1.add(btnEffChamps);
+		
+		JButton btnSupprimer = new JButton("Suppimer Employé(e)");
+		btnSupprimer.setBounds(685, 32, 193, 32);
+		layeredPane_1.add(btnSupprimer);
+		btnSupprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				boolean error = false;
+
+			    NoEmp = txtNoEmp.getText();
+				
+				if( NoEmp.isEmpty()) {
+					JOptionPane.showMessageDialog(frame, "Vous n'avez rien inséré! Inserez l'INCID!!");
+
+					
+				
+				}
+			
+			   if (verification(error) == false) {
+				 try {
+						int confirm = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment effacer cet enregistrement?","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+						
+					if (confirm == JOptionPane.YES_OPTION) {
+						DBUtil.deleteEmploye(empInfos(CRUDMode.DELETE));
+						JFrame frame = new JFrame("retour");
+						JOptionPane.showMessageDialog(frame, "Employé(e) supprimé(e)");
+						effaceChamps();
+					}else {
+						
+						System.out.println(""); // reste dans le programme
+
+						
+				    }
+						
+					} catch (SQLException e1) {
+						JFrame frame = new JFrame("error");
+						JOptionPane.showMessageDialog(frame, e1);
+					}
+				 
+					refreshTable();
+				
+				
+				
+			   }
+				
+				
+			}
+		});
 		
 		txtRechercher = new JTextField();
 		txtRechercher.addFocusListener(new FocusAdapter() {
