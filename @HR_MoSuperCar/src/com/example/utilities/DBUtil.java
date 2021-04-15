@@ -1,4 +1,5 @@
 package com.example.utilities;
+import Fiche.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -183,7 +184,60 @@ public class DBUtil {
 			}
 		}
 
-	
+	//pour fiche de paie
+		
+		//Méthode qui ajoute fiche de paie
+		public static void addFiche(FicheDePaie fiche) throws SQLException {
+			connection = ConnectionFactory.getConnection();
+			preparedStatement = connection.prepareStatement(QueryStatement.Add_FICHE);
+			setPreparedStatementProperties(fiche.get_NoEmp(),// attribut privé
+	                                       fiche.bonus,
+	                                       fiche.commission,
+	                                       fiche.heureSup,
+	                                       fiche.mois,
+	                                       fiche.deduction
+	                                    
+	                                       );
+			
+			preparedStatement.executeUpdate();
+
+			closeConnections();
+		}
+		
+		
+
+		//Méthode qui éfface constructeur
+		public static void deleteFiche(FicheDePaie fiche) throws SQLException {
+			connection = ConnectionFactory.getConnection();
+			preparedStatement = connection.prepareStatement(QueryStatement.DELETE_FICHE);
+
+			setPreparedStatementProperties(fiche.get_idFiche());
+			preparedStatement.executeUpdate();
+
+			closeConnections();
+		}
+		
+		//Affiche No Emp dans combocox
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		public void afficheNoEmp(JComboBox combo) throws SQLException {
+			DefaultComboBoxModel Model = (DefaultComboBoxModel) combo.getModel();
+			preparedStatement = connection.prepareStatement(QueryStatement.SELECT_NO_EMP);
+			resultSet = preparedStatement.executeQuery();
+
+			Model.addElement("");
+						
+			while (resultSet.next()) {
+			
+			   Model.addElement(resultSet.getString("No_employe"));
+			  
+			    
+			    
+			    combo.setModel(Model);
+
+			
+			}
+		}
+		
 	
 	
 
