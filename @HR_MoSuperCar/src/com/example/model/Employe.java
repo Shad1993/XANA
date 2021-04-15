@@ -23,11 +23,12 @@ package com.example.model;
 			
 		}
 		
+		
 		public Employe(String Nom,String Prenom,String NIC,String DOB,String Sexe,String Adresse,String Email,String No_contact,	
 			String Titre,String Salaire,String DateDembauche, String Comission, String No_dept,String Nom_dept){
 			 
 			 
-
+			//constructeur
 			 this.Nom = Nom;
 			 this.Prenom = Prenom;
 			 this.NIC = NIC;
