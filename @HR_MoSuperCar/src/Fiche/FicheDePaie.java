@@ -4,11 +4,11 @@ public class FicheDePaie {
 	
 	
 	private String idFiche;
-	public String mois;
-	public String heureSup;
-	public String bonus;
-	public String commission;
-	public String deduction;
+	private String mois;
+	private String heureSup;
+	private String bonus;
+	private String commission;
+	private String deduction;
 	private String no_Emp;
 	
 		
@@ -17,11 +17,9 @@ public class FicheDePaie {
 	public FicheDePaie() {
 		
 		
-		
-		
 	}
 	
-	public FicheDePaie(String idFiche,String mois,String heureSup,String bonus,String commission,String no_Emp) {
+	public FicheDePaie(String idFiche,String mois,String heureSup,String bonus,String commission,String deduction,String no_Emp) {
 		
 		//constructeur
 		this.idFiche = idFiche;
@@ -30,6 +28,7 @@ public class FicheDePaie {
 		this.bonus = bonus;
 		this.commission = commission;
 		this.no_Emp = no_Emp;
+		this.deduction = deduction;
 		
 		
 		
@@ -57,7 +56,76 @@ public class FicheDePaie {
 		this.no_Emp = no_Emp;
 	}
 	
+    public String get_heureSup(){
+		
+		return heureSup;	
+	}
 	
+	public void set_heureSup(String heureSup) {
+		
+		this.heureSup = heureSup;
+	}
+	
+	 public String get_Bonus(){
+			
+			return bonus;	
+	 }
+		
+	public void set_Bonus(String bonus) {
+			
+			this.bonus = bonus;
+	}
+	
+	 public String get_Commission(){
+			
+			return commission;	
+	 }
+		
+	public void set_Commission(String commission) {
+			
+			this.commission = commission;
+	}
+	
+	public String get_Mois(){
+		
+		return mois;	
+	}
+	
+	public void set_Mois(String mois) {
+		
+		this.mois = mois;
+	}
+	
+	public String get_Deduction(){
+		
+		return deduction;	
+	}
+	
+	public void set_Deduction(String deduction) {
+		
+		this.deduction = deduction;
+	}
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+			sb.append("FicheDePaie[");
+			sb.append("No Emp:"+this.no_Emp);
+			sb.append(",Nom:"+this.bonus);
+			sb.append(",Prenom:"+this.heureSup);
+			sb.append(",Adresse:"+this.deduction);
+			sb.append(",Sexe:"+this.idFiche);
+			sb.append(",Prenom:"+this.commission);
+			
+			sb.append("]");
+		return sb.toString();
+	}
 	
 	
  
