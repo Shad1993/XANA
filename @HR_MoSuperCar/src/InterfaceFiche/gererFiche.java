@@ -48,7 +48,9 @@ public class gererFiche {
 	public static String mois;
 	public static String commission;
 	
-	
+	Connection connection = ConnectionFactory.getConnection();
+	//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
+    java.sql.Statement  preparedStatement = connection.createStatement();
 
 	/**
 	 * Launch the application.
@@ -196,6 +198,41 @@ public class gererFiche {
 		layeredPane.add(txtDeduction);
 		
 		JButton btnRehcercher = new JButton("Rechercher");
+		btnRehcercher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				 String searchQuery = "SELECT No_employe FROM employes";
+					Connection connection = null;
+					try {
+						connection = ConnectionFactory.getConnection();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
+			      try {
+					java.sql.Statement  preparedStatement = connection.createStatement();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+					
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		btnRehcercher.setBounds(329, 11, 106, 32);
 		layeredPane.add(btnRehcercher);
 		
@@ -211,7 +248,9 @@ public class gererFiche {
               
 				       getFicheInfos();// appel méthode pour affecter valeurs dans les variables
 				       
-				        FicheDePaie fiche = new FicheDePaie();//instantiation obj
+				        FicheDePaie fiche = new FicheDePaie();//instantiation obj  de type fiche de paie
+				        
+				        //manipulation avec des propriétés privées avec méthode set
 				        fiche.set_Bonus(bonus);
 						fiche.set_Commission(commission);
 						fiche.set_Deduction(deduction);
@@ -223,7 +262,7 @@ public class gererFiche {
 				        fiche.addFiche();// appel méthode de la classe mère FiecheDePaie
 				        				 // ppour insertion
 				
-				
+				        //DBUTIL n'a pas marché
 				//getFicheInfos();
 
 				//if (controleSaisie(error) == false) {
@@ -259,14 +298,16 @@ public class gererFiche {
 	public void comboEmp() throws SQLException{
 		
 		 String searchQuery = "SELECT No_employe FROM employes";
-			Connection connection = ConnectionFactory.getConnection();
+			 connection = ConnectionFactory.getConnection();
 			//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
-	      java.sql.Statement  preparedStatement = connection.createStatement();
+	        preparedStatement = connection.createStatement();
 
 			@SuppressWarnings("unused")
 			ResultSet resultSet = preparedStatement.executeQuery(searchQuery);
 			
+			cmbNoEmp.addItem("");
 		try {
+			
 			while (resultSet.next()) {
 				
 				   cmbNoEmp.addItem(resultSet.getString("No_employe"));
