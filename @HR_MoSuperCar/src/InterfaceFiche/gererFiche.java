@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -22,6 +23,7 @@ import com.example.db.ConnectionFactory;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 
@@ -47,6 +49,18 @@ public class gererFiche {
 	public  static String deduction;
 	public static String mois;
 	public static String commission;
+	
+	public static String Nom;
+	public static String Prenom;
+	public static String NoDep ;
+	public static String Dep;
+	public static String Salaire;
+	public static String Titre;
+
+
+
+
+
 	
 	Connection connection = ConnectionFactory.getConnection();
 	//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
@@ -204,7 +218,9 @@ public class gererFiche {
 			public void actionPerformed(ActionEvent e) {
 				
 				no_Emp = cmbNoEmp.getSelectedItem().toString();
-				 String searchQuery = "SELECT * FROM fch_de_paie WHERE No_Emp = ?";
+				 String searchQuery = "SELECT DISTINCT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND F.No_Emp = ?"; 
+				 	 
+				 		
 					Connection connection = null;
 					try {
 						connection = ConnectionFactory.getConnection();
@@ -221,9 +237,21 @@ public class gererFiche {
 							txtBonus.setText(resultSet.getString("Bonus"));
 							txtCommission.setText(resultSet.getString("Commission"));
 							txtDeduction.setText(resultSet.getString("Deduction"));
-							
-							
-							
+						   
+						    Nom = resultSet.getString(2);
+						    Prenom = resultSet.getString(3);
+						    NoDep =resultSet.getString(6);
+						    Dep =resultSet.getString(7);
+						    Salaire= resultSet.getString(5);
+						    mois  =resultSet.getString(8);
+						    Titre  =resultSet.getString(4);
+
+
+
+
+
+						    
+
 							
 						}
 						
@@ -239,18 +267,9 @@ public class gererFiche {
 			    
 				
 
-					/*
-					 *  pst=conn.prepareStatement(sql);
-            rs=pst.executeQuery(); 
-            String val = rs.getString(5);
-            String reason = rs.getString(6);
-            rs.close();
-            pst.close();
-					 * 
-					 * 
-					 */
-				
-				
+				      JFileChooser dialog = new JFileChooser();
+			          // dialog.setSelectedFile(new File(Prenom +" "+ Nom+"-Salary Slip"+".pdf"));
+			           
 				
 				
 				
@@ -267,6 +286,26 @@ public class gererFiche {
 		layeredPane.add(btnRehcercher);
 		
 		JButton btnGenereFiche = new JButton("G\u00E9nerer Fiche de paie");
+		btnGenereFiche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				 // Nom = txtDeduction.getText();
+
+				   JFrame frame = new JFrame("retour");
+					JOptionPane.showMessageDialog(frame,Titre);
+
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		btnGenereFiche.setBounds(152, 344, 174, 31);
 		frame.getContentPane().add(btnGenereFiche);
 		layeredPane_1.setBounds(10, 66, 108, 132);
