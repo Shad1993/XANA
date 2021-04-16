@@ -15,11 +15,11 @@ public class QueryStatement {
 	
 	public final static String SELECT_DEPT_QUERY = "SELECT Nom_dept,No_dept FROM departement";
 
-	public static String Add_FICHE = "INSERT INTO fch_de_paie(Mois,HeureSup,Bonus,Commision,Deduction,No_Emp) VALUES(?,?,?,?,?,?)";
+	public final static String Add_FICHE = "INSERT INTO fch_de_paie(Mois,HeureSup,Bonus,Commision,Deduction,No_Emp) VALUES(?,?,?,?,?,?)";
 	
 	public final static String DELETE_FICHE = "DELETE FROM fch_de_paie WHERE idFiche=?";
 	
-	public static final String SELECT_NO_EMP = "SELECT no_employe FROM employes";
+	public  final static String SELECT_NO_EMP = "SELECT No_employe FROM g employes";
 	
 	
 }
