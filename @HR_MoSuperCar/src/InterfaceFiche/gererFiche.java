@@ -51,7 +51,9 @@ public class gererFiche {
 	Connection connection = ConnectionFactory.getConnection();
 	//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
     java.sql.Statement  preparedStatement = connection.createStatement();
-
+    
+    
+    
 	/**
 	 * Launch the application.
 	 */
@@ -201,24 +203,52 @@ public class gererFiche {
 		btnRehcercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				 String searchQuery = "SELECT No_employe FROM employes";
+				no_Emp = cmbNoEmp.getSelectedItem().toString();
+				 String searchQuery = "SELECT * FROM fch_de_paie WHERE No_Emp = ?";
 					Connection connection = null;
 					try {
 						connection = ConnectionFactory.getConnection();
+					
+						PreparedStatement	preparedStatement = connection.prepareStatement(searchQuery);
+						
+						preparedStatement.setString(1, no_Emp); 
+						
+						ResultSet resultSet = preparedStatement.executeQuery();
+						
+						if (resultSet.next()) {
+							
+							txtHeureSup.setText(resultSet.getString("HeureSup"));
+							txtBonus.setText(resultSet.getString("Bonus"));
+							txtCommission.setText(resultSet.getString("Commission"));
+							txtDeduction.setText(resultSet.getString("Deduction"));
+							
+							
+							
+							
+						}
+						
+					    
+						
 					} catch (SQLException e1) {
+						
+						
 						// TODO Auto-generated catch block
+						
 						e1.printStackTrace();
 					}
-					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
-			      try {
-					java.sql.Statement  preparedStatement = connection.createStatement();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			    
+				
 
-					
+					/*
+					 *  pst=conn.prepareStatement(sql);
+            rs=pst.executeQuery(); 
+            String val = rs.getString(5);
+            String reason = rs.getString(6);
+            rs.close();
+            pst.close();
+					 * 
+					 * 
+					 */
 				
 				
 				

@@ -85,7 +85,7 @@ public class gererEmployes {
 	private JButton btnAjouter;
 	private JButton btnModifier;
 
-	
+
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox cmbTitre;
@@ -789,6 +789,11 @@ public class gererEmployes {
 					refreshTable();
 				
 			}
+				
+				
+				
+				
+				
 				
 				
 				
