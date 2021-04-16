@@ -1,4 +1,12 @@
 package Fiche;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import com.example.db.ConnectionFactory;
 
 public class FicheDePaie {
 	
@@ -34,6 +42,56 @@ public class FicheDePaie {
 		
 		
 	}
+	
+	public void addFiche() {
+		
+		 //getFicheInfos();
+			
+			try {	
+				 String insertFiche = "INSERT INTO fch_de_paie(Mois,HeureSup,Bonus,Commission,Deduction,No_Emp) VALUES(?,?,?,?,?,?)";
+					Connection connection = ConnectionFactory.getConnection();
+					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
+			     
+					
+					PreparedStatement preparedStatement = connection.prepareStatement(insertFiche);
+					preparedStatement.setString(1, mois);
+					preparedStatement.setString(2, heureSup);
+					preparedStatement.setString(3, bonus);
+					preparedStatement.setString(4, commission);
+					preparedStatement.setString(5, deduction);
+					preparedStatement.setString(6, no_Emp);
+					preparedStatement.executeUpdate();
+
+
+					
+					JFrame frame = new JFrame("retour");
+					JOptionPane.showMessageDialog(frame, "Fiche de paie ajouté");
+
+
+					
+					
+				}
+				
+				catch(SQLException e1) {
+				JOptionPane.showMessageDialog(null, e1);
+						
+				}	
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	public String get_idFiche(){
 		

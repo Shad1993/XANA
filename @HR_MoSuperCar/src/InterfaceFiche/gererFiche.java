@@ -2,6 +2,7 @@ package InterfaceFiche;
 import Fiche.*;
 import java.awt.EventQueue;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -13,13 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 
-import com.example.utilities.DBUtil;
-import com.example.constants.CRUDMode;
-import com.example.constants.QueryStatement;
+//import com.example.constants.CRUDMode;
+//import com.example.constants.QueryStatement;
 import com.example.db.ConnectionFactory;
-import com.example.model.Employe;
+
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -80,33 +79,33 @@ public class gererFiche {
 	
 	
 	
-	private static FicheDePaie ficheInfos(CRUDMode mode) {
-		FicheDePaie fiche = new FicheDePaie();
+	//private static FicheDePaie ficheInfos(CRUDMode mode) {
+		//FicheDePaie fiche = new FicheDePaie();
 		
 		// opérations
 
 		//CRUDMode.UPDATE n'a pas marché a été enlevé, autre soulution trouvée.. dans bouton Modifié
-		if (mode.equals(CRUDMode.ADD) || mode.equals(CRUDMode.DELETE)) {
+		//if (mode.equals(CRUDMode.ADD) || mode.equals(CRUDMode.DELETE)) {
 			
-			if (mode.equals(CRUDMode.DELETE)) {
-				fiche.set_idFiche(idFiche);
-			}
+			//if (mode.equals(CRUDMode.DELETE)) {
+				//fiche.set_idFiche(idFiche);
+			//}
 			
 			
 		// fonctions set permettant de manipuler les variables privés
-			fiche.set_Bonus(bonus);
-			fiche.set_Commission(commission);
-			fiche.set_Deduction(deduction);
-			fiche.set_heureSup(heureSup);
+			//fiche.set_Bonus(bonus);
+			//fiche.set_Commission(commission);
+			//fiche.set_Deduction(deduction);
+			//fiche.set_heureSup(heureSup);
 			//fiche.set_idFiche(idFiche);
-			fiche.set_Mois(mois);
-			fiche.set_noEmp(no_Emp);
+			//fiche.set_Mois(mois);
+			//fiche.set_noEmp(no_Emp);
 		
-	   }
-		return fiche;
+	  // }
+		//return fiche;
 		
 
-	}
+	//}
 	
 	public void getFicheInfos() {
 		
@@ -209,21 +208,36 @@ public class gererFiche {
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+              
+				       getFicheInfos();// appel méthode pour affecter valeurs dans les variables
+				       
+				        FicheDePaie fiche = new FicheDePaie();//instantiation obj
+				        fiche.set_Bonus(bonus);
+						fiche.set_Commission(commission);
+						fiche.set_Deduction(deduction);
+						fiche.set_heureSup(heureSup);
+						fiche.set_idFiche(idFiche);
+						fiche.set_Mois(mois);
+						fiche.set_noEmp(no_Emp);
+
+				        fiche.addFiche();// appel méthode de la classe mère FiecheDePaie
+				        				 // ppour insertion
 				
-				getFicheInfos();
+				
+				//getFicheInfos();
 
 				//if (controleSaisie(error) == false) {
-				try {
-						DBUtil.addFiche(ficheInfos(CRUDMode.ADD));
+				//try {
+						//DBUtil.addFiche(ficheInfos(CRUDMode.ADD));
 						
-						JFrame frame = new JFrame("retour");
-						JOptionPane.showMessageDialog(frame, "Employé ajouté");
+						//JFrame frame = new JFrame("retour");
+						//JOptionPane.showMessageDialog(frame, "Employé ajouté");
 						
 						//clearChamps();							
-					} catch (SQLException e1) {
-						JFrame frame = new JFrame("error");
-						JOptionPane.showMessageDialog(frame,e1);
-					}
+					//} catch (SQLException e1) {
+						//JFrame frame = new JFrame("error");
+						//JOptionPane.showMessageDialog(frame,e1);
+					//}
 					//refreshTable();
 			//}
 				
