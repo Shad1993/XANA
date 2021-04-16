@@ -793,11 +793,6 @@ public class gererEmployes {
 				
 				
 				
-				
-				
-				
-				
-				
 			}
 		});
 		btnAjouter.setBounds(10, 32, 193, 32);

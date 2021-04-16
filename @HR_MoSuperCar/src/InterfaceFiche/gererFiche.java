@@ -1,9 +1,11 @@
 package InterfaceFiche;
-
+import Fiche.*;
 import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
@@ -17,8 +19,11 @@ import com.example.utilities.DBUtil;
 import com.example.constants.CRUDMode;
 import com.example.constants.QueryStatement;
 import com.example.db.ConnectionFactory;
+import com.example.model.Employe;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
@@ -27,16 +32,16 @@ public class gererFiche {
 
 	private JFrame frame;
 	private final JLayeredPane layeredPane = new JLayeredPane();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtHeureSup;
+	private JTextField txtBonus;
+	private JTextField txtCommission;
+	private JTextField txtDeduction;
 	private final JLayeredPane layeredPane_1 = new JLayeredPane();
 	
 	@SuppressWarnings("rawtypes")
 	private JComboBox cmbNoEmp;
 
-	public static String noEmp;
+	public static String no_Emp;
 	public static String idFiche;
 	public static String bonus;
 	public static String heureSup;
@@ -71,6 +76,69 @@ public class gererFiche {
 		comboEmp();
 		
 	}
+	
+	
+	
+	
+	private static FicheDePaie ficheInfos(CRUDMode mode) {
+		FicheDePaie fiche = new FicheDePaie();
+		
+		// opérations
+
+		//CRUDMode.UPDATE n'a pas marché a été enlevé, autre soulution trouvée.. dans bouton Modifié
+		if (mode.equals(CRUDMode.ADD) || mode.equals(CRUDMode.DELETE)) {
+			
+			if (mode.equals(CRUDMode.DELETE)) {
+				fiche.set_idFiche(idFiche);
+			}
+			
+			
+		// fonctions set permettant de manipuler les variables privés
+			fiche.set_Bonus(bonus);
+			fiche.set_Commission(commission);
+			fiche.set_Deduction(deduction);
+			fiche.set_heureSup(heureSup);
+			//fiche.set_idFiche(idFiche);
+			fiche.set_Mois(mois);
+			fiche.set_noEmp(no_Emp);
+		
+	   }
+		return fiche;
+		
+
+	}
+	
+	public void getFicheInfos() {
+		
+		no_Emp = cmbNoEmp.getSelectedItem().toString();
+		heureSup = txtHeureSup.getText();
+		bonus= txtBonus.getText();
+		deduction = txtDeduction.getText();
+		commission = txtCommission.getText();
+	    
+		// obtenir Mois actuel
+		Calendar mCalendar = Calendar.getInstance();    
+		String month = mCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+	
+	     mois = month;
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -108,25 +176,25 @@ public class gererFiche {
 		lblNewLabel_4.setBounds(10, 201, 82, 22);
 		layeredPane.add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBounds(151, 59, 133, 26);
-		layeredPane.add(textField);
-		textField.setColumns(10);
+		txtHeureSup = new JTextField();
+		txtHeureSup.setBounds(151, 59, 133, 26);
+		layeredPane.add(txtHeureSup);
+		txtHeureSup.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(151, 107, 132, 26);
-		layeredPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtBonus = new JTextField();
+		txtBonus.setBounds(151, 107, 132, 26);
+		layeredPane.add(txtBonus);
+		txtBonus.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(151, 148, 133, 27);
-		layeredPane.add(textField_2);
+		txtCommission = new JTextField();
+		txtCommission.setColumns(10);
+		txtCommission.setBounds(151, 148, 133, 27);
+		layeredPane.add(txtCommission);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(151, 199, 133, 26);
-		layeredPane.add(textField_3);
+		txtDeduction = new JTextField();
+		txtDeduction.setColumns(10);
+		txtDeduction.setBounds(151, 199, 133, 26);
+		layeredPane.add(txtDeduction);
 		
 		JButton btnRehcercher = new JButton("Rechercher");
 		btnRehcercher.setBounds(329, 11, 106, 32);
@@ -139,6 +207,30 @@ public class gererFiche {
 		frame.getContentPane().add(layeredPane_1);
 		
 		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				getFicheInfos();
+
+				//if (controleSaisie(error) == false) {
+				try {
+						DBUtil.addFiche(ficheInfos(CRUDMode.ADD));
+						
+						JFrame frame = new JFrame("retour");
+						JOptionPane.showMessageDialog(frame, "Employé ajouté");
+						
+						//clearChamps();							
+					} catch (SQLException e1) {
+						JFrame frame = new JFrame("error");
+						JOptionPane.showMessageDialog(frame,e1);
+					}
+					//refreshTable();
+			//}
+				
+				
+				
+			}
+		});
 		btnAjouter.setBounds(10, 11, 89, 31);
 		layeredPane_1.add(btnAjouter);
 		
