@@ -109,23 +109,8 @@ public class FicheDePaie {
 	
 	
 	
+
 	
-	
-	
-	@Override
-	public String toString(){
-		StringBuilder sb = new StringBuilder();
-			sb.append("FicheDePaie[");
-			sb.append("No Emp:"+this.no_Emp);
-			sb.append(",Nom:"+this.bonus);
-			sb.append(",Prenom:"+this.heureSup);
-			sb.append(",Adresse:"+this.deduction);
-			sb.append(",Sexe:"+this.idFiche);
-			sb.append(",Prenom:"+this.commission);
-			
-			sb.append("]");
-		return sb.toString();
-	}
 	
 	
  
