@@ -191,11 +191,11 @@ public class DBUtil {
 			connection = ConnectionFactory.getConnection();
 			preparedStatement = connection.prepareStatement(QueryStatement.Add_FICHE);
 			setPreparedStatementProperties(fiche.get_NoEmp(),// attribut privé
-	                                       fiche.bonus,
-	                                       fiche.commission,
-	                                       fiche.heureSup,
-	                                       fiche.mois,
-	                                       fiche.deduction
+	                                       fiche.get_Bonus(),
+	                                       fiche.get_Commission(),
+	                                       fiche.get_heureSup(),
+	                                       fiche.get_Mois(),
+	                                       fiche.get_Deduction()
 	                                    
 	                                       );
 			
@@ -219,20 +219,19 @@ public class DBUtil {
 		
 		//Affiche No Emp dans combocox
 		@SuppressWarnings({ "unchecked", "rawtypes" })
-		public void afficheNoEmp(JComboBox combo) throws SQLException {
-			DefaultComboBoxModel Model = (DefaultComboBoxModel) combo.getModel();
+		public void afficheNoEmp(JComboBox combox) throws SQLException {
+			DefaultComboBoxModel Modelx = (DefaultComboBoxModel) combox.getModel();
 			preparedStatement = connection.prepareStatement(QueryStatement.SELECT_NO_EMP);
 			resultSet = preparedStatement.executeQuery();
 
-			Model.addElement("");
+			Modelx.addElement("");
 						
 			while (resultSet.next()) {
 			
-			   Model.addElement(resultSet.getString("No_employe"));
+			   Modelx.addElement(resultSet.getString("No_employe"));
 			  
 			    
-			    
-			    combo.setModel(Model);
+			    combox.setModel(Modelx);
 
 			
 			}
