@@ -345,7 +345,7 @@ public class gererFiche {
 			            myDocument.add(new Paragraph("Salaire de base: RS"+Salaire,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 
 			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-			            myDocument.add(new Paragraph("À PAYÉ ",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
+			            myDocument.add(new Paragraph("À PAYER ",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
 			            myDocument.add(new Paragraph("Salaire Brut: RS "+ " "+ salBrut,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("Salaire Net: RS"+ " "+ salNet,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("Heures supplémentaires: "+ heureSup+" Heures",FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
