@@ -33,6 +33,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.awt.event.ActionEvent;
 import com.itextpdf.text.pdf.PdfWriter;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 
 
@@ -170,10 +176,12 @@ public class gererFiche {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(SystemColor.inactiveCaption);
 		frame.setBounds(100, 100, 657, 422);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		layeredPane.setBounds(152, 66, 479, 267);
+		layeredPane.setBorder(new LineBorder(new Color(0, 0, 0)));
+		layeredPane.setBounds(152, 66, 479, 289);
 		frame.getContentPane().add(layeredPane);
 		
 		cmbNoEmp = new JComboBox();
@@ -201,26 +209,31 @@ public class gererFiche {
 		layeredPane.add(lblNewLabel_4);
 		
 		txtHeureSup = new JTextField();
+		txtHeureSup.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		txtHeureSup.setBounds(150, 59, 133, 26);
 		layeredPane.add(txtHeureSup);
 		txtHeureSup.setColumns(10);
 		
 		txtBonus = new JTextField();
+		txtBonus.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		txtBonus.setBounds(151, 107, 132, 26);
 		layeredPane.add(txtBonus);
 		txtBonus.setColumns(10);
 		
 		txtCommission = new JTextField();
+		txtCommission.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		txtCommission.setColumns(10);
 		txtCommission.setBounds(151, 148, 133, 27);
 		layeredPane.add(txtCommission);
 		
 		txtDeduction = new JTextField();
+		txtDeduction.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		txtDeduction.setColumns(10);
 		txtDeduction.setBounds(151, 199, 133, 26);
 		layeredPane.add(txtDeduction);
 		
 		JButton btnRehcercher = new JButton("Rechercher");
+		btnRehcercher.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnRehcercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -296,6 +309,9 @@ public class gererFiche {
 		layeredPane.add(btnRehcercher);
 		
 		JButton btnGenereFiche = new JButton("G\u00E9nerer Fiche de paie");
+		btnGenereFiche.setBounds(295, 247, 174, 31);
+		layeredPane.add(btnGenereFiche);
+		btnGenereFiche.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnGenereFiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -391,12 +407,12 @@ public class gererFiche {
 				
 			}
 		});
-		btnGenereFiche.setBounds(152, 344, 174, 31);
-		frame.getContentPane().add(btnGenereFiche);
+		layeredPane_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		layeredPane_1.setBounds(10, 66, 132, 132);
 		frame.getContentPane().add(layeredPane_1);
 		
 		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
               
@@ -442,6 +458,7 @@ public class gererFiche {
 		layeredPane_1.add(btnAjouter);
 		
 		JButton butSupprimer = new JButton("Supprimer");
+		butSupprimer.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		butSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
