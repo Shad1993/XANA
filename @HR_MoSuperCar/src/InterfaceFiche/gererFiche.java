@@ -301,10 +301,7 @@ public class gererFiche {
 				
 				
 				
-				 // Nom = txtDeduction.getText();
-
-				   //JFrame frame = new JFrame("retour");
-					//JOptionPane.showMessageDialog(frame,Titre);
+				 
 
 					 JFileChooser dialog = new JFileChooser();
 			         dialog.setSelectedFile(new File(Prenom +" "+ Nom+"-Fiche_de_paie"+".pdf"));
