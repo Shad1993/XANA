@@ -69,6 +69,8 @@ public class gererFiche {
 	public static String Dep;
 	public static String Salaire;
 	public static String Titre;
+	public static String id_Fiche;
+
 
 
 
@@ -238,7 +240,7 @@ public class gererFiche {
 			public void actionPerformed(ActionEvent e) {
 				
 				no_Emp = cmbNoEmp.getSelectedItem().toString();
-				 String searchQuery = "SELECT DISTINCT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND F.No_Emp = ?"; 
+				 String searchQuery = "SELECT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction,Id_fch FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND F.No_Emp = ?"; 
 				 	 
 				 		
 					Connection connection = null;
@@ -261,15 +263,19 @@ public class gererFiche {
 							bonus = txtDeduction.getText();
 							commission = txtCommission.getText();
 							heureSup = txtHeureSup.getText();
-						   
+							no_Emp = cmbNoEmp.getSelectedItem().toString();
+
 						    Nom = resultSet.getString(2);
 						    Prenom = resultSet.getString(3);
-						    NoDep =resultSet.getString(6);
-						    Dep =resultSet.getString(7);
+						    NoDep = resultSet.getString(6);
+						    Dep = resultSet.getString(7);
 						    Salaire= resultSet.getString(5);
-						    mois  =resultSet.getString(8);
-						    Titre  =resultSet.getString(4);
-						    deduction  =resultSet.getString(12);
+						    mois  = resultSet.getString(8);
+						    Titre  = resultSet.getString(4);
+						    deduction  = resultSet.getString(12);
+						    id_Fiche  = resultSet.getString(13);
+
+						    
 
 
 
@@ -352,9 +358,10 @@ public class gererFiche {
 			            myDocument.open();
 			            myDocument.add(new Paragraph("FICHE DE PAIE",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
 			            myDocument.add(new Paragraph("Mois:"+ " "+mois,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
-			            //myDocument.add(new Paragraph(new Date().toString()));
+			            myDocument.add(new Paragraph("No fiche:"+ " "+id_Fiche,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
 			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
 			            myDocument.add((new Paragraph("DÉTAILS DE L'EMPLOYÉ(E)",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD))));
+			            myDocument.add((new Paragraph("No Employé: "+no_Emp,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
 			            myDocument.add((new Paragraph("Nom: " + Prenom + " "+Nom,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
 			            myDocument.add((new Paragraph("Titre: "+Titre,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
 			            myDocument.add((new Paragraph("Département: "+NoDep+ " " +Dep,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
@@ -372,8 +379,8 @@ public class gererFiche {
 			            myDocument.add(new Paragraph("Détails de déduction: "+"Tax:",FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("Déductions Totale : RS"+" " + deduction ,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-			            myDocument.add(new Paragraph("PAIEMENT TOTALE",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
-			            myDocument.add(new Paragraph("Totale : RS" +paieTot,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+			            myDocument.add(new Paragraph("PAIEMENT TOTAL",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
+			            myDocument.add(new Paragraph("Totale : RS" +" " + paieTot,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
 			            
 			            
@@ -408,7 +415,7 @@ public class gererFiche {
 			}
 		});
 		layeredPane_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		layeredPane_1.setBounds(10, 66, 132, 132);
+		layeredPane_1.setBounds(10, 66, 132, 204);
 		frame.getContentPane().add(layeredPane_1);
 		
 		JButton btnAjouter = new JButton("Ajouter");
@@ -471,6 +478,23 @@ public class gererFiche {
 		});
 		butSupprimer.setBounds(10, 74, 112, 31);
 		layeredPane_1.add(butSupprimer);
+		
+		JButton btnNewButton = new JButton("Modifier");
+		btnNewButton.setActionCommand("Modifier");
+		btnNewButton.setBounds(10, 130, 112, 31);
+		layeredPane_1.add(btnNewButton);
+		
+		JLabel lblNewLabel_5 = new JLabel("SuperCar");
+		lblNewLabel_5.setBounds(10, 11, 108, 31);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		JButton btnNewButton_1 = new JButton("Retour");
+		btnNewButton_1.setBounds(528, 11, 89, 31);
+		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_6 = new JLabel("Fiche de paie");
+		lblNewLabel_6.setBounds(282, 0, 108, 31);
+		frame.getContentPane().add(lblNewLabel_6);
 	}
 	
 	

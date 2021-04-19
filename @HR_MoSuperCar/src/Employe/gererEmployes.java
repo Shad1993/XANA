@@ -63,6 +63,8 @@ import java.awt.event.MouseEvent;
 import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.Component;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
 
 public class gererEmployes {
 
@@ -117,6 +119,10 @@ public class gererEmployes {
 	private final JLayeredPane layeredPane_1 = new JLayeredPane();
 	private static JTextField txtRechercher;
 	private JTextField txtNomDep;
+	private JLabel lblNewLabel_5;
+	private JButton btnNewButton;
+	private JLabel lblNewLabel_6;
+	private JButton button;
 
 	/**
 	 * Launch the application.
@@ -142,6 +148,29 @@ public class gererEmployes {
 		comboDept();
 		btnAjouter.setEnabled(false);//Désactiver bouton insertion
 		btnModifier.setEnabled(false);//Désactiver bouton Mise à jour
+		
+		button = new JButton("Fiche de paie");
+		button.setFont(new Font("Tahoma", Font.BOLD, 12));
+		button.setBounds(1101, 29, 199, 39);
+		layeredPane_1.add(button);
+		
+		lblNewLabel_5 = new JLabel("SuperCar");
+		lblNewLabel_5.setFont(new Font("Yu Gothic UI", Font.ITALIC, 18));
+		lblNewLabel_5.setBounds(24, 11, 111, 34);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		btnNewButton = new JButton("Déconnexion");
+		btnNewButton.setBackground(new Color(127, 255, 0));
+		btnNewButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnNewButton.setBounds(1481, 13, 111, 34);
+		frame.getContentPane().add(btnNewButton);
+		
+		lblNewLabel_6 = new JLabel("Departement Des Ressources Humaines");
+		lblNewLabel_6.setBackground(new Color(192, 192, 192));
+		lblNewLabel_6.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		lblNewLabel_6.setFont(new Font("Palatino Linotype", Font.BOLD, 18));
+		lblNewLabel_6.setBounds(686, 11, 335, 48);
+		frame.getContentPane().add(lblNewLabel_6);
 	
 		//checkAnn();
 	}
@@ -355,31 +384,7 @@ public class gererEmployes {
 		NIC		= txtNIC.getText();
 	    //DOB		= txtDOB.getText();
 		DOB = ((JTextField)dateChooserDOB.getDateEditor().getUiComponent()).getText();
-	        
-	       
-
-	   
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-		
-		
 		Sexe = cmbSexe.getSelectedItem().toString();
-
 		Adresse	= txtAdresse.getText();
 		Email	= txtEmail.getText();
 		NoContact	= txtNoContact.getText();
@@ -763,11 +768,12 @@ public class gererEmployes {
 		layeredPane_1.setForeground(new Color(0, 0, 128));
 		layeredPane_1.setBackground(new Color(0, 0, 128));
 		layeredPane_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(64, 64, 64)));
-		layeredPane_1.setBounds(6, 702, 933, 97);
+		layeredPane_1.setBounds(6, 702, 1310, 97);
 		frame.getContentPane().add(layeredPane_1);
 		
 		
 		 btnAjouter = new JButton(" Ajouter Employé(e)");
+		 btnAjouter.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -804,6 +810,7 @@ public class gererEmployes {
 		layeredPane_1.add(btnAjouter);
 		
 		btnModifier = new JButton("Mettre à jour");
+		btnModifier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -862,6 +869,7 @@ public class gererEmployes {
 		layeredPane_1.add(btnModifier);
 		
 		JButton btnEffChamps = new JButton("Effacer champs");
+		btnEffChamps.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnEffChamps.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -879,6 +887,7 @@ public class gererEmployes {
 		layeredPane_1.add(btnEffChamps);
 		
 		JButton btnSupprimer = new JButton("Suppimer Employé(e)");
+		btnSupprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSupprimer.setBounds(685, 32, 193, 32);
 		layeredPane_1.add(btnSupprimer);
 		btnSupprimer.addActionListener(new ActionListener() {
@@ -940,6 +949,7 @@ public class gererEmployes {
 		txtRechercher.setColumns(10);
 		
 		JButton btnRechercher = new JButton("Rechercher");
+		btnRechercher.setBackground(new Color(224, 255, 255));
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
