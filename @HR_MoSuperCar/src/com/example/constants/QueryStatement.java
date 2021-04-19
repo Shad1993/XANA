@@ -21,5 +21,9 @@ public class QueryStatement {
 	
 	public  final static String SELECT_NO_EMP = "SELECT No_employe FROM  employes";
 	
+	public  final static String AFFICHER_DEPARTEMENT = "SELECT * FROM departement";
+
+	
+	
 	
 }

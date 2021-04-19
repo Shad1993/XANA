@@ -78,15 +78,6 @@ public class FicheDePaie {
 				}	
 			
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	

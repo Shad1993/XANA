@@ -16,6 +16,8 @@ import com.example.constants.QueryStatement;
 import com.example.db.ConnectionFactory;
 import com.example.model.Employe;
 
+import Departements.Dep;
+
 
 public class DBUtil {
 	private static Connection connection;
@@ -49,7 +51,7 @@ public class DBUtil {
 		closeConnections();
 	}
 	
-	
+
 	
 	public static void updateEmploye(Employe employe) throws SQLException {
 		connection = ConnectionFactory.getConnection();
@@ -166,11 +168,6 @@ public class DBUtil {
 		}
 	
 	
-		
-		
-		
-		
-		
 	
 		private static void closeConnections() throws SQLException {
 			if (resultSet != null) {
@@ -238,6 +235,19 @@ public class DBUtil {
 		}
 		
 	
-	
+		public static void addDepartement(Dep dept)throws SQLException {
+			
+			connection = ConnectionFactory.getConnection();
+			preparedStatement = connection.prepareStatement(QueryStatement.ADD_EMPLOYE);
+			setPreparedStatementProperties(dept.noDep,
+	                                       dept.dep,
+	                                       dept.adresse, 	 
+	                                       dept.noContact);
+			preparedStatement.executeUpdate();
+
+			closeConnections();
+			
+			
+		}
 
 }

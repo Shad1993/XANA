@@ -53,6 +53,9 @@ import java.awt.event.FocusEvent;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
+import InterfaceFiche.gererFiche;
+
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;  
 import java.util.Date;
@@ -150,6 +153,16 @@ public class gererEmployes {
 		btnModifier.setEnabled(false);//Désactiver bouton Mise à jour
 		
 		button = new JButton("Fiche de paie");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				//gererEmployes.this.frame.setVisible(false);
+				gererFiche.main(null);
+				
+				
+			}
+		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
 		button.setBounds(1101, 29, 199, 39);
 		layeredPane_1.add(button);
