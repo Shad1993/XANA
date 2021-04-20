@@ -1,6 +1,7 @@
 package Departements;
 
 import java.awt.EventQueue;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -19,8 +20,9 @@ public class InterfaceDep {
 	private JTextField txtAdresse;
 	private final JScrollPane scrollPane = new JScrollPane();
 	private JTextField txtRecherche;
-	private final JTable table = new JTable();
 	private JTextField txtContact;
+	private JTable table;
+	
 
 	/**
 	 * Launch the application.
@@ -50,11 +52,23 @@ public class InterfaceDep {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 786, 471);
+		frame.setBounds(100, 100, 940, 536);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		layeredPane.setBounds(10, 340, 323, 81);
+		layeredPane.setBounds(10, 371, 323, 81);
 		frame.getContentPane().add(layeredPane);
+		
+		table = new JTable();
+		
+		Dep afficherDep = new Dep();
+		try {
+			afficherDep.getAllDep(table);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.setBounds(10, 11, 108, 23);
@@ -71,21 +85,21 @@ public class InterfaceDep {
 		JButton btnModifier = new JButton("Supprimer");
 		btnModifier.setBounds(207, 45, 106, 23);
 		layeredPane.add(btnModifier);
-		scrollPane.setBounds(357, 107, 384, 220);
+		scrollPane.setBounds(345, 140, 528, 220);
 		frame.getContentPane().add(scrollPane);
 		scrollPane.setViewportView(table);
 		
 		txtRecherche = new JTextField();
-		txtRecherche.setBounds(425, 69, 179, 27);
+		txtRecherche.setBounds(347, 102, 179, 27);
 		frame.getContentPane().add(txtRecherche);
 		txtRecherche.setColumns(10);
 		
-		JButton btnRechercher = new JButton("Rechercehr");
-		btnRechercher.setBounds(629, 71, 112, 23);
+		JButton btnRechercher = new JButton("Rechercher");
+		btnRechercher.setBounds(536, 95, 112, 34);
 		frame.getContentPane().add(btnRechercher);
 		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
-		layeredPane_1.setBounds(10, 109, 323, 220);
+		layeredPane_1.setBounds(10, 140, 323, 220);
 		frame.getContentPane().add(layeredPane_1);
 		
 		JLabel lblNewLabel = new JLabel("No D\u00E9partement");

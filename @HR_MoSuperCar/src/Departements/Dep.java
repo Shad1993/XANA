@@ -1,5 +1,16 @@
 package Departements;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import com.example.constants.CRUDMode;
+import com.example.db.ConnectionFactory;
+import com.sun.jdi.connect.spi.Connection;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import com.example.constants.QueryStatement;
+
 public class Dep {
 	
 	//attributs public
@@ -23,7 +34,35 @@ public class Dep {
 		
 	}
 	
-	
+    public void getAllDep(JTable table) throws SQLException{
+
+		DefaultTableModel tableModel = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"No Departement", "Nom", "No contact", "Adressse"
+					
+				});
+		java.sql.Connection connection = ConnectionFactory.getConnection();
+		PreparedStatement	preparedStatement = connection.prepareStatement(QueryStatement.AFFICHER_DEPARTEMENT);
+		
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		while (resultSet.next()) {
+         String noDep  =   resultSet.getString("No_dept");
+		 String nomDep =   		resultSet.getString("Nom_dept");
+		 String adresse  =   	resultSet.getString("NoContact");
+		 String noContact =   		resultSet.getString("AdresseDep");
+
+		    // create a single array of one row's worth of data
+		  String[] data = {noDep,nomDep, adresse, noContact,};
+                        
+		    // and add this row of data into the table model
+		    tableModel.addRow(data);
+		}
+		
+		table.setModel(tableModel);
+}
 	
 	
 	
