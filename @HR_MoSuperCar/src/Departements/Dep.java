@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 import com.example.constants.QueryStatement;
 
 
+
+
 public class Dep {
 	
 	//attributs public
@@ -70,7 +72,38 @@ public class Dep {
 		table.setModel(tableModel);
       }
     
+    public void addDep() {
+		
+		 //getFicheInfos();
+			
+			try {	
+				 String insertDep = "INSERT INTO departement(No_dept,Nom_dept,NoContact,AdresseDep) VALUES(?,?,?,?)";
+					java.sql.Connection connection = ConnectionFactory.getConnection();
+					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
+			     
+					
+					PreparedStatement preparedStatement = connection.prepareStatement(insertDep);
+					preparedStatement.setString(1, noDep);
+					preparedStatement.setString(2, dep);
+					preparedStatement.setString(3, noContact);
+					preparedStatement.setString(4, adresse);
+					preparedStatement.executeUpdate();
 
+
+					
+					JFrame frame = new JFrame("retour");
+					JOptionPane.showMessageDialog(frame,"Departement ajouté");
+
+	
+				}
+				
+				catch(SQLException e1) {
+				JOptionPane.showMessageDialog(null, e1);
+						
+				}	
+			
+		
+	}
 	
 	
 }

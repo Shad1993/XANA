@@ -240,7 +240,7 @@ public class gererFiche {
 			public void actionPerformed(ActionEvent e) {
 				
 				no_Emp = cmbNoEmp.getSelectedItem().toString();
-				 String searchQuery = "SELECT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction,Id_fch FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND Mois = "+mois+" AND F.No_Emp = ?"; 
+				 String searchQuery = "SELECT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction,Id_fch FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND F.No_Emp = ?"; 
 				 	 
 				 		
 					Connection connection = null;

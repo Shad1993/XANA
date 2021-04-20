@@ -1,6 +1,8 @@
 package Departements;
 
 import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,8 +10,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.example.db.ConnectionFactory;
+import com.example.utilities.DBUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -19,6 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
+import java.awt.Color;
 
 public class InterfaceDep {
 
@@ -32,6 +40,14 @@ public class InterfaceDep {
 	private JTextField txtContact;
 	private JTable table;
 	
+	
+	
+	//private static String noDept ;
+    //private  static String dep;
+    //private static String noContact;
+   // private static String adresse;
+    
+	Dep dept = new Dep();
 
 	/**
 	 * Launch the application.
@@ -61,6 +77,8 @@ public class InterfaceDep {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(SystemColor.inactiveCaption);
+		frame.setBackground(SystemColor.inactiveCaption);
 		frame.setBounds(100, 100, 940, 536);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -68,6 +86,42 @@ public class InterfaceDep {
 		frame.getContentPane().add(layeredPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+		        //txtNomDep.setVisible(true);
+
+			     //btnAjouter.setEnabled(false); //Activer bouton d'insertion
+			     //btnModifier.setEnabled(true); // Ativer bouton Mise à jour
+				   
+				int i = table.getSelectedRow();
+		        TableModel model = table.getModel();
+		        
+		          //Display Slected Row In JTexteFields
+		        txtnoDep.setText(model.getValueAt(i,0).toString());
+
+		        txtDep.setText(model.getValueAt(i,1).toString());
+		        
+		        txtAdresse.setText(model.getValueAt(i,2).toString());
+
+		        txtContact.setText(model.getValueAt(i,3).toString());
+		        
+			   
+			    
+			    
+				
+		        
+				
+		        
+				
+				
+				
+				
+				
+				
+			}
+		});
 		
 		Dep afficherDep = new Dep();
 		try {
@@ -80,18 +134,151 @@ public class InterfaceDep {
 		
 		
 		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				getDepInfos();
+				
+				dept.addDep();
+				refreshTable();
+				//Dep dept = new Dep();
+				
+				//dept.noDep = Dep;
+				
+				
+			}
+		});
 		btnAjouter.setBounds(10, 11, 108, 23);
 		layeredPane.add(btnAjouter);
 		
 		JButton btnInit = new JButton("Mise \u00E0 jour");
+		btnInit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				dept.noDep = txtnoDep.getText();
+			    getDepInfos();
+				 String updateQuery = "UPDATE departement SET Nom_dept =?, AdresseDep =?, NoContact =? WHERE No_dept =?";
+				try {
+					Connection connection = ConnectionFactory.getConnection();
+				
+			         PreparedStatement  ps= connection.prepareStatement(updateQuery);
+			         
+			         ps.setString(1, dept.dep);
+			         ps.setString(2,dept.adresse);
+			         ps.setString(3,dept.noContact);
+			         ps.setString(4, dept.noDep);
+
+			       
+			         
+			         
+					//boolean error = false;
+
+					
+					
+					//if (controleSaisie(error) == false) {
+					
+			         ps.executeUpdate();
+						JFrame frame = new JFrame("retour");
+						
+						JOptionPane.showMessageDialog(frame,"Département Modifié)");
+						refreshTable();
+						
+						//txtNomDep.setVisible(false);
+
+					
+		        //}
+					
+					
+				} catch (SQLException e1) {
+					JFrame frame = new JFrame("error");
+					JOptionPane.showMessageDialog(frame, e1);
+					e1.printStackTrace();
+				}
+							
+				
+			}
+		});
 		btnInit.setBounds(207, 11, 106, 23);
 		layeredPane.add(btnInit);
 		
 		JButton btnSupprimer = new JButton("Effacer champs");
+		btnSupprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtnoDep.setText("");
+				txtDep.setText("");
+				txtAdresse.setText("");
+				txtContact.setText("");
+				txtnoDep.requestFocusInWindow();
+
+
+				
+				
+				
+				
+			}
+		});
 		btnSupprimer.setBounds(10, 45, 108, 23);
 		layeredPane.add(btnSupprimer);
 		
 		JButton btnModifier = new JButton("Supprimer");
+		btnModifier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				dept.noDep = txtnoDep.getText();
+				//getEmpInfos();
+				 String delQuery = "DELETE FROM departement WHERE No_dept =?";
+				try {
+					Connection connection = ConnectionFactory.getConnection();
+				
+			         PreparedStatement  ps= connection.prepareStatement(delQuery);
+
+			         ps.setString(1, dept.noDep);
+			        // ps.setString(2,Prenom);
+			        // ps.setString(3, NIC);
+			        // ps.setString(4,DOB);
+			        // ps.setString(5, Sexe);
+			        // ps.setString(6,Adresse);
+			        // ps.setString(7,Email);
+			        // ps.setString(8, NoContact);
+			        // ps.setString(9,Titre);
+			        // ps.setString(10, Salaire);
+			        // ps.setString(11,Embauche);
+			        // ps.setString(12,Commission);
+			        // ps.setString(13,Dep);
+			        // ps.setString(14,NoEmp);
+			         
+			         
+					boolean error = false;
+
+					
+					
+					//if (controleSaisie(error) == false) {
+					
+			         ps.executeUpdate();
+						JFrame frame = new JFrame("retour");
+						
+						JOptionPane.showMessageDialog(frame,"Département Effacé)");
+						refreshTable();
+						
+						//txtNomDep.setVisible(false);
+
+					
+		        //}
+					
+					
+				} catch (SQLException e1) {
+					JFrame frame = new JFrame("error");
+					JOptionPane.showMessageDialog(frame, e1);
+					e1.printStackTrace();
+				}
+					
+				
+			}
+		});
 		btnModifier.setBounds(207, 45, 106, 23);
 		layeredPane.add(btnModifier);
 		scrollPane.setBounds(345, 140, 528, 220);
@@ -158,6 +345,35 @@ public class InterfaceDep {
 		txtContact.setColumns(10);
 	}
 	
+	
+	public void getDepInfos() {
+		
+		//dept.noDep  = txtnoDep.getText();
+	    dept.dep =	txtDep.getText();
+		dept.adresse = txtAdresse.getText();
+		dept.noContact  = txtContact.getText();
+		
+			
+	}
+	
+public void refreshTable() {
+		
+		try {
+			
+			table.setModel(new DefaultTableModel());
+			
+			Dep affichage = new Dep();
+			affichage.getAllDep(table);
+			
+		}
+		
+		catch(SQLException e1) {
+		JOptionPane.showMessageDialog(null, e1);
+				
+		}
+			
+     }
+	
 	// Méthode qui recoit valeur rechercher par paramètre (val)
 			public static ArrayList<Dep> allDepts(String val) throws SQLException {
 				//val ="10";
@@ -175,6 +391,7 @@ public class InterfaceDep {
 				
 				JFrame frame = new JFrame("0 résultat");
 				JOptionPane.showMessageDialog(frame,"Aucun résultat obtenu..");
+				txtRecherche.requestFocusInWindow();
 				
 				txtRecherche.requestFocusInWindow(); //place curseur dans txtbox rechercher
 				txtRecherche.setText("");//effacer textbox recherche
