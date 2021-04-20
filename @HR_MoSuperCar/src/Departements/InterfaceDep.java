@@ -1,15 +1,24 @@
 package Departements;
 
 import java.awt.EventQueue;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import com.example.db.ConnectionFactory;
+
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InterfaceDep {
 
@@ -19,7 +28,7 @@ public class InterfaceDep {
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	private JTextField txtAdresse;
 	private final JScrollPane scrollPane = new JScrollPane();
-	private JTextField txtRecherche;
+	private static JTextField txtRecherche;
 	private JTextField txtContact;
 	private JTable table;
 	
@@ -95,6 +104,16 @@ public class InterfaceDep {
 		txtRecherche.setColumns(10);
 		
 		JButton btnRechercher = new JButton("Rechercher");
+		btnRechercher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					findDepartement();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnRechercher.setBounds(536, 95, 112, 34);
 		frame.getContentPane().add(btnRechercher);
 		
@@ -138,4 +157,105 @@ public class InterfaceDep {
 		layeredPane_1.add(txtContact);
 		txtContact.setColumns(10);
 	}
+	
+	// Méthode qui recoit valeur rechercher par paramètre (val)
+			public static ArrayList<Dep> allDepts(String val) throws SQLException {
+				//val ="10";
+		        String searchQuery = "SELECT* FROM departement WHERE CONCAT (`No_dept`,`Nom_dept`,`NoContact`,`AdresseDep`) LIKE'%"+val+"%'";
+				java.sql.Connection connection = ConnectionFactory.getConnection();
+				//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
+		      java.sql.Statement  preparedStatement = connection.createStatement();
+
+				ResultSet resultSet = preparedStatement.executeQuery(searchQuery);
+				
+				
+				ArrayList<Dep> depList = new ArrayList<Dep>();
+				
+			if (!resultSet.isBeforeFirst() ) { // si pas de résultat
+				
+				JFrame frame = new JFrame("0 résultat");
+				JOptionPane.showMessageDialog(frame,"Aucun résultat obtenu..");
+				
+				txtRecherche.requestFocusInWindow(); //place curseur dans txtbox rechercher
+				txtRecherche.setText("");//effacer textbox recherche
+
+				
+			}else {
+				
+				while (resultSet.next()) {
+					Dep dept = new Dep();
+					
+					String noDep = resultSet.getString(1);
+					String nomDep = resultSet.getString(2);
+					String adresseX = resultSet.getString(3);
+					String noContactX = resultSet.getString(4);
+					
+					dept.noDep = noDep;
+					dept.dep= nomDep;
+					dept.adresse= adresseX;
+					dept.noContact =noContactX;
+					
+			
+
+						
+					depList.add(dept);
+				}
+				
+				
+			}
+
+				return depList;
+				
+			   
+			}
+
+			
+			//Affiche résultats
+			 public void findDepartement() throws SQLException
+			 
+			    {
+			        ArrayList<Dep> dept = allDepts(txtRecherche.getText());
+			        DefaultTableModel model = new DefaultTableModel();
+			        model.setColumnIdentifiers(new Object[]{"No Departement", "Departement", "No contact","Adresse"});
+			        Object[] row = new Object[4];
+			        
+			        for(int i = 0; i < dept.size(); i++)
+			        {
+			            row[0] = dept.get(i).noDep;
+			            row[1] = dept.get(i).dep;
+			            row[2] = dept.get(i).noContact;
+			            row[3] = dept.get(i).adresse;
+			           
+			          
+			            model.addRow(row);
+			        }
+			       table.setModel(model);
+			       
+			    }
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

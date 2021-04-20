@@ -3,13 +3,19 @@ package Departements;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import com.example.constants.CRUDMode;
 import com.example.db.ConnectionFactory;
+import com.example.model.Employe;
 import com.sun.jdi.connect.spi.Connection;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import com.example.constants.QueryStatement;
+
 
 public class Dep {
 	
@@ -62,8 +68,9 @@ public class Dep {
 		}
 		
 		table.setModel(tableModel);
-}
-	
+      }
+    
+
 	
 	
 }
