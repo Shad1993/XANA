@@ -1,0 +1,69 @@
+package CompteUser;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import com.example.constants.QueryStatement;
+import com.example.db.ConnectionFactory;
+
+public class Compte {
+	
+	public String idUser;
+	public String noEmp;
+	public String email;
+	public String mdp;
+	
+	
+	public Compte() {
+		
+		
+		
+		
+	}
+	
+	public Compte(String idUser,String noEmp, String email,String mdp) {
+		this.idUser = idUser;
+		this.noEmp = noEmp;
+		this.email = email;
+		this.mdp = mdp;
+		
+		
+	}
+	
+	
+	public void getAllComptes(JTable table) throws SQLException{
+
+		DefaultTableModel tableModel = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"id User", "No Employe", "Email", "mdp"
+					
+				});
+		java.sql.Connection connection = ConnectionFactory.getConnection();
+		PreparedStatement	preparedStatement = connection.prepareStatement(QueryStatement.AFFICHE_COMPTES);
+		
+		ResultSet resultSet = preparedStatement.executeQuery();
+		
+		while (resultSet.next()) {
+         String id  =   resultSet.getString("Id_User");
+		 String noEmp =   		resultSet.getString("No_employe");
+		 String email =   	resultSet.getString("email");
+		 String mdp =   		resultSet.getString("mdp");
+
+		    // create a single array of one row's worth of data
+		  String[] data = {id,noEmp, email, mdp,};
+                        
+		    // and add this row of data into the table model
+		    tableModel.addRow(data);
+		}
+		
+		table.setModel(tableModel);
+      }
+	
+
+}

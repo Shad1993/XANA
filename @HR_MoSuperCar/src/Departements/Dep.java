@@ -1,5 +1,4 @@
 package Departements;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +8,8 @@ import com.example.constants.CRUDMode;
 import com.example.db.ConnectionFactory;
 import com.example.model.Employe;
 import com.sun.jdi.connect.spi.Connection;
+
+import CompteUser.*;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
