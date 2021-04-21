@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 import com.example.db.ConnectionFactory;
 import com.sun.jdi.connect.spi.Connection;
 
+import Departements.Dep;
+
 import javax.swing.JComboBox;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -18,12 +20,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import java.awt.Color;
 
 public class InterfaceCompte {
 
@@ -35,7 +41,7 @@ public class InterfaceCompte {
 	private final JLayeredPane layeredPane_1 = new JLayeredPane();
 	private final JScrollPane scrollPane = new JScrollPane();
 	private JTable table;
-	private JTextField txtRehercher;
+	private static JTextField txtRechercher;
 	
 	@SuppressWarnings("rawtypes")
 	private JComboBox cmbNoEmp;
@@ -71,7 +77,7 @@ public class InterfaceCompte {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(UIManager.getColor("activeCaption"));
+		frame.getContentPane().setBackground(new Color(144, 238, 144));
 		frame.setBounds(100, 100, 921, 490);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -177,12 +183,24 @@ public class InterfaceCompte {
 		
 		
 		
-		txtRehercher = new JTextField();
-		txtRehercher.setBounds(387, 55, 169, 29);
-		frame.getContentPane().add(txtRehercher);
-		txtRehercher.setColumns(10);
+		txtRechercher = new JTextField();
+		txtRechercher.setBounds(387, 55, 169, 29);
+		frame.getContentPane().add(txtRechercher);
+		txtRechercher.setColumns(10);
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				try {
+					findCompte();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
+				
 			}
 		});
 	}
@@ -221,12 +239,86 @@ public class InterfaceCompte {
 	
 	
 	
+	// Méthode qui recoit valeur rechercher par paramètre (val)
+				public static ArrayList<Compte> allComptes(String val) throws SQLException {
+					//val ="10";
+			        String searchQuery = "SELECT* FROM compteutilisateur WHERE CONCAT (`Id_User`,`email`,`mdp`,`No_employe`) LIKE'%"+val+"%'";
+					java.sql.Connection connection = ConnectionFactory.getConnection();
+					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
+			      java.sql.Statement  preparedStatement = connection.createStatement();
+
+					ResultSet resultSet = preparedStatement.executeQuery(searchQuery);
+					
+					
+					ArrayList<Compte> compteList = new ArrayList<Compte>();
+					
+				if (!resultSet.isBeforeFirst() ) { // si pas de résultat
+					
+					JFrame frame = new JFrame("0 résultat");
+					JOptionPane.showMessageDialog(frame,"Aucun résultat obtenu..");
+					txtRechercher.requestFocusInWindow();
+					
+					txtRechercher.requestFocusInWindow(); //place curseur dans txtbox rechercher
+					txtRechercher.setText("");//effacer textbox recherche
+
+					
+				}else {
+					
+					while (resultSet.next()) {
+						Compte compte = new Compte();
+						
+						String id = resultSet.getString(1);
+						String email = resultSet.getString(2);
+						String mdp = resultSet.getString(3);
+						String no_Emp = resultSet.getString(4);
+						
+						compte.idUser = id;
+						compte.email = email;
+						compte.mdp = mdp;
+						compte.noEmp = no_Emp;
+						
+				
+
+							
+						compteList.add(compte);
+					}
+					
+					
+				}
+
+					return compteList;
+					
+				   
+				}
 	
 	
 	
 	
-	
-	
+				 public void findCompte() throws SQLException
+				 
+				    {
+				        ArrayList<Compte> compte = allComptes(txtRechercher.getText());
+				        DefaultTableModel model = new DefaultTableModel();
+				        model.setColumnIdentifiers(new Object[]{"Id compte", "Email", "MDP","No Emp"});
+				        Object[] row = new Object[4];
+				        
+				        for(int i = 0; i < compte.size(); i++)
+				        {
+				            row[0] = compte.get(i).idUser;
+				            row[1] = compte.get(i).email;
+				            row[2] = compte.get(i).mdp;
+				            row[3] = compte.get(i).noEmp;
+				           
+				          
+				            model.addRow(row);
+				        }
+				       table.setModel(model);
+				       
+				    }
+			
+			
+		
+		
 	
 	
 	
