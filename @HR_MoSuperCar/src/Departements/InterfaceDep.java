@@ -103,9 +103,11 @@ public class InterfaceDep {
 
 		        txtDep.setText(model.getValueAt(i,1).toString());
 		        
-		        txtAdresse.setText(model.getValueAt(i,2).toString());
+		        txtContact.setText(model.getValueAt(i,2).toString());
 
-		        txtContact.setText(model.getValueAt(i,3).toString());
+		        
+		        txtAdresse.setText(model.getValueAt(i,3).toString());
+
 		        
 			   
 			    

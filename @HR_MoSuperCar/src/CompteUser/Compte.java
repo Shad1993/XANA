@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,6 +66,40 @@ public class Compte {
 		
 		table.setModel(tableModel);
       }
+	
+	public void addDep() {
+		Compte compte = new Compte();
+		 //getFicheInfos();
+			
+			try {	
+				 String insertCompte = "INSERT INTO compteutilisateur(Id_User,email,mdp,No_employe) VALUES(?,?,?,?)";
+					java.sql.Connection connection = ConnectionFactory.getConnection();
+					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
+			     
+					
+					PreparedStatement preparedStatement = connection.prepareStatement(insertCompte);
+					preparedStatement.setString(1, idUser);
+					preparedStatement.setString(2, email);
+					preparedStatement.setString(3, mdp);
+					preparedStatement.setString(4, noEmp);
+					preparedStatement.executeUpdate();
+
+
+					
+					JFrame frame = new JFrame("retour");
+					JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajouté!");
+
+	
+				}
+				
+				catch(SQLException e1) {
+				JOptionPane.showMessageDialog(null, e1);
+						
+				}	
+			
+		
+	}
+	
 	
 
 }

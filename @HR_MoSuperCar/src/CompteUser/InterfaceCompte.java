@@ -43,6 +43,8 @@ public class InterfaceCompte {
 	private JTable table;
 	private static JTextField txtRechercher;
 	
+	Compte compte = new Compte();
+	
 	@SuppressWarnings("rawtypes")
 	private JComboBox cmbNoEmp;
 
@@ -141,10 +143,32 @@ public class InterfaceCompte {
 		frame.getContentPane().add(layeredPane_1);
 		
 		JButton btnAjouter = new JButton("Ajouter Compte");
+		btnAjouter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				getCompteInfos();
+				
+				compte.addDep();
+				
+				
+				
+				
+				
+			}
+		});
 		btnAjouter.setBounds(10, 13, 347, 23);
 		layeredPane_1.add(btnAjouter);
 		
 		JButton bntEffacerChamps = new JButton("Effacer Champs");
+		bntEffacerChamps.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, compte.mdp);
+
+				
+				
+			}
+		});
 		bntEffacerChamps.setBounds(10, 47, 347, 23);
 		layeredPane_1.add(bntEffacerChamps);
 		
@@ -238,6 +262,18 @@ public class InterfaceCompte {
 	}
 	
 	
+	
+	
+	public void getCompteInfos() {
+		
+		//dept.noDep  = txtnoDep.getText();
+	    compte.idUser =	txtidUser.getText();
+		compte.email  = txtEmail.getText();
+		compte.mdp  = txtMdp.getText();
+		compte.noEmp = cmbNoEmp.getSelectedItem().toString();
+		
+			
+	}
 	
 	// Méthode qui recoit valeur rechercher par paramètre (val)
 				public static ArrayList<Compte> allComptes(String val) throws SQLException {

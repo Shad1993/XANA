@@ -43,6 +43,8 @@ public class FicheDePaie {
 		
 	}
 	
+	
+	
 	public void addFiche() {
 		
 		 //getFicheInfos();
@@ -79,6 +81,25 @@ public class FicheDePaie {
 			
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
