@@ -27,6 +27,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import java.awt.Font;
 
 public class InterfaceDep {
 
@@ -79,10 +82,11 @@ public class InterfaceDep {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.inactiveCaption);
 		frame.setBackground(SystemColor.inactiveCaption);
-		frame.setBounds(100, 100, 940, 536);
+		frame.setBounds(100, 100, 940, 570);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		layeredPane.setBounds(10, 371, 323, 81);
+		layeredPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		layeredPane.setBounds(10, 337, 337, 164);
 		frame.getContentPane().add(layeredPane);
 		
 		table = new JTable();
@@ -136,24 +140,58 @@ public class InterfaceDep {
 		
 		
 		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				getDepInfos();
 				
-				dept.addDep();
-				refreshTable();
-				//Dep dept = new Dep();
+				dept.addDep();// ajouté enregistrement.
 				
-				//dept.noDep = Dep;
+				try {
+					dept.getAllDep(table);// refresh table > affichage
+				} catch (SQLException e1) {
+					
+					e1.printStackTrace();
+				}
+			
 				
 				
 			}
 		});
-		btnAjouter.setBounds(10, 11, 108, 23);
+		btnAjouter.setBounds(10, 11, 317, 23);
 		layeredPane.add(btnAjouter);
 		
+		JButton btnSupprimer = new JButton("Effacer champs");
+		btnSupprimer.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		btnSupprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtnoDep.setText("");
+				txtDep.setText("");
+				txtAdresse.setText("");
+				txtContact.setText("");
+				txtnoDep.requestFocusInWindow();
+
+
+				
+				
+				
+				
+			}
+		});
+		btnSupprimer.setBounds(10, 45, 317, 23);
+		layeredPane.add(btnSupprimer);
+		
+		JButton btnModifier = new JButton("Supprimer");
+		btnModifier.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		btnModifier.setBounds(10, 115, 317, 23);
+		layeredPane.add(btnModifier);
+		
 		JButton btnInit = new JButton("Mise \u00E0 jour");
+		btnInit.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		btnInit.setBounds(10, 81, 317, 23);
+		layeredPane.add(btnInit);
 		btnInit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -202,30 +240,6 @@ public class InterfaceDep {
 				
 			}
 		});
-		btnInit.setBounds(207, 11, 106, 23);
-		layeredPane.add(btnInit);
-		
-		JButton btnSupprimer = new JButton("Effacer champs");
-		btnSupprimer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				txtnoDep.setText("");
-				txtDep.setText("");
-				txtAdresse.setText("");
-				txtContact.setText("");
-				txtnoDep.requestFocusInWindow();
-
-
-				
-				
-				
-				
-			}
-		});
-		btnSupprimer.setBounds(10, 45, 108, 23);
-		layeredPane.add(btnSupprimer);
-		
-		JButton btnModifier = new JButton("Supprimer");
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -254,7 +268,7 @@ public class InterfaceDep {
 			        // ps.setString(14,NoEmp);
 			         
 			         
-					boolean error = false;
+					//boolean error = false;
 
 					
 					
@@ -264,8 +278,7 @@ public class InterfaceDep {
 						JFrame frame = new JFrame("retour");
 						
 						JOptionPane.showMessageDialog(frame,"Département Effacé)");
-						refreshTable();
-						
+                          dept.getAllDep(table);						
 						//txtNomDep.setVisible(false);
 
 					
@@ -281,18 +294,19 @@ public class InterfaceDep {
 				
 			}
 		});
-		btnModifier.setBounds(207, 45, 106, 23);
-		layeredPane.add(btnModifier);
+		scrollPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		scrollPane.setBounds(345, 140, 528, 220);
 		frame.getContentPane().add(scrollPane);
 		scrollPane.setViewportView(table);
 		
 		txtRecherche = new JTextField();
+		txtRecherche.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		txtRecherche.setBounds(347, 102, 179, 27);
 		frame.getContentPane().add(txtRecherche);
 		txtRecherche.setColumns(10);
 		
 		JButton btnRechercher = new JButton("Rechercher");
+		btnRechercher.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -303,11 +317,12 @@ public class InterfaceDep {
 				}
 			}
 		});
-		btnRechercher.setBounds(536, 95, 112, 34);
+		btnRechercher.setBounds(536, 102, 112, 27);
 		frame.getContentPane().add(btnRechercher);
 		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
-		layeredPane_1.setBounds(10, 140, 323, 220);
+		layeredPane_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		layeredPane_1.setBounds(10, 140, 337, 185);
 		frame.getContentPane().add(layeredPane_1);
 		
 		JLabel lblNewLabel = new JLabel("No D\u00E9partement");
@@ -315,36 +330,55 @@ public class InterfaceDep {
 		layeredPane_1.add(lblNewLabel);
 		
 		txtnoDep = new JTextField();
-		txtnoDep.setBounds(126, 8, 69, 27);
+		txtnoDep.setBounds(144, 8, 69, 27);
 		layeredPane_1.add(txtnoDep);
 		txtnoDep.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nom D\u00E9partement");
-		lblNewLabel_1.setBounds(10, 49, 96, 21);
+		lblNewLabel_1.setBounds(10, 49, 126, 21);
 		layeredPane_1.add(lblNewLabel_1);
 		
 		txtDep = new JTextField();
-		txtDep.setBounds(126, 46, 160, 27);
+		txtDep.setBounds(146, 46, 160, 27);
 		layeredPane_1.add(txtDep);
 		txtDep.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("NoContact");
-		lblNewLabel_2.setBounds(10, 144, 61, 14);
+		lblNewLabel_2.setBounds(10, 127, 115, 21);
 		layeredPane_1.add(lblNewLabel_2);
 		
 		JLabel tblAdresse = new JLabel("Adresse");
-		tblAdresse.setBounds(10, 95, 96, 24);
+		tblAdresse.setBounds(10, 81, 126, 24);
 		layeredPane_1.add(tblAdresse);
 		
 		txtAdresse = new JTextField();
-		txtAdresse.setBounds(126, 94, 187, 27);
+		txtAdresse.setBounds(146, 84, 187, 27);
 		layeredPane_1.add(txtAdresse);
 		txtAdresse.setColumns(10);
 		
 		txtContact = new JTextField();
-		txtContact.setBounds(126, 141, 123, 27);
+		txtContact.setBounds(144, 124, 123, 27);
 		layeredPane_1.add(txtContact);
 		txtContact.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("D\u00E9partements");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_3.setBounds(412, 11, 151, 27);
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		JButton btnNewButton = new JButton("Retour");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InterfaceDep.this.frame.setVisible(false);
+			
+			     LeMenu.Menu.main(null);
+
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton.setBounds(802, 15, 112, 33);
+		frame.getContentPane().add(btnNewButton);
 	}
 	
 	

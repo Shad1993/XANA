@@ -54,7 +54,7 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
 import InterfaceFiche.gererFiche;
-
+import LeMenu.Menu;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;  
@@ -126,6 +126,7 @@ public class gererEmployes {
 	private JButton btnNewButton;
 	private JLabel lblNewLabel_6;
 	private JButton button;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -173,6 +174,7 @@ public class gererEmployes {
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		btnNewButton = new JButton("Déconnexion");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBackground(new Color(127, 255, 0));
 		btnNewButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnNewButton.setBounds(1481, 13, 111, 34);
@@ -184,6 +186,20 @@ public class gererEmployes {
 		lblNewLabel_6.setFont(new Font("Palatino Linotype", Font.BOLD, 18));
 		lblNewLabel_6.setBounds(686, 11, 335, 48);
 		frame.getContentPane().add(lblNewLabel_6);
+		
+		btnNewButton_1 = new JButton("Retour");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				 gererEmployes.this.frame.setVisible(false);
+				 Menu.main(null);
+				
+				
+			}
+		});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setBounds(1324, 13, 111, 32);
+		frame.getContentPane().add(btnNewButton_1);
 	
 		//checkAnn();
 	}
