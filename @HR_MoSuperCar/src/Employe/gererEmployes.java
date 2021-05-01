@@ -53,6 +53,8 @@ import java.awt.event.FocusEvent;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
+import CompteUser.Compte;
+import CompteUser.InterfaceCompte;
 import InterfaceFiche.gererFiche;
 import LeMenu.Menu;
 
@@ -89,6 +91,7 @@ public class gererEmployes {
 	private JTextFieldDateEditor editorx;
 	private JButton btnAjouter;
 	private JButton btnModifier;
+	private JButton btnEffChamps;
 
 
 
@@ -150,7 +153,7 @@ public class gererEmployes {
 	public gererEmployes()  throws SQLException{
 		initialize();
 		comboDept();
-		btnAjouter.setEnabled(false);//Désactiver bouton insertion
+		//btnAjouter.setEnabled(false);//Désactiver bouton insertion
 		btnModifier.setEnabled(false);//Désactiver bouton Mise à jour
 		
 		button = new JButton("Fiche de paie");
@@ -191,9 +194,10 @@ public class gererEmployes {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				 gererEmployes.this.frame.setVisible(false);
+				 
 				 Menu.main(null);
-				
+				 gererEmployes.this.frame.setVisible(false);
+
 				
 			}
 		});
@@ -267,7 +271,7 @@ public class gererEmployes {
 			SignalErreur = true;
 			
 		//^(0|[1-9]\d*)(\.\d+)?$
-		} else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Adresse) == false || Adresse.equalsIgnoreCase("")) {
+		} else if (Pattern.matches("[a-zA-ZÀ-ÿ0-9]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Adresse) == false || Adresse.equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(frame, "ERREUR, ADRESSE INVALIDE");
 			txtAdresse.setBackground(new Color(255, 186, 186));
 			txtAdresse.requestFocusInWindow();
@@ -381,7 +385,6 @@ public class gererEmployes {
 					//changer la couleur du datechooser en rouge (warning)
 					editorx.setBackground(new Color(255, 186, 186));
 					
-	
 			  }
 		
 		
@@ -390,18 +393,8 @@ public class gererEmployes {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		return SignalErreur;
-}	
+	}	
 
 	
 	
@@ -478,6 +471,8 @@ public class gererEmployes {
 	// méthode qui éfface tous les champs pour insertion
 	public void effaceChamps() {
 		
+	
+	
 		btnAjouter.setEnabled(true);// activer buton ajouter pour insertion
 		
 		 txtNoEmp.setText("");
@@ -801,7 +796,7 @@ public class gererEmployes {
 		frame.getContentPane().add(layeredPane_1);
 		
 		
-		 btnAjouter = new JButton(" Ajouter Employé(e)");
+		 btnAjouter = new JButton("Ajouter Employé(e)");
 		 btnAjouter.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -822,6 +817,21 @@ public class gererEmployes {
 						JOptionPane.showMessageDialog(frame, e1);
 					}
 					refreshTable();
+					
+					gererEmployes.this.frame.setVisible(false);
+
+					frame = new JFrame("Créer compte");
+					if (JOptionPane.showConfirmDialog(frame, "Voulez-vous Créer un compte utilisateur pour le nouveau employé??", "",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
+						
+						
+						InterfaceCompte.main(null);
+					
+						
+						
+						
+					}
+					
 				
 			}
 				
@@ -882,7 +892,7 @@ public class gererEmployes {
 						txtNomDep.setVisible(false);
 
 					
-				}
+				    }
 					
 					
 				} catch (SQLException e1) {
@@ -894,14 +904,15 @@ public class gererEmployes {
 				
 			}
 		});
-		btnModifier.setBounds(450, 32, 205, 32);
+		btnModifier.setBounds(504, 32, 205, 32);
 		layeredPane_1.add(btnModifier);
 		
-		JButton btnEffChamps = new JButton("Effacer champs");
+		JButton btnEffChamps = new JButton("Effacer tous les champs");
 		btnEffChamps.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnEffChamps.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//btnEffChamps.setEnabled(false);
 				
 				 //appel méthode
 				 effaceChamps();
@@ -912,12 +923,12 @@ public class gererEmployes {
 				
 			}
 		});
-		btnEffChamps.setBounds(232, 32, 193, 32);
+		btnEffChamps.setBounds(242, 32, 229, 32);
 		layeredPane_1.add(btnEffChamps);
 		
 		JButton btnSupprimer = new JButton("Suppimer Employé(e)");
 		btnSupprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnSupprimer.setBounds(685, 32, 193, 32);
+		btnSupprimer.setBounds(745, 32, 193, 32);
 		layeredPane_1.add(btnSupprimer);
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

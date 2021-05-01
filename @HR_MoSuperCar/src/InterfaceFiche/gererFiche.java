@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
@@ -50,6 +51,8 @@ public class gererFiche {
 	private JTextField txtBonus;
 	private JTextField txtCommission;
 	private JTextField txtDeduction;
+
+	
 	private final JLayeredPane layeredPane_1 = new JLayeredPane();
 	
 	@SuppressWarnings("rawtypes")
@@ -71,15 +74,21 @@ public class gererFiche {
 	public static String Titre;
 	public static String id_Fiche;
 
+	 private static final String MONTANT_REGEX =
+	            "^([+-]?\\d*\\.?\\d*)$";
+
+	 
+	    private static final Pattern MONTANT_PATTERN = Pattern.compile(MONTANT_REGEX);
 
 
-
+        FicheDePaie fiche = new FicheDePaie();//instantiation obj  de type fiche de paie
 
 
 	
 	Connection connection = ConnectionFactory.getConnection();
 	//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
     java.sql.Statement  preparedStatement = connection.createStatement();
+    private JTextField txtIdFiche;
     
     
     
@@ -108,6 +117,61 @@ public class gererFiche {
 		comboEmp();
 		
 	}
+	
+	
+	// fonction controle de saisie
+	
+	//private boolean controleSaisie(boolean SignalErreur) {
+		
+		//if (Pattern.matches("^(0|[1-9]\\\\d*)(\\\\.\\\\d+)?$",bonus) == false) {
+
+		//	JOptionPane.showMessageDialog(frame, "ERREUR, bonus INVALIDE");
+			//txtBonus.setBackground(new Color(255, 186, 186));
+			//txtBonus.requestFocusInWindow();
+			
+			//SignalErreur = true;
+			
+		
+		//} else if (Pattern.matches("^(0|[1-9]\\\\d*)(\\\\.\\\\d+)?$", heureSup) == false ) {
+			//JOptionPane.showMessageDialog(frame, "ERREUR,heure supplémetaire INVALIDE");
+			//txtHeureSup.setBackground(new Color(255, 186, 186));
+			//txtHeureSup.requestFocusInWindow();
+			
+			//SignalErreur = true;
+
+		//}else if (Pattern.matches("^(0|[1-9]\\\\d*)(\\\\.\\\\d+)?$", commission) == false) {
+		//	JOptionPane.showMessageDialog(frame, "ERREUR, commission INVALIDE");
+			//txtCommission.setBackground(new Color(255, 186, 186));
+			//txtCommission.requestFocusInWindow();
+			//SignalErreur = true;
+
+		//}else if (Pattern.matches("^(0|[1-9]\\\\d*)(\\\\.\\\\d+)?$", deduction) == false ) {
+			//JOptionPane.showMessageDialog(frame, "ERREUR, déduction INVALIDE");
+			
+			//txtDeduction.setBackground(new Color(255, 186, 186));
+			//txtDeduction.requestFocusInWindow();
+			//SignalErreur = true;
+			
+
+		//}else if(no_Emp.isEmpty()) {
+			
+			//JOptionPane.showMessageDialog(frame, "ERREUR, vous n'avez pas sélectionné un ID,INVALIDE");
+
+			//
+			//SignalErreur = true;
+
+		//}
+			
+		
+		
+		
+	   
+		//return SignalErreur;
+	//}	
+	
+	
+	
+	
 	
 	
 	
@@ -161,16 +225,6 @@ public class gererFiche {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -179,15 +233,15 @@ public class gererFiche {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.inactiveCaption);
-		frame.setBounds(100, 100, 657, 422);
+		frame.setBounds(100, 100, 773, 442);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		layeredPane.setBorder(new LineBorder(new Color(0, 0, 0)));
-		layeredPane.setBounds(152, 66, 479, 289);
+		layeredPane.setBounds(152, 66, 570, 289);
 		frame.getContentPane().add(layeredPane);
 		
 		cmbNoEmp = new JComboBox();
-		cmbNoEmp.setBounds(151, 8, 167, 29);
+		cmbNoEmp.setBounds(151, 8, 262, 29);
 		layeredPane.add(cmbNoEmp);
 		
 		JLabel lblNewLabel = new JLabel("No Employe");
@@ -273,22 +327,14 @@ public class gererFiche {
 						    mois  = resultSet.getString(8);
 						    Titre  = resultSet.getString(4);
 						    deduction  = resultSet.getString(12);
-						    id_Fiche  = resultSet.getString(13);
-
+						    id_Fiche  = resultSet.getString(13);	
 						    
-
-
-
-
-
-
+						    txtIdFiche.setText(id_Fiche);
 						    
 
 							
 						}
-						
-					    
-						
+							
 					} catch (SQLException e1) {
 						
 						
@@ -311,11 +357,11 @@ public class gererFiche {
 				
 			}
 		});
-		btnRehcercher.setBounds(363, 9, 106, 32);
+		btnRehcercher.setBounds(454, 6, 106, 32);
 		layeredPane.add(btnRehcercher);
 		
 		JButton btnGenereFiche = new JButton("G\u00E9nerer Fiche de paie");
-		btnGenereFiche.setBounds(295, 247, 174, 31);
+		btnGenereFiche.setBounds(386, 247, 174, 31);
 		layeredPane.add(btnGenereFiche);
 		btnGenereFiche.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnGenereFiche.addActionListener(new ActionListener() {
@@ -407,10 +453,7 @@ public class gererFiche {
 			      }
 			    } 
 				
-				
-				
-		
-				
+						
 				
 			}
 		});
@@ -422,42 +465,70 @@ public class gererFiche {
 		btnAjouter.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-              
+
 				       getFicheInfos();// appel méthode pour affecter valeurs dans les variables
 				       
-				        FicheDePaie fiche = new FicheDePaie();//instantiation obj  de type fiche de paie
 				        
 				        //manipulation avec des propriétés privées avec méthode set
-				        fiche.set_Bonus(bonus);
+				      
+
+						//boolean error = false;
+
+				//if (controleSaisie(error) == false) { // s'il n'y a pas d'erreur
+						idFiche = txtIdFiche.getText();
+
+					    fiche.set_Bonus(bonus);
 						fiche.set_Commission(commission);
 						fiche.set_Deduction(deduction);
 						fiche.set_heureSup(heureSup);
 						fiche.set_idFiche(idFiche);
 						fiche.set_Mois(mois);
 						fiche.set_noEmp(no_Emp);
-
-				        fiche.addFiche();// appel méthode de la classe mère FiecheDePaie
-				        				 // ppour insertion
-				
-				        //DBUTIL n'a pas marché
-				//getFicheInfos();
-
-				//if (controleSaisie(error) == false) {
-				//try {
-						//DBUtil.addFiche(ficheInfos(CRUDMode.ADD));
 						
-						//JFrame frame = new JFrame("retour");
-						//JOptionPane.showMessageDialog(frame, "Employé ajouté");
 						
-						//clearChamps();							
-					//} catch (SQLException e1) {
-						//JFrame frame = new JFrame("error");
-						//JOptionPane.showMessageDialog(frame,e1);
-					//}
-					//refreshTable();
-			//}
+						 if (!MONTANT_PATTERN.matcher(fiche.get_Bonus()).matches() ){
+							 
+							 JFrame frame = new JFrame("retour");
+							 JOptionPane.showMessageDialog(frame,"ERREUR.. MONTANT BONUS INVALIDE");
+							 txtBonus.requestFocusInWindow();
+								
+						 }else if(!MONTANT_PATTERN.matcher(fiche.get_Deduction()).matches()) {
+							 
+							 JFrame frame = new JFrame("retour");
+							 JOptionPane.showMessageDialog(frame,"ERREUR MONTANT DEDUCTION INVALIDE");
+							 txtDeduction.requestFocusInWindow();
+							 
+						 }else if (!MONTANT_PATTERN.matcher(fiche.get_heureSup()).matches())                                     {
+							 
+							 JFrame frame = new JFrame("retour");
+							 JOptionPane.showMessageDialog(frame,"ERREUR MONTANT HEURE SUP INVALIDE");
+							 txtHeureSup.requestFocusInWindow();
+							 
+						 }else if (!MONTANT_PATTERN.matcher(fiche.get_Commission()).matches()) {
+							 
+							 JFrame frame = new JFrame("retour");
+							 JOptionPane.showMessageDialog(frame,"ERREUR MONTANT COMMISSION INVALIDE");
+							 txtCommission.requestFocusInWindow();
+							 
+						 } else if (no_Emp.isEmpty()){
+							 
+							 JFrame frame = new JFrame("retour");
+							 JOptionPane.showMessageDialog(frame,"ERREUR VOUS N'AVEZ PAS SELECTIONNER UN ID");
+							 
+							 
+						 } else {
+						 
+						
+							 
+							 fiche.addFiche();// appel méthode de la classe mère FiecheDePaie
+						 }
+							 
+						
+						
 				
-				
+
+			
+			    //}
 				
 			}
 		});
@@ -469,9 +540,54 @@ public class gererFiche {
 		butSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-	             JOptionPane.showMessageDialog(null,deduction);
+	             //JOptionPane.showMessageDialog(null,deduction);
+				idFiche = txtIdFiche.getText();
 
+				 String delQuery = "DELETE FROM fch_de_paie WHERE Id_fch =?";
+				try {
+					Connection connection = ConnectionFactory.getConnection();
 				
+			         PreparedStatement  ps= connection.prepareStatement(delQuery);
+
+			         ps.setString(1, idFiche);
+			         
+			        // ps.setString(2,Prenom);
+			        // ps.setString(3, NIC);
+			        // ps.setString(4,DOB);
+			        // ps.setString(5, Sexe);
+			        // ps.setString(6,Adresse);
+			        // ps.setString(7,Email);
+			        // ps.setString(8, NoContact);
+			        // ps.setString(9,Titre);
+			        // ps.setString(10, Salaire);
+			        // ps.setString(11,Embauche);
+			        // ps.setString(12,Commission);
+			        // ps.setString(13,Dep);
+			        // ps.setString(14,NoEmp);
+			         
+			         
+					//boolean error = false;
+
+					
+					
+					//if (controleSaisie(error) == false) {
+					
+			         ps.executeUpdate();
+						JFrame frame = new JFrame("retour");
+						
+						JOptionPane.showMessageDialog(frame,"Département Effacé)");
+                         // fiche.get						
+						//txtNomDep.setVisible(false);
+
+					
+		        //}
+					
+					
+				} catch (SQLException e1) {
+					JFrame frame = new JFrame("error");
+					JOptionPane.showMessageDialog(frame, e1);
+					e1.printStackTrace();
+				}
 				
 				
 			}
@@ -480,13 +596,72 @@ public class gererFiche {
 		layeredPane_1.add(butSupprimer);
 		
 		JButton btnNewButton = new JButton("Modifier");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//no_Emp = cmbNoEmp.getSelectedItem().toString();
+				idFiche = txtIdFiche.getText();
+				getFicheInfos();
+				 String UpdateQuery = "UPDATE fch_de_paie SET Mois=?,HeureSup=?,Bonus=?,Commission=?,Deduction=? WHERE Id_fch=?";
+				try {
+					Connection connection = ConnectionFactory.getConnection();
+				
+			         PreparedStatement  ps= connection.prepareStatement(UpdateQuery);
+
+			         ps.setString(1, mois);
+			         ps.setString(2,heureSup);
+			         ps.setString(3, bonus);
+			         ps.setString(4,commission);
+			         ps.setString(5, deduction);
+			         ps.setString(6,idFiche);
+			        
+			         
+					//boolean error = false;
+
+					
+					
+					//if (controleSaisie(error) == false) {
+					
+			             ps.executeUpdate();
+					JFrame frame = new JFrame("retour");
+						
+						JOptionPane.showMessageDialog(frame,"Employé(e) modifié(e)");
+						
+						
+						//txtNomDep.setVisible(false);
+
+					
+				//}
+					
+					
+				} catch (SQLException e1) {
+					JFrame frame = new JFrame("error");
+					JOptionPane.showMessageDialog(frame, e1);
+					e1.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		btnNewButton.setActionCommand("Modifier");
 		btnNewButton.setBounds(10, 130, 112, 31);
 		layeredPane_1.add(btnNewButton);
-		
-		JLabel lblNewLabel_5 = new JLabel("SuperCar");
-		lblNewLabel_5.setBounds(10, 11, 108, 31);
-		frame.getContentPane().add(lblNewLabel_5);
 		
 		JButton btnNewButton_1 = new JButton("Retour");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -497,12 +672,17 @@ public class gererFiche {
 				
 			}
 		});
-		btnNewButton_1.setBounds(528, 11, 89, 31);
+		btnNewButton_1.setBounds(658, 11, 89, 31);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JLabel lblNewLabel_6 = new JLabel("Fiche de paie");
-		lblNewLabel_6.setBounds(282, 0, 108, 31);
-		frame.getContentPane().add(lblNewLabel_6);
+		txtIdFiche = new JTextField();
+		txtIdFiche.setBounds(24, 412, 96, 20);
+		frame.getContentPane().add(txtIdFiche);
+		txtIdFiche.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("Fiche De Paie");
+		lblNewLabel_5.setBounds(355, 0, 96, 36);
+		frame.getContentPane().add(lblNewLabel_5);
 	}
 	
 	
@@ -537,15 +717,4 @@ public class gererFiche {
 	       
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

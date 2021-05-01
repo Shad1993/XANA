@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -34,6 +35,7 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 
 public class InterfaceCompte {
 
@@ -48,6 +50,20 @@ public class InterfaceCompte {
 	private static JTextField txtRechercher;
 	
 	Compte compte = new Compte();
+	
+	   private static final String EMAIL_REGEX =
+	            "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*" +
+	            "@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+	 
+	    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+	
+	   
+	    private static final String PASSWORD_REGEX =
+	            "^(?=.*[0-9]).{6,}$";
+	     
+	        private static final Pattern PASSWORD_PATTERN =
+	                Pattern.compile(PASSWORD_REGEX);
+	
 	
 	@SuppressWarnings("rawtypes")
 	private JComboBox cmbNoEmp;
@@ -71,11 +87,41 @@ public class InterfaceCompte {
 		});
 	}
 
+	
+//private boolean controleSaisie(boolean SignalErreur) {
+		
+		//if (Pattern.matches("\\\\w+([.-]?\\\\w+)*@\\\\w+([.-]?\\\\w+)*(\\\\.\\\\w{2,3})+$",compte.email) == false) {
+
+			//JOptionPane.showMessageDialog(frame, "ERREUR, bonus Email INVALIDE");
+			//txtEmail.setBackground(new Color(255, 186, 186));
+			//txtEmail.requestFocusInWindow();
+			
+			//SignalErreur = true;
+			 
+
+		//}else if (compte.mdp.isEmpty()){
+			//JOptionPane.showMessageDialog(frame, "ERREUR, Entrez un MDP");
+			//txtMdp.setBackground(new Color(255, 186, 186));
+			//txtMdp.requestFocusInWindow();
+			//SignalErreur = true;
+
+		//}
+
+		
+		
+	   
+		//return SignalErreur;
+	//}	
+	
+
+	
+	
 	/**
 	 * Create the application.
 	 */
 	public InterfaceCompte() {
 		initialize();
+		frame.repaint();
 	}
 
 	/**
@@ -84,11 +130,11 @@ public class InterfaceCompte {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(144, 238, 144));
-		frame.setBounds(100, 100, 921, 490);
+		frame.setBounds(100, 100, 921, 578);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		layeredPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		layeredPane.setBounds(10, 97, 367, 193);
+		layeredPane.setBounds(10, 153, 367, 193);
 		frame.getContentPane().add(layeredPane);
 		
 		
@@ -97,15 +143,16 @@ public class InterfaceCompte {
 		
 		
 		JLabel lblNewLabel = new JLabel("No Employe");
-		lblNewLabel.setBounds(10, 11, 96, 14);
+		lblNewLabel.setBounds(10, 59, 96, 14);
 		layeredPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Id User");
-		lblNewLabel_1.setBounds(10, 55, 71, 14);
+		lblNewLabel_1.setBounds(10, 20, 71, 14);
 		layeredPane.add(lblNewLabel_1);
 		
 		txtidUser = new JTextField();
-		txtidUser.setBounds(163, 52, 117, 28);
+		txtidUser.setEditable(false);
+		txtidUser.setBounds(164, 13, 117, 28);
 		layeredPane.add(txtidUser);
 		txtidUser.setColumns(10);
 		
@@ -131,8 +178,12 @@ public class InterfaceCompte {
 		
 
 		
-		cmbNoEmp.setBounds(163, 7, 120, 28);
+		cmbNoEmp.setBounds(164, 63, 120, 28);
 		layeredPane.add(cmbNoEmp);
+		
+		JLabel lblNewLabel_5 = new JLabel("(Auto-G\u00E9n\u00E9r\u00E9)");
+		lblNewLabel_5.setBounds(61, 20, 93, 14);
+		layeredPane.add(lblNewLabel_5);
 		
 		try {
 			comboEmp();
@@ -143,22 +194,59 @@ public class InterfaceCompte {
 		layeredPane_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		
-		layeredPane_1.setBounds(10, 291, 367, 149);
+		layeredPane_1.setBounds(10, 357, 367, 149);
 		frame.getContentPane().add(layeredPane_1);
 		
 		JButton btnAjouter = new JButton("Ajouter Compte");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+			
 				getCompteInfos();
+			
+				//Controle de saisie
+				 if (!EMAIL_PATTERN.matcher(compte.email).matches() ){
+					 
+					 JFrame frame = new JFrame("retour");
+					 JOptionPane.showMessageDialog(frame,"ERREUR EMAIL INVALIDE");
+					 txtEmail.requestFocusInWindow();
+						
+				 }else if (!PASSWORD_PATTERN.matcher(compte.mdp).matches()) {
+					 
+					 
+					 JFrame frame = new JFrame("retour");
+					 JOptionPane.showMessageDialog(frame,"ERREUR MDP INVALIDE");
+					 txtMdp.requestFocusInWindow();
+					 
+					 
+				 }	else if (compte.noEmp.isEmpty()) {
+					 
+					 JFrame frame = new JFrame("retour");
+					 JOptionPane.showMessageDialog(frame,"VOUS N'AVEZ PAS SELECTIONNER UN ID");
+					 
+						
+				 }else {
+					 
+					 compte.addCompte();
+						try {
+							compte.getAllComptes(table);
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					
+				}
+					 
+				 
 				
-				compte.addDep();
 				
+			//	if(controleSaisie(error)== false) {
 				
+				 //execution
+				//InterfaceCompte.this.frame.setVisible(false);
 				
-				
-				
-			}
+				//}
+		  }		//
+			
 		});
 		btnAjouter.setBounds(10, 13, 347, 23);
 		layeredPane_1.add(btnAjouter);
@@ -167,9 +255,12 @@ public class InterfaceCompte {
 		bntEffacerChamps.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				JOptionPane.showMessageDialog(null, compte.mdp);
-
-				
+			
+						txtidUser.setText("");
+						txtEmail.setText("");
+						txtMdp.setText("");
+						cmbNoEmp.setSelectedIndex(0);
+						//txtidUser.requestFocusInWindow();
 				
 			}
 		});
@@ -311,10 +402,10 @@ public class InterfaceCompte {
 		layeredPane_1.add(btnSupprimer);
 		
 		JButton btnRechercher = new JButton("Rechercher");
-		btnRechercher.setBounds(566, 55, 142, 31);
+		btnRechercher.setBounds(566, 111, 142, 31);
 		frame.getContentPane().add(btnRechercher);
 		scrollPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		scrollPane.setBounds(387, 97, 508, 343);
+		scrollPane.setBounds(387, 153, 508, 343);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -363,7 +454,7 @@ public class InterfaceCompte {
 		
 		
 		txtRechercher = new JTextField();
-		txtRechercher.setBounds(387, 55, 169, 29);
+		txtRechercher.setBounds(387, 113, 169, 29);
 		frame.getContentPane().add(txtRechercher);
 		txtRechercher.setColumns(10);
 		
@@ -379,6 +470,11 @@ public class InterfaceCompte {
 		});
 		btnNewButton.setBounds(782, 11, 113, 31);
 		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel_4 = new JLabel("Compte Utilisateurs");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4.setBounds(387, 1, 222, 44);
+		frame.getContentPane().add(lblNewLabel_4);
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -401,7 +497,7 @@ public class InterfaceCompte {
 	@SuppressWarnings("unchecked")
 	public void comboEmp() throws SQLException{
 		
-		 String searchQuery = "SELECT No_employe FROM employes";
+		 String searchQuery = "SELECT No_employe FROM employes ORDER BY No_employe DESC";
 		java.sql.Connection	 connection = ConnectionFactory.getConnection();
 			//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 	        Statement preparedStatement = connection.createStatement();
@@ -434,11 +530,16 @@ public class InterfaceCompte {
 	
 	public void getCompteInfos() {
 		
-		//dept.noDep  = txtnoDep.getText();
+		
+		
 	    compte.idUser =	txtidUser.getText();
 		compte.email  = txtEmail.getText();
 		compte.mdp  = txtMdp.getText();
 		compte.noEmp = cmbNoEmp.getSelectedItem().toString();
+		
+		
+		
+		
 		
 			
 	}

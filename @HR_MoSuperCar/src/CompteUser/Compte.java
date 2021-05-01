@@ -67,21 +67,21 @@ public class Compte {
 		table.setModel(tableModel);
       }
 	
-	public void addDep() {
+	public void addCompte() {
 		Compte compte = new Compte();
 		 //getFicheInfos();
 			
 			try {	
-				 String insertCompte = "INSERT INTO compteutilisateur(Id_User,email,mdp,No_employe) VALUES(?,?,?,?)";
+				 String insertCompte = "INSERT INTO compteutilisateur(email,mdp,No_employe) VALUES(?,?,?)";
 					java.sql.Connection connection = ConnectionFactory.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 			     
 					
 					PreparedStatement preparedStatement = connection.prepareStatement(insertCompte);
-					preparedStatement.setString(1, idUser);
-					preparedStatement.setString(2, email);
-					preparedStatement.setString(3, mdp);
-					preparedStatement.setString(4, noEmp);
+					//preparedStatement.setString(1, idUser);
+					preparedStatement.setString(1, email);
+					preparedStatement.setString(2, mdp); // compte.getMdp
+					preparedStatement.setString(3, noEmp);
 					preparedStatement.executeUpdate();
 
 
@@ -98,6 +98,11 @@ public class Compte {
 				}	
 			
 		
+	}
+
+	public static void main(Object object) {
+		// TODO Auto-generated method stub
+		 Compte.main(null);
 	}
 	
 	

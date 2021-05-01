@@ -24,7 +24,7 @@ public class QueryStatement {
 	public  final static String AFFICHER_DEPARTEMENT = "SELECT * FROM departement";
 
 	
-	public  final static String AFFICHE_COMPTES = "SELECT *  FROM  compteutilisateur";
+	public  final static String AFFICHE_COMPTES = "SELECT *  FROM  compteutilisateur ORDER BY Id_User DESC";
 
 	
 }

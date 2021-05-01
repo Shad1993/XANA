@@ -81,29 +81,7 @@ public class FicheDePaie {
 			
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	public String get_idFiche(){
 		

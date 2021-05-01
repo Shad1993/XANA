@@ -26,6 +26,17 @@ public class Menu {
 
 	private JFrame frame;
 	private final JLayeredPane layeredPane = new JLayeredPane();
+	
+	
+	public void bye() {
+		
+		Menu.this.frame.setVisible(false);
+		
+		
+	}
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -58,11 +69,11 @@ public class Menu {
 		frame.getContentPane().setBackground(new Color(240, 255, 255));
 		frame.getContentPane().setForeground(new Color(255, 248, 220));
 		frame.setBackground(new Color(255, 69, 0));
-		frame.setBounds(100, 100, 714, 418);
+		frame.setBounds(100, 100, 731, 476);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		layeredPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		layeredPane.setBounds(37, 167, 621, 201);
+		layeredPane.setBounds(39, 204, 621, 201);
 		frame.getContentPane().add(layeredPane);
 		
 		JButton btnGererEmploye = new JButton("G\u00E9rer Les Employ\u00E9es");
@@ -123,12 +134,12 @@ public class Menu {
 		JLabel lblNewLabel = new JLabel("D\u00E9partement Des Resources Humaines");
 		lblNewLabel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel.setBounds(160, 33, 362, 36);
+		lblNewLabel.setBounds(165, 10, 362, 36);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("D\u00E9connexion");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(570, 2, 118, 23);
+		btnNewButton.setBounds(587, 10, 118, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Menu");
