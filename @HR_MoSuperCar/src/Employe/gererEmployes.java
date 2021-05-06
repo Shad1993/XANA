@@ -13,6 +13,7 @@ import java.awt.ScrollPane;
 import javax.swing.JScrollPane;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -26,9 +27,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -65,11 +69,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.Key;
 import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.Component;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+
+
+import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.Key;
+import java.security.MessageDigest;//
+import java.util.Base64;//
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;//
+
+
 
 public class gererEmployes {
 
@@ -92,8 +114,14 @@ public class gererEmployes {
 	private JButton btnAjouter;
 	private JButton btnModifier;
 	private JButton btnEffChamps;
+	private JButton btnRetour1;
+	private static Key masterKey;
 
+	private static Connection connection;
+	private static PreparedStatement preparedStatement;
+	private static ResultSet resultSet = null;
 
+	
 
 	@SuppressWarnings("rawtypes")
 	private JComboBox cmbTitre;
@@ -129,7 +157,80 @@ public class gererEmployes {
 	private JButton btnNewButton;
 	private JLabel lblNewLabel_6;
 	private JButton button;
-	private JButton btnNewButton_1;
+	private JButton btnRetour;
+	
+	// méthodes getter et setter pour accèder aux variables privés masterKey
+		public static Key getMasterKey() {
+			return masterKey;
+		}
+
+		public static void setMasterKey(Key masterKey) {
+			gererEmployes.masterKey = masterKey;
+		}
+
+		
+		//Méthode qui va décrypter le fichier clef.crp là ou la clef hexadecimal est stocké
+		public static void decryptClef() throws IOException {
+			String code = new String(Files.readAllBytes(Paths.get("clef.cryp")));
+			byte[] clefDecode = Base64.getDecoder().decode(code);
+			setMasterKey(new SecretKeySpec(clefDecode, 0, clefDecode.length, "blowfish"));
+			//masterkey de blowfish utilisant methode set masterkey
+		}
+
+		
+		
+		//methode de chiffrement des donées en octets par ApiBlowfish.decryptInByte
+		public static byte[] encryptInByte(byte[] chaineEnClaire, Key clef) throws Exception {
+
+			Cipher crypter = Cipher.getInstance("Blowfish");
+
+			crypter.init(Cipher.ENCRYPT_MODE, clef);
+
+			return crypter.doFinal(chaineEnClaire); // retourne au format tableau d'octets
+		}
+
+		
+
+		//Methode pour déchiffrer les octets par la même faç de la méthode précédente
+		//retourne le dechiffremnt en octet
+		public static byte[] decryptInByte(byte[] chiffrement, Key clef) throws Exception {
+
+			Cipher decrypter = Cipher.getInstance("Blowfish");
+
+			decrypter.init(Cipher.DECRYPT_MODE, clef);
+
+			byte[] chaineDecrypter = decrypter.doFinal(chiffrement);
+
+			return chaineDecrypter;
+		}
+
+		
+	   // methode pour chiffrer les chaines de caractères
+		public static String encryptInString(String chaineEnClair, Key clef) throws Exception {
+
+			byte[] chaine = chaineEnClair.getBytes();
+
+			chaine = encryptInByte(chaine, clef);
+
+			return Base64.getEncoder().encodeToString(chaine);
+
+		}
+		
+		// Méthode pour déchiffrer chaine de caractères qui retourne  decryptée claire en chaine
+		public static String decryptInString(String chiffrement, Key clef) throws Exception {
+
+
+			//chaine décodé en base64
+			byte[] decrypter = Base64.getDecoder().decode(chiffrement);
+
+			decrypter = decryptInByte(decrypter, clef);
+
+			return new String(decrypter); 
+		}
+	
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -152,7 +253,7 @@ public class gererEmployes {
 	 */
 	public gererEmployes()  throws SQLException{
 		initialize();
-		comboDept();
+		comboDep();
 		//btnAjouter.setEnabled(false);//Désactiver bouton insertion
 		btnModifier.setEnabled(false);//Désactiver bouton Mise à jour
 		
@@ -190,8 +291,8 @@ public class gererEmployes {
 		lblNewLabel_6.setBounds(686, 11, 335, 48);
 		frame.getContentPane().add(lblNewLabel_6);
 		
-		btnNewButton_1 = new JButton("Retour");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnRetour1 = new JButton("Retour");
+		btnRetour1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				 
@@ -201,9 +302,9 @@ public class gererEmployes {
 				
 			}
 		});
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_1.setBounds(1324, 13, 111, 32);
-		frame.getContentPane().add(btnNewButton_1);
+		btnRetour1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnRetour1.setBounds(1324, 13, 111, 32);
+		frame.getContentPane().add(btnRetour1);
 	
 		//checkAnn();
 	}
@@ -399,7 +500,13 @@ public class gererEmployes {
 	
 	
 	public void getEmpInfos() 							{
-		
+		//try {
+			//decryptClef();
+		//} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			//e1.printStackTrace();
+		//}
+
 	    //NoEmp	= txtNoEmp.getText();
 		Nom		= txtNom.getText();
 		Prenom	= txtPrenom.getText();
@@ -411,8 +518,10 @@ public class gererEmployes {
 		Email	= txtEmail.getText();
 		NoContact	= txtNoContact.getText();
 		Titre = cmbTitre.getSelectedItem().toString();
-		
-		Salaire		= txtSalaire.getText();
+		Salaire = txtSalaire.getText();
+		Dep = cmbDep.getSelectedItem().toString();
+	
+			//Salaire = encryptInString(Salaire,getMasterKey());
 		
 	 	if (Salaire.length() > 10) {
 	   		
@@ -425,6 +534,9 @@ public class gererEmployes {
 	   		
 	   		
 	   	}
+	 	
+	 	
+		
 	 	
 		Commission	=	txtCommission.getText();
 		
@@ -608,9 +720,9 @@ public class gererEmployes {
 		scrollPane.setViewportView(table);
 		
 		//Affiche tous les employés
-		DBUtil affichage = new DBUtil();
-		affichage.getAllEmployees(table);
-
+		//DBUtil affichage = new DBUtil();
+		//affichage.getAllEmployees(table);
+               getAllEmployees(table);
 		layeredPane.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		layeredPane.setBounds(6, 159, 381, 515);
 		frame.getContentPane().add(layeredPane);
@@ -800,12 +912,23 @@ public class gererEmployes {
 		 btnAjouter.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					decryptClef();
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+
 				boolean error = false;
 				getEmpInfos();
 
 				if (controleSaisie(error) == false) {
 				try {
+					
+						Salaire = encryptInString(Salaire,getMasterKey());
+					
+						
+						
 						DBUtil.addEmploye(empInfos(CRUDMode.ADD));
 						
 						JFrame frame = new JFrame("retour");
@@ -815,8 +938,16 @@ public class gererEmployes {
 					} catch (SQLException e1) {
 						JFrame frame = new JFrame("error");
 						JOptionPane.showMessageDialog(frame, e1);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-					refreshTable();
+					 try {
+						getAllEmployees(table);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 					gererEmployes.this.frame.setVisible(false);
 
@@ -852,7 +983,12 @@ public class gererEmployes {
 		btnModifier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+			 try {
+				decryptClef();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 				NoEmp = txtNoEmp.getText();
 				getEmpInfos();
 				 String UpdateQuery = "UPDATE employes SET Nom=?,Prenom=?,NIC=?,DOB=?,Sexe=?,Adresse=?,AdresseEmail=?,No_contact=?,Titre=?,Salaire=?,DateDembauche=?,Comission=?,Nodept=? WHERE No_employe=?";
@@ -870,7 +1006,7 @@ public class gererEmployes {
 			         ps.setString(7,Email);
 			         ps.setString(8, NoContact);
 			         ps.setString(9,Titre);
-			         ps.setString(10, Salaire);
+			         ps.setString(10, encryptInString(Salaire,getMasterKey()));
 			         ps.setString(11,Embauche);
 			         ps.setString(12,Commission);
 			         ps.setString(13,Dep);
@@ -887,7 +1023,7 @@ public class gererEmployes {
 						JFrame frame = new JFrame("retour");
 						
 						JOptionPane.showMessageDialog(frame,"Employé(e) modifié(e)");
-						refreshTable();
+						getAllEmployees(table);
 						
 						txtNomDep.setVisible(false);
 
@@ -898,6 +1034,9 @@ public class gererEmployes {
 				} catch (SQLException e1) {
 					JFrame frame = new JFrame("error");
 					JOptionPane.showMessageDialog(frame, e1);
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -1008,42 +1147,42 @@ public class gererEmployes {
 	
 	}
 	
-	public void comboDept() throws SQLException{
-		try {
+	//public void comboDept() throws SQLException{
+		//try {
 			
 			//jc.setModel(new DefaultJComboBoxModel());
 			
-			DBUtil afficheMoi = new DBUtil();
+			//DBUtil afficheMoi = new DBUtil();
 			//affichagex.populate(comboBox, table, 0, "view");
 			
-			afficheMoi.populate(cmbDep);
-		}
+			//afficheMoi.populate(cmbDep);
+		//}
 		
-		catch(SQLException e1) {
-		JOptionPane.showMessageDialog(null, e1);
-				
-		}
+		//catch(SQLException e1) {
+		//JOptionPane.showMessageDialog(null, e1);
+		//		
+		//}
 		
 		
 		
-	}
+	//}
 	
 	
 	public void refreshTable() {
 		
-		try {
+		//try {
 			
-			table.setModel(new DefaultTableModel());
+			//table.setModel(new DefaultTableModel());
 			
-			DBUtil affichage = new DBUtil();
-			affichage.getAllEmployees(table);
+			//DBUtil affichage = new DBUtil();
+			//affichage.getAllEmployees(table);
 			
-		}
+		//}
 		
-		catch(SQLException e1) {
-		JOptionPane.showMessageDialog(null, e1);
+		//catch(SQLException e1) {
+		//JOptionPane.showMessageDialog(null, e1);
 				
-		}
+		//}
 			
      }
 	
@@ -1074,6 +1213,14 @@ public class gererEmployes {
 			while (resultSet.next()) {
 				Employe employe = new Employe();
 				
+				try {
+					decryptClef();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//salaire = decryptInString(rs.getString("salaire"), getMasterKey());
+				
 				employe.setNo_employe(resultSet.getString(1));
 				employe.setNom(resultSet.getString(2));
 				employe.setPrenom(resultSet.getString(3));
@@ -1084,7 +1231,12 @@ public class gererEmployes {
 				employe.setEmail(resultSet.getString(8));
 				employe.setNo_contact(resultSet.getString(9));
 				employe.setTitre(resultSet.getString(10));
-				employe.setSalaire(resultSet.getString(11));
+				try {
+					employe.setSalaire(decryptInString(resultSet.getString(11),getMasterKey()));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				employe.setDateDembauche(resultSet.getString(12));
 				employe.setComission(resultSet.getString(13));
 				employe.setNo_dept(resultSet.getString(14));
@@ -1137,4 +1289,106 @@ public class gererEmployes {
 		       table.setModel(model);
 		       
 		    }
+		 
+		 
+		 
+		 public void getAllEmployees(JTable table) throws SQLException{
+			 
+				try {
+					decryptClef();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				DefaultTableModel tableModel = new DefaultTableModel(
+						new Object[][] {
+						},
+						new String[] {
+							"No_employe", "Nom", "Prenom", "NIC", "DOB", "Sexe","Adresse", "AdresseEmail","No_contact","Titre","Salaire","DateDembauche","Comission",
+							"No_departement","Departement"
+						});
+				connection = ConnectionFactory.getConnection();
+				preparedStatement = connection.prepareStatement(QueryStatement.SELECT_ALL_EMPLOYES_QUERY);
+				
+				resultSet = preparedStatement.executeQuery();
+				
+				while (resultSet.next()) {
+		         String No_employe  =   resultSet.getString("No_employe");
+				 String Nom =   		resultSet.getString("Nom");
+				 String Prenom  =   	resultSet.getString("Prenom");
+				 String NIC =   		resultSet.getString("NIC");
+				 String DOB =   		resultSet.getString("DOB");
+				 String Sexe    =  		resultSet.getString("Sexe");
+				 String Adresse =   	resultSet.getString("Adresse");
+				 String Email =  resultSet.getString("AdresseEmail");
+				 String No_contact  =   resultSet.getString("No_contact");
+				 String Titre   =   	resultSet.getString("Titre");
+				 String Salaire;
+				try {
+					Salaire = decryptInString(resultSet.getString("Salaire"),getMasterKey());
+					String DateDembauche = resultSet.getString("DateDembauche");
+					 String Comission   =   resultSet.getString("Comission");
+					 String No_dept =   	resultSet.getString("Nodept");
+					 
+					 String Nom_dept =   	resultSet.getString("Nom_dept");
+
+
+					    // create a single array of one row's worth of data
+					String[] data = {No_employe, Nom, Prenom, NIC, DOB, Sexe,Adresse,Email,No_contact,
+			                        Titre,Salaire,DateDembauche,Comission,No_dept,Nom_dept};
+						
+					
+					 // and add this row of data into the table model
+				    tableModel.addRow(data);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 
+
+				   
+				}
+				
+				table.setModel(tableModel);
+		}
+		 
+		 
+		 
+		 
+		 
+		 @SuppressWarnings("unchecked")
+			public void comboDep() throws SQLException{
+				
+				 String searchQuery = "SELECT No_dept FROM departement ORDER BY No_dept DESC";
+				java.sql.Connection	 connection = ConnectionFactory.getConnection();
+					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
+			        Statement preparedStatement = connection.createStatement();
+
+					@SuppressWarnings("unused")
+					ResultSet resultSet = preparedStatement.executeQuery(searchQuery);
+					
+					cmbDep.addItem("");
+				try {
+					
+					while (resultSet.next()) {
+						
+						   cmbDep.addItem(resultSet.getString("No_dept"));
+						   
+					}
+				}				
+					
+				catch(SQLException e1) {
+					JOptionPane.showMessageDialog(null, e1);
+							
+					}	
+				
+						    
+			       
+				
+			}
+		 
+		 
+		 
+		 
 }

@@ -1,6 +1,15 @@
 package com.example.model;
 
-	public class Employe {
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.Key;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+public class Employe {
 		private String No_employe;
 		private String Nom;
 		private String Prenom;
@@ -16,7 +25,7 @@ package com.example.model;
 		private String Comission;
 		private String No_dept;
 		private String Nom_dept;
-
+		private Key masterKey;
 
 
 		public Employe() {
@@ -182,28 +191,41 @@ package com.example.model;
 		}
 		
 		
+
+		// méthodes getter et setter pour accèder aux variables privés masterKey
+			public Key getMasterKey() {
+				return masterKey;
+			}
+
+			public void setMasterKey(Key masterKey) {
+				this.masterKey = masterKey;
+			}
 		
-		@Override
-		public String toString(){
-			StringBuilder sb = new StringBuilder();
-				sb.append("Employe[");
-				sb.append("No Emp:"+this.No_employe);
-				sb.append(",Nom:"+this.Nom);
-				sb.append(",Prenom:"+this.Prenom);
-				sb.append(",Adresse:"+this.Adresse);
-				sb.append(",Sexe:"+this.Sexe);
-				sb.append(",Prenom:"+this.Prenom);
-				sb.append(",Salaire:"+this.Salaire);
-				sb.append(",Commission:"+this.Comission);
-				sb.append(",DOB:"+this.DOB);
-				sb.append(",Date Embauche:"+this.DateDembauche);
-				sb.append(",Titre:"+this.Titre);
-				sb.append(",No contact:"+this.No_contact);
-				sb.append(",Email:"+this.Email);
-				sb.append(",No dep:"+this.No_dept);
-				sb.append("]");
-			return sb.toString();
-		}
+		
+		
+		
+		
+		//@Override
+		//public String toString(){
+			//StringBuilder sb = new StringBuilder();
+				//sb.append("Employe[");
+				//sb.append("No Emp:"+this.No_employe);
+				//sb.append(",Nom:"+this.Nom);
+				//sb.append(",Prenom:"+this.Prenom);
+				//sb.append(",Adresse:"+this.Adresse);
+				//sb.append(",Sexe:"+this.Sexe);
+				//sb.append(",Prenom:"+this.Prenom);
+				//sb.append(",Salaire:"+this.Salaire);
+				//sb.append(",Commission:"+this.Comission);
+				//sb.append(",DOB:"+this.DOB);
+				//sb.append(",Date Embauche:"+this.DateDembauche);
+				//sb.append(",Titre:"+this.Titre);
+				//sb.append(",No contact:"+this.No_contact);
+				//sb.append(",Email:"+this.Email);
+				//sb.append(",No dep:"+this.No_dept);
+				//sb.append("]");
+			//return sb.toString();
+		//}
 		
 		
 		

@@ -90,50 +90,7 @@ public class DBUtil {
 	
 	
 	
-	public void getAllEmployees(JTable table) throws SQLException{
-
-		DefaultTableModel tableModel = new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-					"No_employe", "Nom", "Prenom", "NIC", "DOB", "Sexe","Adresse", "AdresseEmail","No_contact","Titre","Salaire","DateDembauche","Comission",
-					"No_departement","Departement"
-				});
-		connection = ConnectionFactory.getConnection();
-		preparedStatement = connection.prepareStatement(QueryStatement.SELECT_ALL_EMPLOYES_QUERY);
-		
-		resultSet = preparedStatement.executeQuery();
-		
-		while (resultSet.next()) {
-         String No_employe  =   resultSet.getString("No_employe");
-		 String Nom =   		resultSet.getString("Nom");
-		 String Prenom  =   	resultSet.getString("Prenom");
-		 String NIC =   		resultSet.getString("NIC");
-		 String DOB =   		resultSet.getString("DOB");
-		 String Sexe    =  		resultSet.getString("Sexe");
-		 String Adresse =   	resultSet.getString("Adresse");
-		 String Email =  resultSet.getString("AdresseEmail");
-		 String No_contact  =   resultSet.getString("No_contact");
-		 String Titre   =   	resultSet.getString("Titre");
-		 String Salaire =   	resultSet.getString("Salaire");
-		 String DateDembauche = resultSet.getString("DateDembauche");
-		 String Comission   =   resultSet.getString("Comission");
-		 String No_dept =   	resultSet.getString("Nodept");
-		 
-		 String Nom_dept =   	resultSet.getString("Nom_dept");
-
-
-		    // create a single array of one row's worth of data
-		String[] data = {No_employe, Nom, Prenom, NIC, DOB, Sexe,Adresse,Email,No_contact,
-                        Titre,Salaire,DateDembauche,Comission,No_dept,Nom_dept};
-			
-
-		    // and add this row of data into the table model
-		    tableModel.addRow(data);
-		}
-		
-		table.setModel(tableModel);
-}
+	
 	
 	//Affiche élments dans combobox
 			@SuppressWarnings({ "unchecked", "rawtypes" })

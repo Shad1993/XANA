@@ -28,10 +28,13 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import Employe.gererEmployes;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import com.itextpdf.text.pdf.PdfWriter;
 import javax.swing.border.BevelBorder;
@@ -318,12 +321,19 @@ public class gererFiche {
 							commission = txtCommission.getText();
 							heureSup = txtHeureSup.getText();
 							no_Emp = cmbNoEmp.getSelectedItem().toString();
-
+                          //gererEmployes E = new gererEmployes();
+                          try {
+							gererEmployes.decryptClef();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+                          
 						    Nom = resultSet.getString(2);
 						    Prenom = resultSet.getString(3);
 						    NoDep = resultSet.getString(6);
 						    Dep = resultSet.getString(7);
-						    Salaire= resultSet.getString(5);
+						    Salaire = gererEmployes.decryptInString(resultSet.getString(5),gererEmployes.getMasterKey());
 						    mois  = resultSet.getString(8);
 						    Titre  = resultSet.getString(4);
 						    deduction  = resultSet.getString(12);
@@ -340,6 +350,9 @@ public class gererFiche {
 						
 						// TODO Auto-generated catch block
 						
+						e1.printStackTrace();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			    
@@ -404,14 +417,14 @@ public class gererFiche {
 			            myDocument.open();
 			            myDocument.add(new Paragraph("FICHE DE PAIE",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
 			            myDocument.add(new Paragraph("Mois:"+ " "+mois,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
-			            myDocument.add(new Paragraph("No fiche:"+ " "+id_Fiche,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
+			            myDocument.add(new Paragraph("No fiche:"+ " "+"0000"+id_Fiche,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
 			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
 			            myDocument.add((new Paragraph("DÉTAILS DE L'EMPLOYÉ(E)",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD))));
 			            myDocument.add((new Paragraph("No Employé: "+no_Emp,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
 			            myDocument.add((new Paragraph("Nom: " + Prenom + " "+Nom,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
 			            myDocument.add((new Paragraph("Titre: "+Titre,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
 			            myDocument.add((new Paragraph("Département: "+NoDep+ " " +Dep,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
-			            myDocument.add(new Paragraph("Salaire de base: RS"+Salaire,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+			            myDocument.add(new Paragraph("Salaire de base: RS"+ " " +Salaire,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 
 			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
 			            myDocument.add(new Paragraph("À PAYER ",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));

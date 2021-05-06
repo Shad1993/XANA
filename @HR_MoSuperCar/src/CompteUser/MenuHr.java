@@ -1,4 +1,4 @@
-package LeMenu;
+package CompteUser;
 
 import java.awt.EventQueue;
 
@@ -28,13 +28,16 @@ import java.awt.Font;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
-public class Menu {
+public class MenuHr {
 
 	private JFrame frame;
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	private JButton btnRetourAdm;
+	private JTextField txt1;
 	
 	
 	public void bye() {
@@ -54,7 +57,7 @@ public class Menu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu window = new Menu(login);
+					MenuHr window = new MenuHr(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,7 +69,7 @@ public class Menu {
 	/**
 	 * Create the application.
 	 */
-	public Menu(String login) {
+	public MenuHr(String login) {
 		initialize(login);
 		//btnRetourAdm.setVisible(false);
 	}
@@ -99,7 +102,40 @@ public class Menu {
 		frame.getContentPane().add(layeredPane);
 		
 		
+         CompteAdmin A = new CompteAdmin();
+ 		try {
+			A.DatabaseConnexionHR(login, null, null, frame);
+			
+			if (A.getTypeCompte().contains("Administrateur")){
+	        	 
+	        	//btnRetourAdm.setVisible(false);
+				//JFrame frame = new JFrame("retour");
+				//JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajouté!");
+				 btnRetourAdm = new JButton("Retour");
+					btnRetourAdm.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
+					btnRetourAdm.setBounds(292, 67, 118, 29);
+					frame.getContentPane().add(btnRetourAdm);
+	        	 
+	        }
+			
+			
+			
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
+         
+        // if (A.typeCompte.contains("Administrateur")) {
+        	 
+        	 //btnRetourAdm.setVisible(false);
+        	 
+        	 
+        // }
 		
 		
 		
@@ -113,7 +149,7 @@ public class Menu {
 				
 				
 			
-				Menu.this.frame.setVisible(false);
+				MenuHr.this.frame.setVisible(false);
 				gererEmployes.main(null);
 				
 				
@@ -132,7 +168,7 @@ public class Menu {
 				
 				
 				
-				Menu.this.frame.setVisible(false);
+				MenuHr.this.frame.setVisible(false);
 				InterfaceDep.main(null);
 				
 				
@@ -149,7 +185,7 @@ public class Menu {
 		btnCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Menu.this.frame.setVisible(false);
+				MenuHr.this.frame.setVisible(false);
 				InterfaceCompte.main(null);
 				
 				
@@ -202,22 +238,11 @@ public class Menu {
 		
 		
 		
-		 btnRetourAdm = new JButton("Retour");
-		btnRetourAdm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRetourAdm.setBounds(292, 67, 118, 29);
-		frame.getContentPane().add(btnRetourAdm);
+	
+		
+		txt1 = new JTextField();
+		txt1.setBounds(482, 71, 96, 20);
+		frame.getContentPane().add(txt1);
+		txt1.setColumns(10);
 	}
-	
-	   
-	         
-	
-	
-	
-	
-	
-	
-
 }

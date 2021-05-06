@@ -37,6 +37,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
 
+
 public class InterfaceCompte {
 
 	private JFrame frame;
@@ -48,8 +49,9 @@ public class InterfaceCompte {
 	private final JScrollPane scrollPane = new JScrollPane();
 	private JTable table;
 	private static JTextField txtRechercher;
+	public String mdp;
 	
-	Compte compte = new Compte();
+	CompteAdmin compte = new CompteAdmin ();
 	
 	   private static final String EMAIL_REGEX =
 	            "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*" +
@@ -130,11 +132,11 @@ public class InterfaceCompte {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(144, 238, 144));
-		frame.setBounds(100, 100, 921, 578);
+		frame.setBounds(100, 100, 921, 684);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		layeredPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		layeredPane.setBounds(10, 153, 367, 193);
+		layeredPane.setBounds(10, 153, 367, 273);
 		frame.getContentPane().add(layeredPane);
 		
 		
@@ -161,7 +163,7 @@ public class InterfaceCompte {
 		layeredPane.add(lblNewLabel_2);
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(164, 102, 170, 28);
+		txtEmail.setBounds(164, 102, 193, 28);
 		layeredPane.add(txtEmail);
 		txtEmail.setColumns(10);
 		
@@ -170,7 +172,7 @@ public class InterfaceCompte {
 		layeredPane.add(lblNewLabel_3);
 		
 		txtMdp = new JTextField();
-		txtMdp.setBounds(163, 155, 117, 27);
+		txtMdp.setBounds(163, 155, 194, 27);
 		layeredPane.add(txtMdp);
 		txtMdp.setColumns(10);
 		
@@ -178,7 +180,7 @@ public class InterfaceCompte {
 		
 
 		
-		cmbNoEmp.setBounds(164, 63, 120, 28);
+		cmbNoEmp.setBounds(164, 63, 142, 28);
 		layeredPane.add(cmbNoEmp);
 		
 		JLabel lblNewLabel_5 = new JLabel("(Auto-G\u00E9n\u00E9r\u00E9)");
@@ -194,7 +196,7 @@ public class InterfaceCompte {
 		layeredPane_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		
-		layeredPane_1.setBounds(10, 357, 367, 149);
+		layeredPane_1.setBounds(10, 437, 367, 197);
 		frame.getContentPane().add(layeredPane_1);
 		
 		JButton btnAjouter = new JButton("Ajouter Compte");
@@ -203,6 +205,7 @@ public class InterfaceCompte {
 				
 			
 				getCompteInfos();
+				//compte.setMdp(mdp);
 			
 				//Controle de saisie
 				 if (!EMAIL_PATTERN.matcher(compte.email).matches() ){
@@ -211,7 +214,7 @@ public class InterfaceCompte {
 					 JOptionPane.showMessageDialog(frame,"ERREUR EMAIL INVALIDE");
 					 txtEmail.requestFocusInWindow();
 						
-				 }else if (!PASSWORD_PATTERN.matcher(compte.mdp).matches()) {
+				 }else if (!PASSWORD_PATTERN.matcher(compte.getMdp()).matches()) {
 					 
 					 
 					 JFrame frame = new JFrame("retour");
@@ -248,7 +251,7 @@ public class InterfaceCompte {
 		  }		//
 			
 		});
-		btnAjouter.setBounds(10, 13, 347, 23);
+		btnAjouter.setBounds(10, 11, 347, 35);
 		layeredPane_1.add(btnAjouter);
 		
 		JButton bntEffacerChamps = new JButton("Effacer Champs");
@@ -264,7 +267,7 @@ public class InterfaceCompte {
 				
 			}
 		});
-		bntEffacerChamps.setBounds(10, 47, 347, 23);
+		bntEffacerChamps.setBounds(10, 57, 347, 36);
 		layeredPane_1.add(bntEffacerChamps);
 		
 		JButton btnModifier = new JButton("Modifier Compte");
@@ -275,7 +278,7 @@ public class InterfaceCompte {
 				
 				compte.idUser = txtidUser.getText();
 			    getCompteInfos();
-				 String updateQuery = "UPDATE compteutilisateur SET No_employe =?, email =?, mdp =? WHERE Id_User =?";
+				 String updateQuery = "UPDATE compteutilisateur SET No_emp =?, email =?, mdp =? WHERE Id_User =?";
 				try {
 					java.sql.Connection connection = ConnectionFactory.getConnection();
 				
@@ -283,7 +286,7 @@ public class InterfaceCompte {
 			         
 			         ps.setString(1, compte.noEmp);
 			         ps.setString(2,compte.email);
-			         ps.setString(3,compte.mdp);
+			         ps.setString(3,compte.hashMdp(compte.getMdp()));// compte.getMdp
 			         ps.setString(4, compte.idUser);
 
 			       
@@ -328,7 +331,7 @@ public class InterfaceCompte {
 				
 			}
 		});
-		btnModifier.setBounds(10, 81, 347, 23);
+		btnModifier.setBounds(10, 104, 347, 35);
 		layeredPane_1.add(btnModifier);
 		
 		JButton btnSupprimer = new JButton("Supprimer Compte");
@@ -398,11 +401,11 @@ public class InterfaceCompte {
 				
 			}
 		});
-		btnSupprimer.setBounds(10, 115, 347, 23);
+		btnSupprimer.setBounds(10, 150, 347, 36);
 		layeredPane_1.add(btnSupprimer);
 		
 		JButton btnRechercher = new JButton("Rechercher");
-		btnRechercher.setBounds(566, 111, 142, 31);
+		btnRechercher.setBounds(667, 112, 142, 31);
 		frame.getContentPane().add(btnRechercher);
 		scrollPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		scrollPane.setBounds(387, 153, 508, 343);
@@ -438,8 +441,6 @@ public class InterfaceCompte {
 		
 		
 		
-          Compte compte = new Compte();
-		
 		    try {
 			    compte.getAllComptes(table);
 		    } catch (SQLException e2) {
@@ -454,7 +455,7 @@ public class InterfaceCompte {
 		
 		
 		txtRechercher = new JTextField();
-		txtRechercher.setBounds(387, 113, 169, 29);
+		txtRechercher.setBounds(387, 113, 256, 29);
 		frame.getContentPane().add(txtRechercher);
 		txtRechercher.setColumns(10);
 		
@@ -530,11 +531,10 @@ public class InterfaceCompte {
 	
 	public void getCompteInfos() {
 		
-		
-		
 	    compte.idUser =	txtidUser.getText();
 		compte.email  = txtEmail.getText();
-		compte.mdp  = txtMdp.getText();
+		mdp = txtMdp.getText();
+		compte.setMdp(mdp);
 		compte.noEmp = cmbNoEmp.getSelectedItem().toString();
 		
 		
@@ -547,7 +547,7 @@ public class InterfaceCompte {
 	// Méthode qui recoit valeur rechercher par paramètre (val)
 				public static ArrayList<Compte> allComptes(String val) throws SQLException {
 					//val ="10";
-			        String searchQuery = "SELECT* FROM compteutilisateur WHERE CONCAT (`Id_User`,`email`,`mdp`,`No_employe`) LIKE'%"+val+"%'";
+			        String searchQuery = "SELECT* FROM compteutilisateur WHERE CONCAT (`Id_User`,`email`,`mdp`,`No_emp`) LIKE'%"+val+"%'";
 					java.sql.Connection connection = ConnectionFactory.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 			      java.sql.Statement  preparedStatement = connection.createStatement();
@@ -579,7 +579,8 @@ public class InterfaceCompte {
 						
 						compte.idUser = id;
 						compte.email = email;
-						compte.mdp = mdp;
+						//mdp = compte.getMdp();
+						compte.setMdp(mdp);
 						compte.noEmp = no_Emp;
 						
 				
@@ -611,7 +612,7 @@ public class InterfaceCompte {
 				        {
 				            row[0] = compte.get(i).idUser;
 				            row[1] = compte.get(i).email;
-				            row[2] = compte.get(i).mdp;
+				            row[2] = compte.get(i).getMdp();
 				            row[3] = compte.get(i).noEmp;
 				           
 				          
