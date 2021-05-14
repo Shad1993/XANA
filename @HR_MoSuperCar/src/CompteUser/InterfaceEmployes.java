@@ -1,98 +1,68 @@
-package Employe;
+package CompteUser;
 
-import java.awt.EventQueue;
-
-import java.awt.Rectangle;
-
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import java.awt.ScrollPane;
-import javax.swing.JScrollPane;
-
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-
-import com.example.utilities.DBUtil;
-import com.mysql.cj.protocol.Resultset;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import com.example.constants.CRUDMode;
-import com.example.constants.QueryStatement;
-import com.example.db.ConnectionFactory;
-import com.example.model.Employe;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.border.MatteBorder;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.SystemColor;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JTextFieldDateEditor;
-
-import CompteUser.Compte;
-import CompteUser.InterfaceCompte;
-import InterfaceFiche.gererFiche;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;  
-import java.util.Date;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.Key;
-import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Date;
+import java.util.regex.Pattern;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
-import java.awt.Component;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import com.example.constants.CRUDMode;
+import com.example.constants.QueryStatement;
+import com.example.db.ConnectionFactory;
+import com.example.model.Employe;
+import com.example.utilities.DBUtil;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
+
+import Employe.gererEmployes.*;
+import InterfaceFiche.gererFiche;
+import InterfaceFiche.gererFiche.*;
 
 
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.Key;
-import java.security.MessageDigest;//
-import java.util.Base64;//
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;//
-
-
-
-public class gererEmployes {
+public class InterfaceEmployes {
 
 	private JFrame frame;
 	//private final JScrollPane scrollPane = new JScrollPane();
@@ -107,7 +77,6 @@ public class gererEmployes {
 	private JTextField txtNoContact;
 	private JTextField txtSalaire;
 	private JDateChooser dateChooserDOB ;
-	private JDateChooser dateChooserAnne ;
 	private JTextFieldDateEditor editor;
 	private JTextFieldDateEditor editorx;
 	private JButton btnAjouter;
@@ -158,6 +127,9 @@ public class gererEmployes {
 	private JButton button;
 	private JButton btnRetour;
 	private JButton btnRetourAdm;
+	private JButton btnNewButton_1;
+	private JButton btnRetournRH;
+	private JTextField txtDateEmbauche;
 	
 	// méthodes getter et setter pour accèder aux variables privés masterKey
 		public static Key getMasterKey() {
@@ -165,7 +137,7 @@ public class gererEmployes {
 		}
 
 		public static void setMasterKey(Key masterKey) {
-			gererEmployes.masterKey = masterKey;
+			InterfaceEmployes.masterKey = masterKey;
 		}
 
 		
@@ -228,6 +200,16 @@ public class gererEmployes {
 			return new String(decrypter); 
 		}
 	
+		public void setVisible(boolean b) {
+			if (b==false) {
+				//JFrame frame = new JFrame();
+				this.frame.setVisible(false);
+			}
+		}
+	
+	
+	
+	
 	
 	
 	
@@ -235,11 +217,11 @@ public class gererEmployes {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					gererEmployes window = new gererEmployes();
+					InterfaceEmployes window = new InterfaceEmployes(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -250,9 +232,11 @@ public class gererEmployes {
 
 	/**
 	 * Create the application.
+	 * @throws SQLException 
 	 */
-	public gererEmployes()  throws SQLException{
-		initialize();
+	public InterfaceEmployes(String login) throws SQLException {
+		initialize(login);
+		
 		comboDep();
 		//btnAjouter.setEnabled(false);//Désactiver bouton insertion
 		btnModifier.setEnabled(false);//Désactiver bouton Mise à jour
@@ -277,8 +261,8 @@ public class gererEmployes {
 			public void actionPerformed(ActionEvent e) {
 				
 
-				InterfaceCompte.main(null);
 				
+				InterfaceCompte.main(login);
 				
 				
 				
@@ -308,22 +292,11 @@ public class gererEmployes {
 		lblNewLabel_6.setBounds(686, 11, 335, 48);
 		frame.getContentPane().add(lblNewLabel_6);
 		
-		btnRetour1 = new JButton("Retour");
-		btnRetour1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 //Menu.main(null);
-				 gererEmployes.this.frame.setVisible(false);
-
-				
-			}
-		});
-		btnRetour1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnRetour1.setBounds(1324, 13, 111, 32);
-		frame.getContentPane().add(btnRetour1);
 		
-		btnRetourAdm = new JButton("Retour");
-		btnRetourAdm.setBounds(1488, 69, 104, 34);
-		frame.getContentPane().add(btnRetourAdm);
+		
+		
+		
+
 	
 		//checkAnn();
 	}
@@ -475,37 +448,34 @@ public class gererEmployes {
 		 
 		 
 
-		  Embauche = ((JTextField)dateChooserAnne.getDateEditor().getUiComponent()).getText();
+		  //Embauche = ((JTextField)dateChooserAnne.getDateEditor().getUiComponent()).getText();
 		  
-		  if (Embauche.isEmpty()) {
+		 // if (Embauche.isEmpty()) {
 				
-				JFrame frame = new JFrame("erreur");
-				JOptionPane.showMessageDialog(frame,"Entrez une date de d'embauche");			
-		  }
+				//JFrame frame = new JFrame("erreur");
+				//JOptionPane.showMessageDialog(frame,"Entrez une date de d'embauche");			
+		 //}
 		  
-		  SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy"); 
-		    Date date2 = new Date();  
-	        String dateNow2 = formatter2.format(date2);
-	        
-		    int dateNowInt2 = Integer.parseInt(dateNow2);
+		
+		   // int dateNowInt2 = Integer.parseInt(dateNow2);
 		  
 			
-			String dateEmb = Embauche.substring(0,4);    //input string
+			//String dateEmb = Embauche.substring(0,4);    //input string
 			 
-			int dateInt2= Integer.parseInt(dateEmb); //convertion de l'année string en Integer
+			//int dateInt2= Integer.parseInt(dateEmb); //convertion de l'année string en Integer
 			
 			   
 			// Condition pour interdir les année < ou > à l'année actuelle
-			  if(dateInt2 > dateNowInt2 || dateInt2 < dateNowInt2  ){
+			//  if(dateInt2 > dateNowInt2 || dateInt2 < dateNowInt2  ){
 				    
-			    	JFrame frame = new JFrame("erreur");
-					JOptionPane.showMessageDialog(frame, "l'année d'embauche ne peut être supérieure ou infèrieure à l'année actuelle!");	
-					SignalErreur = true;
+			    	//JFrame frame = new JFrame("erreur");
+					//JOptionPane.showMessageDialog(frame, "l'année d'embauche ne peut être supérieure ou infèrieure à l'année actuelle!");	
+					//SignalErreur = true;
 					
 					//changer la couleur du datechooser en rouge (warning)
-					editorx.setBackground(new Color(255, 186, 186));
+					//editorx.setBackground(new Color(255, 186, 186));
 					
-			  }
+			 // }
 		
 		
 				Dep	=	cmbDep.getSelectedItem().toString();
@@ -519,13 +489,7 @@ public class gererEmployes {
 	
 	
 	public void getEmpInfos() 							{
-		//try {
-			//decryptClef();
-		//} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			//e1.printStackTrace();
-		//}
-
+		
 	    //NoEmp	= txtNoEmp.getText();
 		Nom		= txtNom.getText();
 		Prenom	= txtPrenom.getText();
@@ -538,8 +502,8 @@ public class gererEmployes {
 		NoContact	= txtNoContact.getText();
 		Titre = cmbTitre.getSelectedItem().toString();
 		Salaire = txtSalaire.getText();
-		Dep = cmbDep.getSelectedItem().toString();
-	
+		
+	 
 			//Salaire = encryptInString(Salaire,getMasterKey());
 		
 	 	if (Salaire.length() > 10) {
@@ -617,7 +581,7 @@ public class gererEmployes {
 		 txtEmail.setText("");
 		 txtCommission.setText("");
 		 dateChooserDOB.setCalendar(null);
-		 dateChooserAnne.setCalendar(null);
+		 txtDateEmbauche.setText("");
 		 cmbTitre.setSelectedIndex(0);
 		 cmbSexe.setSelectedIndex(0);
 		 cmbDep.setSelectedIndex(0);	
@@ -629,15 +593,73 @@ public class gererEmployes {
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param login 
 	 * @throws SQLException 
 	 */
 	//@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void initialize() throws SQLException {
+	private void initialize(String login) throws SQLException {
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.activeCaption);
 		frame.setBounds(100, 100, 1642, 876);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		CompteAdmin A = new CompteAdmin();
+		
+		A.DatabaseConnexionHR(login, null, null, frame);
+		
+		if(A.getTypeCompte().contains("HR Manager")) {
+			
+			
+			btnRetour1 = new JButton("Retour");
+			btnRetour1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					 
+					 MenuHr.main(login);
+					 InterfaceEmployes.this.frame.setVisible(false);
+
+					
+				}
+			});
+			btnRetour1.setFont(new Font("Tahoma", Font.BOLD, 11));
+			btnRetour1.setBounds(1324, 13, 120, 32);
+			frame.getContentPane().add(btnRetour1);
+			
+				
+		}else {
+			
+			
+			btnRetourAdm = new JButton("Retour au menu admin");
+			btnRetourAdm.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			btnRetourAdm.setFont(new Font("Tahoma", Font.BOLD, 12));
+			btnRetourAdm.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+
+					InterfaceEmployes.this.frame.setVisible(false);
+					MenuAdm.main(login);
+					//Menu.main(login);
+
+					
+					
+					
+					
+				}
+			});
+			btnRetourAdm.setBounds(1384, 85, 208, 29);
+			frame.getContentPane().add(btnRetourAdm);
+				
+			
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.addMouseListener(new MouseAdapter() {
@@ -705,7 +727,7 @@ public class gererEmployes {
 		       txtSalaire.setText(model.getValueAt(i,10).toString());
 		        txtCommission.setText(model.getValueAt(i,12).toString());
 		        txtCommission.setText(model.getValueAt(i,12).toString());
-		        
+		        txtDateEmbauche.setText(model.getValueAt(i, 11).toString());
 		        
 		        Date date = null;
 				try {
@@ -717,15 +739,7 @@ public class gererEmployes {
 		        
 		         dateChooserDOB.setDate(date);
 
-		         Date date2 = null;
-					try {
-						date2 = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(i, 11));
-					} catch (ParseException e1) {
-					 //TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-			        
-			         dateChooserAnne.setDate(date2);
+		        
 		        
 		      
 		        
@@ -861,7 +875,7 @@ public class gererEmployes {
 		
 		cmbDep = new JComboBox();
 		cmbDep.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbDep.setBounds(129, 362, 80, 25);
+		cmbDep.setBounds(129, 362, 128, 25);
 		layeredPane.add(cmbDep);
 		
 		JLabel lblSalaire = new JLabel("Salaire");
@@ -898,26 +912,23 @@ public class gererEmployes {
 		// Interdir saisie directement dans datechooser
 		editor = (JTextFieldDateEditor) dateChooserDOB.getDateEditor();
 		editor.setEditable(false);		
-		dateChooserDOB.setDateFormatString("YYYY-MM-dd"); //changer le format en aaaa-mm-jj
-		
-		dateChooserAnne = new JDateChooser();
-		dateChooserAnne.setBounds(131, 477, 140, 27);
-		
-		// Interdir saisie directement dans datechooser
-		 editorx =(JTextFieldDateEditor) dateChooserAnne.getDateEditor();
-		editorx.setEditable(false);		
-
-		layeredPane.add(dateChooserAnne);
-		
-		dateChooserAnne.setDateFormatString("YYYY-MM-dd"); //changer le format en aaaa-mm-jj
+		dateChooserDOB.setDateFormatString("YYYY-MM-dd");
 		
 		txtNomDep = new JTextField();
 		txtNomDep.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtNomDep.setEditable(false);
         txtNomDep.setVisible(false);
-		txtNomDep.setBounds(219, 362, 140, 25);
+		txtNomDep.setBounds(260, 362, 112, 25);
 		layeredPane.add(txtNomDep);
 		txtNomDep.setColumns(10);
+		
+		txtDateEmbauche = new JTextField();
+		txtDateEmbauche.setEditable(false);
+		txtDateEmbauche.setForeground(new Color(60, 179, 113));
+		txtDateEmbauche.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtDateEmbauche.setBounds(131, 476, 138, 25);
+		layeredPane.add(txtDateEmbauche);
+		txtDateEmbauche.setColumns(10);
 
 		layeredPane_1.setForeground(new Color(0, 0, 128));
 		layeredPane_1.setBackground(new Color(0, 0, 128));
@@ -930,6 +941,16 @@ public class gererEmployes {
 		 btnAjouter.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+              
+				
+		
+				  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
+				  LocalDateTime now = LocalDateTime.now();  
+				  System.out.println(dtf.format(now)); 
+				
+				  Embauche = dtf.format(now);
+				  
 				try {
 					decryptClef();
 				} catch (IOException e2) {
@@ -945,8 +966,11 @@ public class gererEmployes {
 					
 						Salaire = encryptInString(Salaire,getMasterKey());
 					
-						
-						
+						  Dep = cmbDep.getSelectedItem().toString();
+						  String noDep = "";
+						  noDep = Dep;
+						  Dep = noDep.substring(0,2);
+												
 						DBUtil.addEmploye(empInfos(CRUDMode.ADD));
 						
 						JFrame frame = new JFrame("retour");
@@ -955,7 +979,7 @@ public class gererEmployes {
 						//clearChamps();							
 					} catch (SQLException e1) {
 						JFrame frame = new JFrame("error");
-						JOptionPane.showMessageDialog(frame, e1);
+						JOptionPane.showMessageDialog(frame, Dep);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -1378,7 +1402,7 @@ public class gererEmployes {
 		 @SuppressWarnings("unchecked")
 			public void comboDep() throws SQLException{
 				
-				 String searchQuery = "SELECT No_dept FROM departement ORDER BY No_dept DESC";
+				 String searchQuery = "SELECT No_dept, Nom_dept FROM departement ORDER BY No_dept DESC";
 				java.sql.Connection	 connection = ConnectionFactory.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 			        Statement preparedStatement = connection.createStatement();
@@ -1391,7 +1415,7 @@ public class gererEmployes {
 					
 					while (resultSet.next()) {
 						
-						   cmbDep.addItem(resultSet.getString("No_dept"));
+						   cmbDep.addItem(resultSet.getString("No_dept") + "_" + resultSet.getString("Nom_dept"));
 						   
 					}
 				}				

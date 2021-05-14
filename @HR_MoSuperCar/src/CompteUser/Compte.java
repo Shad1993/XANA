@@ -27,14 +27,13 @@ import com.example.constants.QueryStatement;
 import com.example.db.ConnectionFactory;
 
 import CompteUser.Compte;
-import LeMenu.Menu;
-import LeMenu.MenuAdm;
+
 
 public class Compte {
 	
 	public String idUser;
 	public String noEmp;
-	public String email;
+	public String login;
 	public String typeCompte;
 	private String mdp;
 	
@@ -101,7 +100,7 @@ public class Compte {
 				new Object[][] {
 				},
 				new String[] {
-					"id User", "No Employe", "Email", "mdp"
+					"id User", "No Employe", "Login", "mdp"
 					
 				});
 		java.sql.Connection connection = ConnectionFactory.getConnection();
@@ -112,11 +111,11 @@ public class Compte {
 		while (resultSet.next()) {
          String id  =   resultSet.getString("Id_User");
 		 String noEmp =   		resultSet.getString("No_emp");
-		 String email =   	resultSet.getString("email");
+		 String login =   	resultSet.getString("login");
 		 String mdp =   		resultSet.getString("mdp");
 
 		    // create a single array of one row's worth of data
-		  String[] data = {id,noEmp, email, mdp,};
+		  String[] data = {id,noEmp, login, mdp,};
                         
 		    // and add this row of data into the table model
 		    tableModel.addRow(data);
@@ -131,14 +130,14 @@ public class Compte {
 		 //getFicheInfos();
 			
 			try {	
-				 String insertCompte = "INSERT INTO compteutilisateur(email,mdp,No_emp) VALUES(?,?,?)";
+				 String insertCompte = "INSERT INTO compteutilisateur(login,mdp,No_emp) VALUES(?,?,?)";
 					java.sql.Connection connection = ConnectionFactory.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 					
 					PreparedStatement preparedStatement = connection.prepareStatement(insertCompte);
 					//preparedStatement.setString(1, idUser);
 					
-					preparedStatement.setString(1, email);
+					preparedStatement.setString(1, login);
 					preparedStatement.setString(2, hashMdp(getMdp())); // compte.getMdp
 					preparedStatement.setString(3, noEmp);
 					preparedStatement.executeUpdate();
@@ -154,8 +153,8 @@ public class Compte {
 				catch(SQLException e1) {
 				JFrame frame = new JFrame("retour");
 
-				//JOptionPane.showMessageDialog(frame,"cet utilsateur possède déjà un compte...");
-				JOptionPane.showMessageDialog(frame,e1);
+				JOptionPane.showMessageDialog(frame,"cet utilsateur possède déjà un compte...");
+				//JOptionPane.showMessageDialog(frame,e1);
 
 						
 				}	
@@ -228,17 +227,36 @@ public class Compte {
 							"");
 
 					PreparedStatement st = (PreparedStatement) con
-							.prepareStatement("SELECT Titre, email, mdp FROM employes E, compteutilisateur C WHERE E.No_employe = C.No_emp AND C.email = ? AND C.mdp =?");
+							.prepareStatement("SELECT Titre, login, mdp FROM employes E, compteutilisateur C WHERE E.No_employe = C.No_emp AND C.login = ? AND C.mdp =?");
 
 					st.setString(1, login);
 					st.setString(2, getMdp());
 
 					ResultSet rs = st.executeQuery();
 					if (rs.next()) {
-						setTypeCompte(rs.getString("Titre"));
-						frame.setVisible(false);
-						System.out.print(login);
-						MenuHr.main(login);
+						 setTypeCompte(rs.getString("Titre"));
+						 
+						 CompteAdmin c = new CompteAdmin();
+						 
+						 c.DatabaseConnexionHR(login, null, null, frame);
+						 
+						 if(c.getTypeCompte().contains("Administrateur")) {
+						   JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecter en tant qu' "+" "+ c.getTypeCompte());
+
+							 frame.setVisible(false);
+								System.out.print(login);
+								MenuAdm.main(login);
+								
+							 
+							 
+						 }else {
+							   JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecter en tant que "+" "+ c.getTypeCompte());
+
+						     frame.setVisible(false);
+						     System.out.print(login);
+						    MenuHr.main(login);
+						 }
+						
 					} else {
 						JOptionPane.showMessageDialog(frame, "Identifiant ou mdp invalide....");
 					}
@@ -251,7 +269,7 @@ public class Compte {
 							"");
 
 					PreparedStatement st = (PreparedStatement) con
-							.prepareStatement("SELECT Titre, email, mdp FROM employes E, compteutilisateur C WHERE E.No_employe = C.No_emp AND C.email = ?");
+							.prepareStatement("SELECT Titre, login, mdp FROM employes E, compteutilisateur C WHERE E.No_employe = C.No_emp AND C.login = ?");
 
 					st.setString(1, login);
 

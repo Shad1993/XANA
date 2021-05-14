@@ -1,4 +1,4 @@
-package Departements;
+package CompteUser;
 
 import java.awt.EventQueue;
 import java.sql.Connection;
@@ -14,6 +14,8 @@ import javax.swing.table.TableModel;
 
 import com.example.db.ConnectionFactory;
 import com.example.utilities.DBUtil;
+
+import Departements.Dep;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -42,6 +44,7 @@ public class InterfaceDep {
 	private static JTextField txtRecherche;
 	private JTextField txtContact;
 	private JTable table;
+	public String comparMdp;
 	
 	
 	
@@ -55,11 +58,11 @@ public class InterfaceDep {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceDep window = new InterfaceDep();
+					InterfaceDep window = new InterfaceDep(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,14 +74,15 @@ public class InterfaceDep {
 	/**
 	 * Create the application.
 	 */
-	public InterfaceDep() {
-		initialize();
+	public InterfaceDep(String login) {
+		initialize(login);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param login 
 	 */
-	private void initialize() {
+	private void initialize(String login) {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.inactiveCaption);
 		frame.setBackground(SystemColor.inactiveCaption);
@@ -88,6 +92,59 @@ public class InterfaceDep {
 		layeredPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		layeredPane.setBounds(10, 337, 337, 164);
 		frame.getContentPane().add(layeredPane);
+		
+		CompteAdmin A = new CompteAdmin();
+		
+		 
+		try {
+			A.DatabaseConnexionHR(login, null, null, frame);
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		   if (A.getTypeCompte().contains("Administrateur")) {
+			   
+			   
+				JButton btnRetourAdm = new JButton("Retour au menu Admin");
+				btnRetourAdm.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				btnRetourAdm.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						InterfaceDep.this.frame.setVisible(false);
+						MenuAdm.main(login);
+					
+					     
+
+					}
+				});
+				btnRetourAdm.setFont(new Font("Tahoma", Font.BOLD, 12));
+				btnRetourAdm.setBounds(735, 15, 179, 33);
+				frame.getContentPane().add(btnRetourAdm);
+			     
+			   
+		   }else {
+			   
+				JButton btnMenuHr = new JButton("Retour au menu");
+				btnMenuHr.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						InterfaceDep.this.frame.setVisible(false);
+						MenuHr.main(login);
+						
+						
+						
+						
+					}
+				});
+				btnMenuHr.setFont(new Font("Tahoma", Font.BOLD, 11));
+				btnMenuHr.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				btnMenuHr.setBounds(744, 11, 151, 36);
+				frame.getContentPane().add(btnMenuHr);
+			   
+			      
+			   
+		   }
+		
 		
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -113,7 +170,6 @@ public class InterfaceDep {
 		        txtAdresse.setText(model.getValueAt(i,3).toString());
 
 		        
-			   
 			    
 			    
 				
@@ -366,20 +422,22 @@ public class InterfaceDep {
 		lblNewLabel_3.setBounds(412, 11, 151, 27);
 		frame.getContentPane().add(lblNewLabel_3);
 		
-		JButton btnNewButton = new JButton("Retour");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				InterfaceDep.this.frame.setVisible(false);
-			
-			     LeMenu.Menu.main(null);
-
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton.setBounds(802, 15, 112, 33);
-		frame.getContentPane().add(btnNewButton);
+	
+		
+		
+		
+		
+	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public void getDepInfos() {

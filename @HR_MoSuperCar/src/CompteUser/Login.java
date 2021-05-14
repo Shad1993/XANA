@@ -31,7 +31,6 @@ public class Login {
 
 	private JTextField txtLogin;
 	private JPasswordField txtMdp;
-	private JComboBox cmbType;
 
 	/**
 	 * Launch the application.
@@ -77,13 +76,13 @@ public class Login {
 		JLabel lblLogin = new JLabel("LOGIN");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogin.setBounds(10, 131, 75, 32);
+		lblLogin.setBounds(0, 131, 75, 32);
 		frame.getContentPane().add(lblLogin);
 
 		JLabel lblPwd = new JLabel("MDP");
 		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPwd.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblPwd.setBounds(10, 251, 56, 32);
+		lblPwd.setBounds(0, 200, 56, 32);
 		frame.getContentPane().add(lblPwd);
 		txtLogin = new JTextField();
 		txtLogin.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -92,12 +91,12 @@ public class Login {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					CompteAdmin login = new CompteAdmin();
-					login.email = txtLogin.getText();
+					login.login = txtLogin.getText();
 					login.setMdp((String.copyValueOf(txtMdp.getPassword())));
 					login.setMdp(login.hashMdp(login.getMdp()));
 					try {
 						//login.DatabaseConnexionHR(login.email, login.getMdp(), cmbType.getSelectedItem().toString(), Login.this.frame);
-						login.DatabaseConnexionHR(login.email, login.getMdp(), "login", Login.this.frame);
+						login.DatabaseConnexionHR(login.login, login.getMdp(), "login", Login.this.frame);
 
 					} catch (Exception sqlException) {
 						sqlException.printStackTrace();
@@ -106,7 +105,7 @@ public class Login {
 			}
 		});
 		txtLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtLogin.setBounds(145, 137, 253, 26);
+		txtLogin.setBounds(95, 135, 253, 26);
 		frame.getContentPane().add(txtLogin);
 		txtLogin.setColumns(10);
 
@@ -117,19 +116,19 @@ public class Login {
 			public void actionPerformed(ActionEvent e) {
 				
 				CompteAdmin login = new CompteAdmin();
-				login.email = txtLogin.getText();
+				login.login = txtLogin.getText();
 				login.setMdp((String.copyValueOf(txtMdp.getPassword())));
 				login.setMdp(login.hashMdp(login.getMdp()));
 				try {
 					//login.DatabaseConnexionHR(login.email, login.getMdp(), cmbType.getSelectedItem().toString(), Login.this.frame);
-					login.DatabaseConnexionHR(login.email, login.getMdp(), "login", Login.this.frame);
+					login.DatabaseConnexionHR(login.login, login.getMdp(), "login", Login.this.frame);
 
 				} catch (Exception sqlException) {
 					sqlException.printStackTrace();
 				}
 			}
 		});
-		btnConnexion.setBounds(20, 353, 381, 42);
+		btnConnexion.setBounds(95, 304, 248, 42);
 		frame.getContentPane().add(btnConnexion);
 		txtMdp = new JPasswordField();
 		txtMdp.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -141,12 +140,12 @@ public class Login {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 		///////////	///////////////////////////		/////////////////////////////////////////////////
 					CompteAdmin login = new CompteAdmin();
-					login.email = txtLogin.getText();
+					login.login = txtLogin.getText();
 					login.setMdp((String.copyValueOf(txtMdp.getPassword())));
 					login.setMdp(login.hashMdp(login.getMdp()));
 					try {
 						//login.DatabaseConnexionHR(login.email, login.getMdp(), cmbType.getSelectedItem().toString(), Login.this.frame);
-						login.DatabaseConnexionHR(login.email, login.getMdp(), "login", Login.this.frame);
+						login.DatabaseConnexionHR(login.login, login.getMdp(), "login", Login.this.frame);
 
 					} catch (Exception sqlException) {
 						sqlException.printStackTrace();
@@ -154,18 +153,7 @@ public class Login {
 				}
 			}
 		});
-		txtMdp.setBounds(145, 255, 215, 26);
+		txtMdp.setBounds(95, 204, 253, 26);
 		frame.getContentPane().add(txtMdp);
-		
-		JLabel lblType = new JLabel("Type Utilisateur");
-		lblType.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblType.setHorizontalAlignment(SwingConstants.CENTER);
-		lblType.setBounds(22, 197, 111, 20);
-		frame.getContentPane().add(lblType);
-		
-		cmbType = new JComboBox();
-		cmbType.setModel(new DefaultComboBoxModel(new String[] {"Administrateur", "HR Manager", "Comptable", "Vendeur"}));
-		cmbType.setBounds(145, 197, 195, 26);
-		frame.getContentPane().add(cmbType);
 	}
 }

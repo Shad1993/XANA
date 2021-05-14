@@ -19,7 +19,6 @@ import com.example.model.Employe;
 
 import CompteUser.InterfaceCompte;
 import CompteUser.Login;
-import Departements.InterfaceDep;
 import Employe.gererEmployes;
 
 import javax.swing.border.CompoundBorder;
@@ -37,7 +36,6 @@ public class MenuHr {
 	private JFrame frame;
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	private JButton btnRetourAdm;
-	private JTextField txt1;
 	
 	
 	public void bye() {
@@ -114,6 +112,12 @@ public class MenuHr {
 				 btnRetourAdm = new JButton("Retour");
 					btnRetourAdm.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							
+							MenuHr.this.frame.setVisible(false);
+							MenuAdm.main(login);
+							
+							
+							
 						}
 					});
 					btnRetourAdm.setBounds(292, 67, 118, 29);
@@ -150,7 +154,7 @@ public class MenuHr {
 				
 			
 				MenuHr.this.frame.setVisible(false);
-				gererEmployes.main(null);
+				InterfaceEmployes.main(login);
 				
 				
 				
@@ -169,7 +173,7 @@ public class MenuHr {
 				
 				
 				MenuHr.this.frame.setVisible(false);
-				InterfaceDep.main(null);
+				InterfaceDep.main(login);
 				
 				
 				
@@ -186,7 +190,7 @@ public class MenuHr {
 			public void actionPerformed(ActionEvent e) {
 				
 				MenuHr.this.frame.setVisible(false);
-				InterfaceCompte.main(null);
+				InterfaceCompte.main(login);
 				
 				
 				
@@ -233,16 +237,5 @@ public class MenuHr {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(10, 2, 48, 36);
 		frame.getContentPane().add(lblNewLabel_1);
-	
-		
-		
-		
-		
-	
-		
-		txt1 = new JTextField();
-		txt1.setBounds(482, 71, 96, 20);
-		frame.getContentPane().add(txt1);
-		txt1.setColumns(10);
 	}
 }
