@@ -235,7 +235,7 @@ public class gererFiche {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(SystemColor.inactiveCaption);
+		frame.getContentPane().setBackground(new Color(238, 232, 170));
 		frame.setBounds(100, 100, 773, 442);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -297,6 +297,11 @@ public class gererFiche {
 			public void actionPerformed(ActionEvent e) {
 				
 				no_Emp = cmbNoEmp.getSelectedItem().toString();
+				  String input_string = no_Emp;
+				  int number_output = Integer.parseInt(input_string.replaceAll("[^0-9]", ""));
+				  no_Emp = String.valueOf(number_output);
+				  System.out.print(no_Emp);
+				  
 				 String searchQuery = "SELECT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction,Id_fch FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND F.No_Emp = ?"; 
 				 	 
 				 		
@@ -316,6 +321,9 @@ public class gererFiche {
 							txtBonus.setText(resultSet.getString("Bonus"));
 							txtCommission.setText(resultSet.getString("Commission"));
 							txtDeduction.setText(resultSet.getString("Deduction"));
+							
+							  System.out.print(resultSet.getString("HeureSup"));
+
 							
 							bonus = txtDeduction.getText();
 							commission = txtCommission.getText();
@@ -413,7 +421,15 @@ public class gererFiche {
 			       
 			            Document myDocument = new Document();
 			            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath));
-
+			            
+			            no_Emp = cmbNoEmp.getSelectedItem().toString();
+						  String input_string = no_Emp;
+						  int number_output = Integer.parseInt(input_string.replaceAll("[^0-9]", ""));
+						  no_Emp = String.valueOf(number_output);
+						  System.out.print(no_Emp);
+			          
+						
+						fiche.set_noEmp(no_Emp);
 			            myDocument.open();
 			            myDocument.add(new Paragraph("FICHE DE PAIE",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
 			            myDocument.add(new Paragraph("Mois:"+ " "+mois,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
@@ -496,6 +512,12 @@ public class gererFiche {
 						fiche.set_heureSup(heureSup);
 						fiche.set_idFiche(idFiche);
 						fiche.set_Mois(mois);
+						
+						
+						  String input_string = no_Emp;
+						  int number_output = Integer.parseInt(input_string.replaceAll("[^0-9]", ""));
+						  no_Emp = String.valueOf(number_output);
+						
 						fiche.set_noEmp(no_Emp);
 						
 						
@@ -588,7 +610,7 @@ public class gererFiche {
 			         ps.executeUpdate();
 						JFrame frame = new JFrame("retour");
 						
-						JOptionPane.showMessageDialog(frame,"Département Effacé)");
+						JOptionPane.showMessageDialog(frame,"Fiche de paie Effacée)");
                          // fiche.get						
 						//txtNomDep.setVisible(false);
 
@@ -703,7 +725,7 @@ public class gererFiche {
 	@SuppressWarnings("unchecked")
 	public void comboEmp() throws SQLException{
 		
-		 String searchQuery = "SELECT No_employe FROM employes";
+		 String searchQuery = "SELECT No_employe,Prenom,Nom FROM employes";
 			 connection = ConnectionFactory.getConnection();
 			//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 	        preparedStatement = connection.createStatement();
@@ -716,7 +738,7 @@ public class gererFiche {
 			
 			while (resultSet.next()) {
 				
-				   cmbNoEmp.addItem(resultSet.getString("No_employe"));
+				   cmbNoEmp.addItem(resultSet.getString("No_employe")+ "--" + resultSet.getString("Prenom")+ "--" + resultSet.getString("Nom"));
 				   
 			}
 		}				

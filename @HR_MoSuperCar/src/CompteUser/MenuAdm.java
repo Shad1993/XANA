@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import CompteUser.MenuHr;
@@ -70,6 +71,18 @@ public class MenuAdm {
 		btnQuitter.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				// message de confirmation de sortir du programme
+				 int x = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment quitter ??","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+				if(x == JOptionPane.YES_OPTION) { // Si choix "oui"
+					
+				 System.exit(0); // sortir du programme
+				}else {
+					
+					System.out.println(""); // reste dans le programme
+					
+				}
+				
 			}
 		});
 		btnQuitter.setBounds(581, 11, 106, 34);

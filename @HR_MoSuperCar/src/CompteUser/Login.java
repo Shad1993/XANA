@@ -22,6 +22,7 @@ import Employe.gererEmployes;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
 
 
 
@@ -60,8 +61,9 @@ public class Login {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setBackground(new Color(0, 139, 139));
 		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 13));
-		frame.getContentPane().setBackground(SystemColor.inactiveCaption);
+		frame.getContentPane().setBackground(new Color(0, 139, 139));
 		frame.setBounds(100, 100, 434, 463);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

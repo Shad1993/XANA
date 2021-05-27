@@ -37,7 +37,6 @@ public class Compte {
 	public String typeCompte;
 	private String mdp;
 	
-	
 	//public Compte() {
 					
 	//}
@@ -47,7 +46,6 @@ public class Compte {
 		//this.noEmp = noEmp;
 		//this.email = email;
 		//this.mdp = mdp;
-		
 		
 	//}
 	
@@ -124,42 +122,27 @@ public class Compte {
 		table.setModel(tableModel);
       }
 	
-	
 	public void addCompte() {
-		
 		 //getFicheInfos();
-			
 			try {	
 				 String insertCompte = "INSERT INTO compteutilisateur(login,mdp,No_emp) VALUES(?,?,?)";
 					java.sql.Connection connection = ConnectionFactory.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
-					
 					PreparedStatement preparedStatement = connection.prepareStatement(insertCompte);
 					//preparedStatement.setString(1, idUser);
-					
 					preparedStatement.setString(1, login);
 					preparedStatement.setString(2, hashMdp(getMdp())); // compte.getMdp
 					preparedStatement.setString(3, noEmp);
 					preparedStatement.executeUpdate();
-
-
-					
 					JFrame frame = new JFrame("retour");
 					JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajouté!");
-
-	
 				}
-				
 				catch(SQLException e1) {
 				JFrame frame = new JFrame("retour");
 
 				JOptionPane.showMessageDialog(frame,"cet utilsateur possède déjà un compte...");
 				//JOptionPane.showMessageDialog(frame,e1);
-
-						
 				}	
-			
-		
 	}
 	
 	
