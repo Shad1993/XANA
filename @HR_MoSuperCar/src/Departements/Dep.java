@@ -1,4 +1,5 @@
 package Departements;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,9 +18,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import com.example.constants.QueryStatement;
 
+ 
 
-
-
+/**
+ * Cette classe est utilisée pour instantier les objet département pour créer les des départements
+ * @author Lionel
+ *
+ */
 public class Dep {
 	
 	//attributs public
@@ -43,6 +48,12 @@ public class Dep {
 		
 	}
 	
+    /**
+     * 
+     * cette méthodes affiche les tous les enregistrements des départements de la base de données dans la table
+     * @param table objet de type JTable où les données sont affichées
+     * @throws SQLException gère les erreurs sql
+     */
     public void getAllDep(JTable table) throws SQLException{
 
 		DefaultTableModel tableModel = new DefaultTableModel(
@@ -73,6 +84,9 @@ public class Dep {
 		table.setModel(tableModel);
       }
     
+    /**
+     * Méthode qui utilisée pour ajouter un département
+     */
     public void addDep() {
 		
 		 //getFicheInfos();

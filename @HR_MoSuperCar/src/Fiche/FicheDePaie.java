@@ -1,4 +1,5 @@
 package Fiche;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,6 +9,11 @@ import javax.swing.JOptionPane;
 
 import com.example.db.ConnectionFactory;
 
+/**
+ * Cette classe instantie les objets pour la génération des fiches de paie
+ * @author Lionel
+ *
+ */
 public class FicheDePaie {
 	
 	
@@ -45,6 +51,9 @@ public class FicheDePaie {
 	
 	
 	
+	/**
+	 * Méthode utilisée pour ajouter les fiches de paie
+	 */
 	public void addFiche() {
 		
 		 //getFicheInfos();

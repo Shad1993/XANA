@@ -1,5 +1,10 @@
 package com.example.constants;
 
+/**
+ * Cette classe contient tous les requêtes sql à utiliser par les autres classe pour les exécuter
+ * @author Lionel
+ *
+ */
 public class QueryStatement {
 	
 	public final static String ADD_EMPLOYE = "INSERT INTO employes(Nom,Prenom,NIC,DOB,Sexe,Adresse,AdresseEmail,No_contact,Titre,Salaire,DateDembauche,Comission,Nodept) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"; 

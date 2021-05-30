@@ -9,6 +9,11 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * Cette classe contient tous les attributs des employés et méthodes
+ * @author Lionel
+ *
+ */
 public class Employe {
 		private String No_employe;
 		private String Nom;

@@ -1,4 +1,5 @@
 package CompteUser;
+
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Files;
@@ -29,6 +30,12 @@ import com.example.db.ConnectionFactory;
 import CompteUser.Compte;
 
 
+/**
+ * Cette classe est utilisee pour instantier les objets comptes utilisateurs de tous types utilisateurs 
+ * @author Lionel Perrine
+ *
+ */
+
 public class Compte {
 	
 	public String idUser;
@@ -49,27 +56,49 @@ public class Compte {
 		
 	//}
 	
+	/**
+	 * Méthode getter
+	 * @return retourne mot de passe
+	 */
 	public String getMdp() {
 		return mdp;
 	}
 
 	
+	/**
+	 * Méthode setter
+	 * @param mdpSaisie le mot de passe de de l'utilisateur
+	 */
+	
 	public void setMdp(String mdpSaisie) {
 		this.mdp = mdpSaisie;
 	}
 	
+	/**
+	 * Méthode getter
+	 * @return retourne le variable le type compte de l'utilisateur de type String
+	 */
 	public String getTypeCompte() {
 		return typeCompte;
 	}
 
 	
+	/**
+	 * Méthode Setter
+	 * @param typeCompte variable de type String; le type de profil de l'utilisateur
+	 */
 	public void setTypeCompte(String typeCompte) {
 		this.typeCompte = typeCompte;
 	}
 
 	
 	
-	//Methode d'encrytion SHA Utilisée
+
+		/**
+		 * Cette methode chiffre le mot de passe en texte claire
+		 * @param chaineDeCarac variable de type String qui stock le mot de passe
+		 * @return retourne la chaine de caractère chiffrée
+		 */
 		public String hashMdp(String chaineDeCarac) {
 			try {
 				byte[] dataBytes = chaineDeCarac.getBytes();
@@ -88,10 +117,20 @@ public class Compte {
 	}
 
 
-	 // Class CompteUtilisateurAdmin herite de la classe mère CompteUtilisateur
- class CompteAdmin extends Compte {
+	
+/**
+ * Class CompteUtilisateurAdmin hérite de la classe mere CompteUtilisateur
+ *
+ *
+ */
+class CompteAdmin extends Compte {
 		
 	
+	/**
+	 * Cette mÃ©thode affiche tous les comptes d'utilisateurs de la base de données par ordre décroissants
+	 * @param table variable de type objet JTable
+	 * @throws SQLException gere les erreurs sql
+	 */
 	public void getAllComptes(JTable table) throws SQLException{
 
 		DefaultTableModel tableModel = new DefaultTableModel(
@@ -122,6 +161,9 @@ public class Compte {
 		table.setModel(tableModel);
       }
 	
+	/**
+	 * Cette methode execute l'operation sql d'insertion pour la creation d'un compte utilisateur dans la base de donnees
+	 */
 	public void addCompte() {
 		 //getFicheInfos();
 			try {	
@@ -135,18 +177,26 @@ public class Compte {
 					preparedStatement.setString(3, noEmp);
 					preparedStatement.executeUpdate();
 					JFrame frame = new JFrame("retour");
-					JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajouté!");
+					JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajoutï¿½ï¿½ï¿½!");
 				}
 				catch(SQLException e1) {
 				JFrame frame = new JFrame("retour");
 
-				JOptionPane.showMessageDialog(frame,"cet utilsateur possède déjà un compte...");
+				JOptionPane.showMessageDialog(frame,"cet utilsateur possï¿½ï¿½ï¿½de dï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ un compte...");
 				//JOptionPane.showMessageDialog(frame,e1);
 				}	
 	}
 	
 	
-	// methode pour etablir une connexion avec la bdd et comparer le mdp saisie avec le mdp dans la bdd
+	
+		/**
+		 * methode pour etablir une connexion avec la bdd et compare le mdp saisie avec le mdp dans la bdd
+		 * @param login variable de type String qui stock le login de l'utilisateur connectÃ© pour maintenir la session
+		 * @param password variable type String qui est le mot de passe de l'utilisateur
+		 * @param type vairiable type String; le type de compte/profil d'utilisateur
+		 * @param frame object type JFrame
+		 * @throws SQLException gere les erreurs sql
+		 */
 		public void DatabaseConnexionHR(String login, String password, String type, JFrame frame) throws SQLException {
 			//CompteAdmin compte = new CompteAdmin();
 
@@ -172,7 +222,7 @@ public class Compte {
 						
 					    //if(type == "HR Manager") {
 					    	
-					    	//JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecter en tant que "+" "+ type);
+					    	//JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous ï¿½ï¿½ï¿½tes connecter en tant que "+" "+ type);
 						
 					    	//frame.setVisible(false);
 					    	//Menu.main(null);
@@ -181,7 +231,7 @@ public class Compte {
 
 							//compte.typeCompte = rs.getString("Titre");
 
-							//JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecter en tant que "+" "+ type);
+							//JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous ï¿½ï¿½ï¿½tes connecter en tant que "+" "+ type);
 							//frame.setVisible(false);
 					
 							//MenuAdm.main(null);
@@ -224,19 +274,19 @@ public class Compte {
 						 c.DatabaseConnexionHR(login, null, null, frame);
 						 
 						 if(c.getTypeCompte().contains("Administrateur")) {
-						   JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecter en tant qu' "+" "+ c.getTypeCompte());
+						   JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous connecté connecté en tant qu' "+" "+ c.getTypeCompte());
 
 							 frame.setVisible(false);
-								System.out.print(login);
+								//System.out.print(login);
 								MenuAdm.main(login);
 								
 							 
 							 
 						 }else {
-							   JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecter en tant que "+" "+ c.getTypeCompte());
+							   JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êres connecté en tant que "+" "+ c.getTypeCompte());
 
 						     frame.setVisible(false);
-						     System.out.print(login);
+						     //System.out.print(login);
 						    MenuHr.main(login);
 						 }
 						

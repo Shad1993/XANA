@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.example.constants"},{"l":"com.example.db"},{"l":"com.example.model"},{"l":"com.example.utilities"},{"l":"CompteUser"},{"l":"Departements"},{"l":"Fiche"},{"l":"InterfaceFiche"}]

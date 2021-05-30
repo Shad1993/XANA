@@ -1,5 +1,7 @@
 package CompteUser;
 
+
+ 
 import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,6 +38,12 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Font;
 
+
+/**
+ * Cette Classe est utilisée pour créer/gérer les informations des départements
+ * @author Lionel
+ *
+ */
 public class InterfaceDep {
 
 	private JFrame frame;
@@ -55,6 +63,7 @@ public class InterfaceDep {
 
 	/**
 	 * Launch the application.
+	  * @param login Stock le login de l'utilisateur connecté pour mainternir la session
 	 */
 	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
@@ -70,7 +79,8 @@ public class InterfaceDep {
 	}
 
 	/**
-	 * Create the application.
+	 * CrÃ©er the l'application
+	 * @param login Stock le login de l'utilisateur connecté pour mainternir la session
 	 */
 	public InterfaceDep(String login) {
 		initialize(login);
@@ -79,8 +89,8 @@ public class InterfaceDep {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @param login 
+	 * Initialise les contenus du frame.
+	 * @param login variable de type String qui stock le login de l'utilisateur connecté
 	 */
 	private void initialize(String login) {
 		frame = new JFrame();
@@ -134,6 +144,9 @@ public class InterfaceDep {
 		
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
+			/**
+			 *cette méthode affiche l'enregistrement sélectionné de la table dans les champs en cliquant
+			 */
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
@@ -142,7 +155,7 @@ public class InterfaceDep {
 		        //txtNomDep.setVisible(true);
 
 			     //btnAjouter.setEnabled(false); //Activer bouton d'insertion
-			     //btnModifier.setEnabled(true); // Ativer bouton Mise à jour
+			     //btnModifier.setEnabled(true); // Ativer bouton Mise ï¿½ jour
 				   
 				int i = table.getSelectedRow();
 		        TableModel model = table.getModel();
@@ -241,7 +254,7 @@ public class InterfaceDep {
 					
 			            ps.executeUpdate();
 						JFrame frame = new JFrame("retour");
-						JOptionPane.showMessageDialog(frame,"Département Modifié)");
+						JOptionPane.showMessageDialog(frame,"Dï¿½partement Modifiï¿½)");
 						refreshTable();	
 						refreshChamps();
 		            }
@@ -265,7 +278,7 @@ public class InterfaceDep {
 			         ps.setString(1, dept.noDep);
 			         ps.executeUpdate();
 			         						
-					 JOptionPane.showMessageDialog(frame,"Département Effacé)");
+					 JOptionPane.showMessageDialog(frame,"Dï¿½partement Effacï¿½)");
                      dept.getAllDep(table);						
 						//txtNomDep.setVisible(false);
 					
@@ -316,6 +329,7 @@ public class InterfaceDep {
 		layeredPane_1.add(lblNewLabel);
 		
 		txtnoDep = new JTextField();
+		txtnoDep.setEnabled(false);
 		txtnoDep.setBounds(144, 8, 69, 27);
 		layeredPane_1.add(txtnoDep);
 		txtnoDep.setColumns(10);
@@ -357,6 +371,11 @@ public class InterfaceDep {
 		
 	}
 	
+	/**
+	 * Méthode pour le controle de saisie qui retourne le variable SignalErrreur en cau d'erreur de saisie
+	 * @param SignalErreur variable de type booléen qui est rerourné en cas d'erreurs
+	 * @return retourne SignalErreur
+	 */
 	private boolean controleSaisie(boolean SignalErreur) {
 		//frame = new JFrame();
 		if (Pattern.matches("[0-9]{7,}", dept.noContact) == false || dept.noContact.equalsIgnoreCase("")) {
@@ -388,6 +407,9 @@ public class InterfaceDep {
 	
 	
 
+	/**
+	 * Cette méthode Initialise les champs après une opération sql
+	 */
 	public void refreshChamps () {
 		txtDep.setBackground(new Color(255, 255, 255));
 		txtContact.setBackground(new Color(255, 255, 255));
@@ -395,13 +417,20 @@ public class InterfaceDep {
 	}
 	
 	
-	public void getDepInfos() {
+	/**
+	 * Méthode qui récupère les saisies de l'utilisateur des champs
+	 * 
+	 */
+	public void getDepInfos() { 
 		//dept.noDep  = txtnoDep.getText();
 	    dept.dep =	txtDep.getText();
 		dept.adresse = txtAdresse.getText();
 		dept.noContact  = txtContact.getText();		
 	}
 	
+	/**
+	 * Méthode qui affiche les données mises À jour dans la table
+	 */
 	public void refreshTable() {
 		
 		try {
@@ -420,7 +449,13 @@ public class InterfaceDep {
 			
      }
 	
-	// Méthode qui recoit valeur rechercher par paramètre (val)
+
+			/**
+			 * Méthode qui reçoit valeur recherché par paramètre (val)
+			 * @param val variable de type String qui reçoit le saisie du département recherché
+			 * @return retourne le résultat obtenus en forme de tableau d'odjet deptList
+			 * @throws SQLException gère les erreurs sql
+			 */
 			public static ArrayList<Dep> allDepts(String val) throws SQLException {
 				//val ="10";
 		        String searchQuery = "SELECT* FROM departement WHERE CONCAT (`No_dept`,`Nom_dept`,`NoContact`,`AdresseDep`) LIKE'%"+val+"%'";
@@ -450,8 +485,8 @@ public class InterfaceDep {
 					
 					String noDep = resultSet.getString(1);
 					String nomDep = resultSet.getString(2);
-					String adresseX = resultSet.getString(3);
-					String noContactX = resultSet.getString(4);
+					String noContactX = resultSet.getString(3);
+					String adresseX = resultSet.getString(4);
 					
 					dept.noDep = noDep;
 					dept.dep= nomDep;
@@ -467,8 +502,12 @@ public class InterfaceDep {
 				
 			}
 
-			//Affiche résultats
-			 public void findDepartement() throws SQLException
+			
+			 /**
+			  * Cette méthode affchiche les résultats obtenus dans la table
+			 * @throws SQLException gère les erreurs sql
+			 */
+			public void findDepartement() throws SQLException 
 			 
 			    {
 			        ArrayList<Dep> dept = allDepts(txtRecherche.getText());

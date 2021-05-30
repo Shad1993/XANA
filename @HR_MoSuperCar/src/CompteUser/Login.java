@@ -1,6 +1,8 @@
 package CompteUser;
 
-import java.awt.EventQueue;
+
+
+ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -18,12 +20,16 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import Employe.gererEmployes;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
 
+/**
+ * Cette interface est utiliser pour l'authentification des utilisateurs pour se connecter à leurs comptes respectifs en utilisant leurs logins et mots de passe
+ * @author Lionel
+ *
+ */
 
 
 public class Login {
@@ -35,6 +41,7 @@ public class Login {
 
 	/**
 	 * Launch the application.
+	 * @param args tableau argument  de type String du main
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -57,7 +64,7 @@ public class Login {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise les contenus du frame
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -89,6 +96,9 @@ public class Login {
 		txtLogin = new JTextField();
 		txtLogin.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		txtLogin.addKeyListener(new KeyAdapter() {
+			/**
+			 *méthode qui permet à l;'utilisateur d'appuyer sur la touche "Enter" ou "Clique gauche de la souris" pour la validation de l'authentification
+			 */
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -137,10 +147,11 @@ public class Login {
 		txtMdp.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 
 		txtMdp.addKeyListener(new KeyAdapter() {
+			
+			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-		///////////	///////////////////////////		/////////////////////////////////////////////////
 					CompteAdmin login = new CompteAdmin();
 					login.login = txtLogin.getText();
 					login.setMdp((String.copyValueOf(txtMdp.getPassword())));

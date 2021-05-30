@@ -1,5 +1,6 @@
 package CompteUser;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,7 +20,6 @@ import com.example.model.Employe;
 
 import CompteUser.InterfaceCompte;
 import CompteUser.Login;
-import Employe.gererEmployes;
 
 import javax.swing.border.CompoundBorder;
 import javax.swing.JLabel;
@@ -30,6 +30,12 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+/**
+ * Cette classe est l'interface Menu du manager des ressources humaines
+ * @author Lionel
+ *
+ */
+
 
 public class MenuHr {
 
@@ -38,18 +44,10 @@ public class MenuHr {
 	private JButton btnRetourAdm;
 	
 	
-	public void bye() {
-		
-		btnRetourAdm.setVisible(true);
-		
-		
-	}
-	
-	
-	
-
 	/**
-	 * Launch the application.
+	 * Launch the application.\
+	 * 	 @param login variable de type String qui stock le login de l'utilisateur connecté pour la session
+
 	 */
 	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
@@ -66,6 +64,8 @@ public class MenuHr {
 
 	/**
 	 * Create the application.
+	 * @param login variable de type String qui stock le login de l'utilisateur connecté pour la session
+
 	 */
 	public MenuHr(String login) {
 		initialize(login);
@@ -73,19 +73,12 @@ public class MenuHr {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @param login 
-	 * 
-	 * 
-	 * 
+	 * Initialiseles contenus du frame.
+	 * @param login variable qui stock le login de l'utilisateur connecté
+	 *
 	 */
 	
     
-   
-	
-	
-	
-	
 	private void initialize(String login) {
 		
 		frame = new JFrame();
@@ -108,7 +101,7 @@ public class MenuHr {
 	        	 
 	        	//btnRetourAdm.setVisible(false);
 				//JFrame frame = new JFrame("retour");
-				//JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajouté!");
+				//JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajoutï¿½!");
 				 btnRetourAdm = new JButton("Retour");
 					btnRetourAdm.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -134,31 +127,14 @@ public class MenuHr {
 		}
 
          
-        // if (A.typeCompte.contains("Administrateur")) {
-        	 
-        	 //btnRetourAdm.setVisible(false);
-        	 
-        	 
-        // }
-		
-		
-		
-		
-		
-		
-		
 		JButton btnGererEmploye = new JButton("G\u00E9rer Les Employ\u00E9es");
 		btnGererEmploye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-			
 				MenuHr.this.frame.setVisible(false);
 				InterfaceEmployes.main(login);
 				
-				
-				
-				
+					
 			}
 		});
 		btnGererEmploye.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -191,10 +167,7 @@ public class MenuHr {
 				
 				MenuHr.this.frame.setVisible(false);
 				InterfaceCompte.main(login);
-				
-				
-				
-				
+					
 			}
 		});
 		btnCompte.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -213,7 +186,7 @@ public class MenuHr {
 			public void actionPerformed(ActionEvent e) {
 				
 				// message de confirmation de sortir du programme
-				 int x = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment vous déconnecter??","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+				 int x = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment vous dï¿½connecter??","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
 				if(x == JOptionPane.YES_OPTION) { // Si choix "oui"
 					
 				 System.exit(0); // sortir du programme

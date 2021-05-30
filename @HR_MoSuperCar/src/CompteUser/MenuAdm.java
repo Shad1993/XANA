@@ -1,5 +1,7 @@
 package CompteUser;
 
+
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import CompteUser.MenuHr;
-import Employe.gererEmployes;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -18,15 +19,21 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
+/**
+ * Cette classe est l'interface menu de l'administrateur
+ * @author Lionel
+ *
+ */
 
 public class MenuAdm {
 
 	private JFrame frame;
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	private final JLayeredPane layeredPane_1 = new JLayeredPane();
-	private final JLayeredPane Employés = new JLayeredPane();
+	private final JLayeredPane Employes = new JLayeredPane();
 	/**
 	 * Launch the application.
+	 * @param login variable de type String qui stock le login de l'utilisateur connecté pour la session
 	 */
 	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,14 +50,16 @@ public class MenuAdm {
 
 	/**
 	 * Create the application.
+	 * @param login variable de type String qui stock le login de l'utilisateur connecté pour la session
+
 	 */
 	public MenuAdm(String login) {
 		initialize(login);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @param login 
+	 * Initialise les contenus du  frame.
+	 * @param login variable de type String qui stock le login de l'utilisateur connecté
 	 */
 	private void initialize(String login) {
 		frame = new JFrame();
@@ -87,9 +96,9 @@ public class MenuAdm {
 		});
 		btnQuitter.setBounds(581, 11, 106, 34);
 		frame.getContentPane().add(btnQuitter);
-		Employés.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		Employés.setBounds(105, 126, 499, 373);
-		frame.getContentPane().add(Employés);
+		Employes.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		Employes.setBounds(105, 126, 499, 373);
+		frame.getContentPane().add(Employes);
 		
 		JButton btnEmployes = new JButton("Employ\u00E9s");
 		btnEmployes.addActionListener(new ActionListener() {
@@ -104,7 +113,7 @@ public class MenuAdm {
 		});
 		btnEmployes.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEmployes.setBounds(25, 24, 442, 42);
-		Employés.add(btnEmployes);
+		Employes.add(btnEmployes);
 		
 		JButton btnDeps = new JButton("D\u00E9partements");
 		btnDeps.addActionListener(new ActionListener() {
@@ -119,7 +128,7 @@ public class MenuAdm {
 		});
 		btnDeps.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDeps.setBounds(25, 135, 442, 42);
-		Employés.add(btnDeps);
+		Employes.add(btnDeps);
 		
 		JButton butComptes = new JButton("Comptes Utilisateurs");
 		butComptes.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -134,6 +143,6 @@ public class MenuAdm {
 			}
 		});
 		butComptes.setBounds(25, 82, 442, 42);
-		Employés.add(butComptes);
+		Employes.add(butComptes);
 	}
 }

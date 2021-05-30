@@ -1,15 +1,10 @@
 
 package CompteUser;
 
-/**
- * @author Lionel
- * Ce programme gÃ¨re les donnÃ©es des employÃ©s, chiffre et dÃ©chiffre leurs salaires
- * @version finale
- *
- */
 
  
 import java.awt.Color;
+
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -65,8 +60,12 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import InterfaceFiche.gererFiche;
 
-
-
+/**
+ * Cette classe est l'interface qui gère les données des employés, chiffre et déchiffre leurs salaires
+ * @author Lionel
+ * @version finale
+ *
+ */
 public class InterfaceEmployes {
 
 	private JFrame frame;
@@ -74,6 +73,7 @@ public class InterfaceEmployes {
 	public JTable table;
 	//public JScrollPane scrollPane;
 	private JTextField txtNoEmp;
+	//private JTextField txtNomDep;
 	private JTextField txtNom;
 	private JTextField txtPrenom;
 	private JTextField txtNIC;
@@ -99,6 +99,7 @@ public class InterfaceEmployes {
 	private JTextField txtCommission;
 	@SuppressWarnings("rawtypes")
 	private JComboBox cmbDep;
+
 	private static String NoEmp;
 	private static String Nom;
 	private static String Prenom;
@@ -117,7 +118,6 @@ public class InterfaceEmployes {
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	private final JLayeredPane layeredPane_1 = new JLayeredPane();
 	private static JTextField txtRechercher;
-	private JTextField txtNomDep;
 	private JLabel lblNewLabel_5;
 	private JButton btnNewButton;
 	private JLabel lblNewLabel_6;
@@ -126,10 +126,11 @@ public class InterfaceEmployes {
 	private JTextField txtDateEmbauche;
 	private JTextField txtnoDep;
 	public String saisieDOB;
+	private JTextField txtNomDep;
 	
 
 		/**
-		 * mÃ©thode getter retourne la clÃ© de dÃ©chiffrement masterKey
+		 * La méthode getter retourne la clé de déchiffrement masterKey
 		 * @return masterkey
 		 */
 		public static Key getMasterKey() {
@@ -137,8 +138,8 @@ public class InterfaceEmployes {
 		}
 
 		/**
-		 * MÃ©thode setter utlilise clÃ© masterKey pour dÃ©chiffrer les salaires chiffrÃ©s par la mÃ©thode blowfish
-		 * @param masterKey 
+		 * Méthode setter utlilise clé masterKey pour déchiffrer les salaires chiffrés par la méthode blowfish
+		 * @param masterKey est la clé de déchiffrement des salaires
 		 */
 		public static void setMasterKey(Key masterKey) {
 			InterfaceEmployes.masterKey = masterKey;
@@ -146,9 +147,9 @@ public class InterfaceEmployes {
 
 		
 		/**
-		 * MÃ©thode qui dÃ©chiffre le fichier clÃ©.crp lÃ  ou la clÃ© hexadecimal est stockÃ© en utilisant la mÃ©thode de dÃ©chiffremnt blowfish 
+		 * Cette Méthode déchiffre le fichier clé.crp lÃ  ou la clé hexadecimal est stocké en utilisant la méthode de déchiffremnt blowfish 
 		 * 
-		 * @throws IOException 
+		 * @throws IOException stop le programme en cas d'erreurs
 		 */
 		public static void decryptClef() throws IOException {
 			String code = new String(Files.readAllBytes(Paths.get("clef.cryp")));
@@ -160,21 +161,32 @@ public class InterfaceEmployes {
 		
 		
 		/**
-		 * methode de chiffrement des salaires en octets par ApiBlowfish.decryptInByte
-		 * @param chaineEnClaire
-		 * @param clef: clÃ© de chiffremnt
-		 * @return crypter.doFinal(chaineEnClaire)
-		 * @throws Exception
+		 * Méthode de chiffrement des salaires en octets par ApiBlowfish.decryptInByte et retourne la méthode crypter.doFinal(chaineEnClaire)
+		 * @param chaineEnClaire stock le salaire en texte claire
+		 * @param clef clé de chiffrement
+		 * @return le résultat de chiffrement du salaire en format octet
+		 * @throws Exception gère les erreurs 
+		 * 
+		 * 
+		 * 
 		 */
 		public static byte[] encryptInByte(byte[] chaineEnClaire, Key clef) throws Exception {
 			Cipher crypter = Cipher.getInstance("Blowfish");
 			crypter.init(Cipher.ENCRYPT_MODE, clef);
-			return crypter.doFinal(chaineEnClaire); // retourne au format tableau d'octets
+			return crypter.doFinal(chaineEnClaire); 
 		}
 
 		
-		//Methode pour dÃ©chiffrer les octets par la mÃªme faÃ§ de la mÃ©thode prÃ©cÃ©dente
-		//retourne le dechiffremnt en octet
+		
+		/**
+		 * Methode pour déchiffrer les octets retourne la chaine déchiffrée en octet
+		 * @param chiffrement le salaire chiffré
+		 * @param clef la clé de déchiffrement en octet
+		 * @return reourne le salaire dÃ©chiffré en format octet
+		 * @throws Exception gère les erreurs
+		 * 
+		 *
+		 */
 		public static byte[] decryptInByte(byte[] chiffrement, Key clef) throws Exception {
 			Cipher decrypter = Cipher.getInstance("Blowfish");
 			decrypter.init(Cipher.DECRYPT_MODE, clef);
@@ -183,14 +195,30 @@ public class InterfaceEmployes {
 		}
 
 		
-	   // methode pour chiffrer les chaines de caractÃ¨res
+	   
+		/**
+		 * cette mméthode est utilisée pour chiffrer les chaines de caractères (salaire)
+		 * @param chaineEnClair variable de type String qui stock le salaire de l'employé en claire
+		 * @param clef clé de chiffrement
+		 * @return retourne le résultat qui est le chiffrement de salaire de type String
+		 * @throws Exception gère les erreurs
+		 * 
+		 */
 		public static String encryptInString(String chaineEnClair, Key clef) throws Exception {
 			byte[] chaine = chaineEnClair.getBytes();
 			chaine = encryptInByte(chaine, clef);
 			return Base64.getEncoder().encodeToString(chaine);
 		}
 		
-		// MÃ©thode pour dÃ©chiffrer chaine de caractÃ¨res qui retourne  decryptÃ©e claire en chaine
+		
+		/**
+		 * Méthode pour déchiffrer chaine de caractères (salaire chiffré) et qui retourne  la chaine decrypté
+		 * @param chiffrement variable de type String ; le salaire chiffré
+		 * @param clef clÃéde déchiffrement
+		 * @return retourne le salaire déchiffré de type String
+		 * @throws Exception gère les erreurs
+		 * 
+		 */
 		public static String decryptInString(String chiffrement, Key clef) throws Exception {
 			//chaine dÃ©codÃ© en base64
 			byte[] decrypter = Base64.getDecoder().decode(chiffrement);
@@ -200,8 +228,12 @@ public class InterfaceEmployes {
 	
 
 	/**
-	 * Launch the application.
+	 * Démarrer l'application.
 	 */
+	/**
+	 * @param login le stock le login de l'utilisateur connecté pour maintenir la sesion
+	 */
+	
 	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -216,15 +248,18 @@ public class InterfaceEmployes {
 	}
 
 	/**
-	 * Create the application.
-	 * @throws SQLException 
+	 * Création de l'application.
+	 * @throws SQLException gère les erreurs sql
+	 * @param login stock le login de l'utilsateur connecté
 	 */
+
 	public InterfaceEmployes(String login) throws SQLException {
 		initialize(login);
+		txtNomDep.setVisible(false);
+		comboDep(); 
 		
-		comboDep();
-		//btnAjouter.setEnabled(false);//DÃ©sactiver bouton insertion
-		btnModifier.setEnabled(false);//DÃ©sactiver bouton Mise Ã  jour
+		//btnAjouter.setEnabled(false);//Désactiver bouton insertion
+		btnModifier.setEnabled(false);//Désactiver bouton Mise Ã  jour
 		
 		button = new JButton("Fiche de paie");
 		button.addActionListener(new ActionListener() {
@@ -237,7 +272,7 @@ public class InterfaceEmployes {
 		button.setBounds(1140, 32, 199, 36);
 		layeredPane_1.add(button);
 		
-		btnCreerCompte = new JButton("CrÃ©er Compte Utilisateur");
+		btnCreerCompte = new JButton("Cr\u00E9er Compte Utilisateur");
 		btnCreerCompte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterfaceCompte.main(login);
@@ -254,7 +289,24 @@ public class InterfaceEmployes {
 		lblNewLabel_5.setBounds(24, 11, 111, 34);
 		frame.getContentPane().add(lblNewLabel_5);
 		
-		btnNewButton = new JButton("DÃ©connexion");
+		btnNewButton = new JButton("D\u00E9connexion");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// message de confirmation de sortir du programme
+				 int x = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment quitter ??","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+				if(x == JOptionPane.YES_OPTION) { // Si choix "oui"
+					
+				 System.exit(0); // sortir du programme
+				}else {
+					
+					System.out.println(""); // reste dans le programme
+					
+				}
+				
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBackground(new Color(127, 255, 0));
 		btnNewButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -275,11 +327,16 @@ public class InterfaceEmployes {
 		
 	}
 	
-	private static Employe empInfos(CRUDMode mode) {
+	/**
+	 * Cette méthode exécute les opérations SQL pour la gestions des données des employés et retourne l'object employé de la classe mère Employes
+	 * @param mode variable qui stock le mode d'opération SQL:ADD,DELETE,EDIT etc..
+	 * 
+	 */
+	private static Employe empInfos(CRUDMode mode) { 
 		Employe employe = new Employe();
 		// opÃ©rations
 
-		//CRUDMode.UPDATE n'a pas marchÃ© a Ã©tÃ© enlevÃ©, autre soulution trouvÃ©e.. dans bouton ModifiÃ©
+		//CRUDMode.UPDATE n'a pas marché a été enlevé, autre soulution trouvée.. dans bouton Modifier
 		if (mode.equals(CRUDMode.ADD) || mode.equals(CRUDMode.DELETE)) {
 			
 			if (mode.equals(CRUDMode.DELETE)) {
@@ -319,6 +376,11 @@ public class InterfaceEmployes {
 	}
 	
 
+	/**
+	 * Méthode pour le controle de saisie qui retourne le variable SignalErrreur en cau d'erreur de saisie
+	 * @param SignalErreur variable de type booléen qui est retourné en cas d'erreurs
+	 * @return SignalErreur
+	 */
 	private boolean controleSaisie(boolean SignalErreur) {
 		//frame = new JFrame();
 		if (Pattern.matches("[0-9]{7,}", NoContact) == false || NoContact.equalsIgnoreCase("")|| NoContact.isEmpty()) {
@@ -329,20 +391,20 @@ public class InterfaceEmployes {
 			SignalErreur = true;
 			
 		//^(0|[1-9]\d*)(\.\d+)?$
-		} else if (Pattern.matches("[a-zA-ZÃ€-Ã¿0-9]+(([',. -][a-zA-ZÃ€-Ã¿ ])?[a-zA-ZÃ€-Ã¿]*)*$", Adresse) == false || Adresse.equalsIgnoreCase("")|| Adresse.isEmpty()) {
+		} else if (Pattern.matches("[a-zA-ZÀ-ÿ0-9]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Adresse) == false || Adresse.equalsIgnoreCase("")|| Adresse.isEmpty()) {
 			JOptionPane.showMessageDialog(frame, "ERREUR, ADRESSE INVALIDE");
 			txtAdresse.setBackground(new Color(255, 186, 186));
 			txtAdresse.requestFocusInWindow();
 			
 			SignalErreur = true;
 	
-		}else if (Pattern.matches("[a-zA-ZÃ€-Ã¿]+(([',. -][a-zA-ZÃ€-Ã¿ ])?[a-zA-ZÃ€-Ã¿]*)*$", Nom) == false || Nom.equalsIgnoreCase("")|| Nom.isEmpty()){
+		}else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Nom) == false || Nom.equalsIgnoreCase("")|| Nom.isEmpty()){
 			JOptionPane.showMessageDialog(frame, "ERREUR, NOM INVALIDE");
 			txtNom.setBackground(new Color(255, 186, 186));
 			txtNom.requestFocusInWindow();
 			SignalErreur = true;
 	
-		}else if (Pattern.matches("[a-zA-ZÃ€-Ã¿]+(([',. -][a-zA-ZÃ€-Ã¿ ])?[a-zA-ZÃ€-Ã¿]*)*$", Prenom) == false || Prenom.equalsIgnoreCase("")|| Prenom.isEmpty()) {
+		}else if (Pattern.matches("[a-zA-ZÀ-ÿ]+(([',. -][a-zA-ZÀ-ÿ ])?[a-zA-ZÀ-ÿ]*)*$", Nom) == false || Nom.equalsIgnoreCase("")|| Nom.isEmpty()){
 			JOptionPane.showMessageDialog(frame, "ERREUR, PRENOM INVALIDE");
 			
 			txtPrenom.setBackground(new Color(255, 186, 186));
@@ -419,12 +481,16 @@ public class InterfaceEmployes {
 		
 		
 	
-				Dep	=	cmbDep.getSelectedItem().toString();
+				//Dep	=	cmbDep.getSelectedItem().toString();
 				
 		return SignalErreur;
 	}	
 
 	
+	/**
+	 * cette méthode récupère tous les infos employés saisies  de l'ulitisateur pour la création / modification des infos d'un employé
+	 * 
+	 */
 	public void getEmpInfos() 							{
 	    //NoEmp	= txtNoEmp.getText();
 		Nom		= txtNom.getText();
@@ -459,7 +525,26 @@ public class InterfaceEmployes {
 	
 	}
 	
+		/**
+		 * Méthode qui va extraire le l'identifiant du département dans le menu déroulant
+		 */
+		public void extractNoDep() {
+		
+			 Dep = cmbDep.getSelectedItem().toString();
+			 // String noDep = "";
+			 // noDep = Dep;
+			  //Dep = noDep.substring(0,2);
+			  
+			  String input_string = Dep;
+			  int number_output = Integer.parseInt(input_string.replaceAll("[^0-9]", ""));
+			  Dep = String.valueOf(number_output);
+			  
+		}
 	
+	
+	/**
+	 * Cette méthode initialise les champs après les insertions/suppréssions/modifications des données
+	 */
 	public void refreshChamps () {
 		txtNIC.setBackground(new Color(255, 255, 255));
 		txtNom.setBackground(new Color(255, 255, 255));
@@ -472,7 +557,11 @@ public class InterfaceEmployes {
 	}
 	
 	
-	// mÃ©thode qui Ã©fface tous les champs pour insertion
+	
+	
+	/**
+	 * Méthode qui éfface tous les champs pour insertion
+	 */
 	public void effaceChamps() {
 		btnAjouter.setEnabled(true);// activer buton ajouter pour insertion
 		 txtNoEmp.setText("");
@@ -482,7 +571,7 @@ public class InterfaceEmployes {
 		 txtNIC.setText("");
 		 txtNoContact.setText("");
 		 txtSalaire.setText("");
-		 txtNomDep.setVisible(false);// champ departement invisible
+		 //txtNomDep.setVisible(false);// champ departement invisible
 		 txtEmail.setText("");
 		 txtCommission.setText("");
 		 dateChooserDOB.setCalendar(null);
@@ -490,20 +579,22 @@ public class InterfaceEmployes {
 		 cmbTitre.setSelectedIndex(0);
 		 cmbSexe.setSelectedIndex(0);
 		 cmbDep.setSelectedIndex(0);	
-		 txtNom.requestFocusInWindow();// place le curseeur sur le champ Nom	
+		 txtNom.requestFocusInWindow();// place le curseeur sur le champ Nom
+		 
+
 	}
 	
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @param login 
-	 * @throws SQLException 
+	 * Initialize les contenus du frame,et gère les accès dependant du profil de l'utilisateur (affiche les boutons pour retourner au menu dépendant du type d'utilisateur connecté)
+	 * @param login stock le login de l'utilisateur connecté
+	 * @throws SQLException gère les erreurs sql
 	 */
 	//@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize(String login) throws SQLException {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.activeCaption);
-		frame.setBounds(100, 100, 1584, 855);
+		frame.setBounds(100, 100, 1603, 842);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -546,7 +637,7 @@ public class InterfaceEmployes {
 		scrollPane.addMouseListener(new MouseAdapter() {
 			
 		});
-		scrollPane.setBounds(new Rectangle(397, 159, 1195, 515));
+		scrollPane.setBounds(new Rectangle(391, 159, 1201, 515));
 		
 		frame.getContentPane().add(scrollPane);
 		
@@ -560,10 +651,12 @@ public class InterfaceEmployes {
 		table.setSurrendersFocusOnKeystroke(true);
 		table.setFont(new Font("Tahoma", Font.BOLD, 11));
 		table.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("null")
+			/**
+			 *cette méthode affiche les données dans les champs quand l'utilisateur clique sur en enregistrement d'un employé qui affiche dans las table et active le boutton modification de données
+			 */
+			@SuppressWarnings({ "null", "unchecked" })
 			@Override
 			public void mouseClicked(MouseEvent e) {
-		         txtNomDep.setVisible(true);
 			     btnAjouter.setEnabled(false); //Activer bouton d'insertion
 			     btnModifier.setEnabled(true); // Ativer bouton Mise Ã  jour  
 				int i = table.getSelectedRow();
@@ -582,11 +675,18 @@ public class InterfaceEmployes {
 		        txtEmail.setText(model.getValueAt(i,7).toString());
 		        txtNoContact.setText(model.getValueAt(i,8).toString());
 				cmbTitre.setSelectedItem(model.getValueAt(i,9).toString());
-		       txtSalaire.setText(model.getValueAt(i,10).toString());
+		        txtSalaire.setText(model.getValueAt(i,10).toString());
 		        txtCommission.setText(model.getValueAt(i,12).toString());
 		        txtCommission.setText(model.getValueAt(i,12).toString());
 		        txtDateEmbauche.setText(model.getValueAt(i, 11).toString());
-		    
+		        //cmbDep.removeAllItems();
+		        String X = txtnoDep.getText();
+		       String Y = txtNomDep.getText();
+		         
+		         String Z = X + "_" + Y ;
+		        // comboBoxc.getModel().setSelectedItem(Z);
+		         cmbDep.getModel().setSelectedItem(Z);
+		         
 		        Date date = null;
 				try {
 					date = new SimpleDateFormat("yyyy-MM-dd").parse((String)model.getValueAt(i, 4));
@@ -603,12 +703,12 @@ public class InterfaceEmployes {
 
 		scrollPane.setViewportView(table);
 		
-		//Affiche tous les employÃ©s
+		//Affiche tous les employés
 		//DBUtil affichage = new DBUtil();
 		//affichage.getAllEmployees(table);
                getAllEmployees(table);
 		layeredPane.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		layeredPane.setBounds(6, 159, 381, 515);
+		layeredPane.setBounds(6, 159, 382, 515);
 		frame.getContentPane().add(layeredPane);
 		
 		JLabel lblNewLabel = new JLabel("No Employ\u00E9");
@@ -727,7 +827,7 @@ public class InterfaceEmployes {
 		
 		cmbDep = new JComboBox();
 		cmbDep.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbDep.setBounds(129, 362, 128, 25);
+		cmbDep.setBounds(129, 362, 197, 25);
 		layeredPane.add(cmbDep);
 		
 		JLabel lblSalaire = new JLabel("Salaire");
@@ -766,21 +866,18 @@ public class InterfaceEmployes {
 		editor.setEditable(false);		
 		dateChooserDOB.setDateFormatString("YYYY-MM-dd");
 		
-		txtNomDep = new JTextField();
-		txtNomDep.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtNomDep.setEditable(false);
-        txtNomDep.setVisible(false);
-		txtNomDep.setBounds(260, 362, 112, 25);
-		layeredPane.add(txtNomDep);
-		txtNomDep.setColumns(10);
-		
 		txtDateEmbauche = new JTextField();
 		txtDateEmbauche.setEditable(false);
 		txtDateEmbauche.setForeground(new Color(60, 179, 113));
 		txtDateEmbauche.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtDateEmbauche.setBounds(131, 476, 138, 25);
+		txtDateEmbauche.setBounds(131, 476, 134, 25);
 		layeredPane.add(txtDateEmbauche);
 		txtDateEmbauche.setColumns(10);
+		
+		txtNomDep = new JTextField();
+		txtNomDep.setBounds(275, 481, 96, 20);
+		layeredPane.add(txtNomDep);
+		txtNomDep.setColumns(10);
 
 		layeredPane_1.setForeground(new Color(0, 0, 128));
 		layeredPane_1.setBackground(new Color(0, 0, 128));
@@ -789,7 +886,7 @@ public class InterfaceEmployes {
 		frame.getContentPane().add(layeredPane_1);
 		
 		
-		 btnAjouter = new JButton("Ajouter EmployÃ©(e)");
+		 btnAjouter = new JButton("Ajouter Employ\u00E9(e)");
 		 btnAjouter.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -808,6 +905,8 @@ public class InterfaceEmployes {
 				}
 
 				boolean error = false;
+				extractNoDep();// appel méthode extraction de l'identifiant du département sélectionné
+
 				getEmpInfos();
 
 				if (controleSaisie(error) == false) {
@@ -815,27 +914,19 @@ public class InterfaceEmployes {
 					
 						Salaire = encryptInString(Salaire,getMasterKey());
 					
-						 Dep = cmbDep.getSelectedItem().toString();
-						 // String noDep = "";
-						 // noDep = Dep;
-						  //Dep = noDep.substring(0,2);
-						  
-						  String input_string = Dep;
-						  int number_output = Integer.parseInt(input_string.replaceAll("[^0-9]", ""));
-						  Dep = String.valueOf(number_output);
-						  
+					
 						 						
 						DBUtil.addEmploye(empInfos(CRUDMode.ADD));
 						
 						//JFrame frame = new JFrame("retour");
-						JOptionPane.showMessageDialog(frame, "EmployÃ© ajoutÃ©");
+						JOptionPane.showMessageDialog(frame, "Employé(e) ajouté(e)");
 						getAllEmployees(table);
 						refreshChamps();
 						
 						InterfaceEmployes.this.frame.repaint();
 						
 
-						if (JOptionPane.showConfirmDialog(null, "Voulez-vous CrÃ©er un compte d'utilisateur pour cet(te) EmployÃ©(e)?", "Compte",
+						if (JOptionPane.showConfirmDialog(null, "Voulez-vous Créer un compte d'utilisateur pour cet(te) Employé(e)?", "Compte",
 								JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
 							InterfaceEmployes.this.frame.setVisible(false);
 							    InterfaceCompte.main(login);
@@ -884,7 +975,14 @@ public class InterfaceEmployes {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
+			 
 				NoEmp = txtNoEmp.getText();
+				extractNoDep();
+			 //Dep = cmbDep.getSelectedItem().toString();
+			 // String noDep = "";
+			 // noDep = Dep;
+			  //Dep = noDep.substring(0,2);
+			  
 				getEmpInfos();
 				 String UpdateQuery = "UPDATE employes SET Nom=?,Prenom=?,NIC=?,DOB=?,Sexe=?,Adresse=?,AdresseEmail=?,No_contact=?,Titre=?,Salaire=?,DateDembauche=?,Comission=?,Nodept=? WHERE No_employe=?";
 				try {
@@ -904,7 +1002,7 @@ public class InterfaceEmployes {
 			         ps.setString(10, encryptInString(Salaire,getMasterKey()));
 			         ps.setString(11,txtDateEmbauche.getText());
 			         ps.setString(12,Commission);
-			         ps.setString(13,txtnoDep.getText());
+			         ps.setString(13,Dep);
 			         ps.setString(14,NoEmp);
 			         
 			         
@@ -914,9 +1012,10 @@ public class InterfaceEmployes {
 						 
 			         ps.executeUpdate();
 				
-						JOptionPane.showMessageDialog(null,"EmployÃ©(e) modifiÃ©(e)");
+						JOptionPane.showMessageDialog(null,"Modification terminée..");
 						getAllEmployees(table);
 						refreshChamps();
+						effaceChamps();
 						txtNomDep.setVisible(false);
 
 				    }
@@ -942,7 +1041,7 @@ public class InterfaceEmployes {
 		btnEffChamps.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				 //appel mÃ©thode
+				 //appel méthode
 				 effaceChamps();
 				
 			}
@@ -950,7 +1049,7 @@ public class InterfaceEmployes {
 		btnEffChamps.setBounds(225, 32, 229, 32);
 		layeredPane_1.add(btnEffChamps);
 		
-		JButton btnSupprimer = new JButton("Suppimer EmployÃ©(e)");
+		JButton btnSupprimer = new JButton("Suppimer Employ\u00E9(e)");
 		btnSupprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSupprimer.setBounds(709, 32, 193, 32);
 		layeredPane_1.add(btnSupprimer);
@@ -960,18 +1059,18 @@ public class InterfaceEmployes {
 			    NoEmp = txtNoEmp.getText();
 				
 				if( NoEmp.isEmpty()) {
-					JOptionPane.showMessageDialog(frame, "Vous n'avez rien insÃ©rÃ©! Inserez l'INCID!!");
+					JOptionPane.showMessageDialog(frame, "Vous n'avez rien sélectionné pour supprimmer");
 
 				}
 			
 			   if (verification(error) == false) {
 				 try {
-						int confirm = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment effacer cet enregistrement?","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+						int confirm = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment supprimmer cet enregistrement?","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
 						
 					if (confirm == JOptionPane.YES_OPTION) {
 						DBUtil.deleteEmploye(empInfos(CRUDMode.DELETE));
 						JFrame frame = new JFrame("retour");
-						JOptionPane.showMessageDialog(frame, "EmployÃ©(e) supprimÃ©(e)");
+						JOptionPane.showMessageDialog(frame, "Employé(e) supprimé(e)");
 						getAllEmployees(table);
 						
 						frame.setVisible(false);
@@ -1000,11 +1099,12 @@ public class InterfaceEmployes {
 		txtRechercher.addFocusListener(new FocusAdapter() {
 					
 		});
-		txtRechercher.setBounds(397, 106, 331, 29);
+		txtRechercher.setBounds(434, 119, 331, 29);
 		frame.getContentPane().add(txtRechercher);
 		txtRechercher.setColumns(10);
 		
 		JButton btnRechercher = new JButton("Rechercher");
+		btnRechercher.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRechercher.setBackground(new Color(224, 255, 255));
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1017,7 +1117,7 @@ public class InterfaceEmployes {
 				}
 			}
 		});
-		btnRechercher.setBounds(730, 106, 111, 29);
+		btnRechercher.setBounds(785, 119, 111, 29);
 		frame.getContentPane().add(btnRechercher);
 
 		//checkAnn();
@@ -1087,8 +1187,12 @@ public class InterfaceEmployes {
 		}
 
 		
-		//Affiche rÃ©sultats
-		 public void findEmploye() throws SQLException {
+	
+		 /**
+		  * Cette méthode récupère  le saisie de l'utilisateur pour rechercher un employé et affiche le résultat dans la table
+		 * @throws SQLException interrompre le programme en cas d'erreur SQL
+		 */
+		public void findEmploye() throws SQLException {
 		        ArrayList<Employe> employe = AllEmployes(txtRechercher.getText());
 		        DefaultTableModel model = new DefaultTableModel();
 		        model.setColumnIdentifiers(new Object[]{"No_employe", "Nom", "Prenom", "NIC", "DOB", "Sexe","Adresse", "AdresseEmail","No_contact","Titre","Salaire","DateDembauche","Comission",
@@ -1121,7 +1225,12 @@ public class InterfaceEmployes {
 		 
 		 
 		 
-		 public void getAllEmployees(JTable table) throws SQLException{
+		 /**
+		  * Cette méthode affiche toutes les données des employés de la base de données dans la table
+		 * @param table la table d'objet ou les info des employés sont affiché
+		 * @throws SQLException interrompre le programme en cas d'erreur sql
+		 */
+		public void getAllEmployees(JTable table) throws SQLException{ 
 			 
 				try {
 					decryptClef();
@@ -1179,7 +1288,11 @@ public class InterfaceEmployes {
 		}
 		 
 
-		 @SuppressWarnings("unchecked")
+		 /**
+		  * cette méthode affiche tous les départements de la base de données(No département et nom département)  dans le menu déroulant
+		 * @throws SQLException gère les erreurs sql
+		 */
+		@SuppressWarnings("unchecked")
 			public void comboDep() throws SQLException{
 				
 				 String searchQuery = "SELECT No_dept, Nom_dept FROM departement ORDER BY No_dept DESC";

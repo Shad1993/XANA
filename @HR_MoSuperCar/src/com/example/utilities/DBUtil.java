@@ -19,6 +19,11 @@ import com.example.model.Employe;
 import Departements.Dep;
 
 
+/**
+ * Cette classe exécute certaines opération sql en récupérant les opérations de la calsse CRUDMode et les requêtes de la classe QueryStatement 
+ * @author Lionel
+ *
+ */
 public class DBUtil {
 	private static Connection connection;
 	private static PreparedStatement preparedStatement;
@@ -30,6 +35,10 @@ public class DBUtil {
 	
 	
 
+	/**
+	 * @param employe objet de la classe mère employé qui récupère les valeurs de ses attributs pour la création d'un employé
+	 * @throws SQLException gère les erreurs sql
+	 */
 	public static void addEmploye(Employe employe) throws SQLException {
 		connection = ConnectionFactory.getConnection();
 		preparedStatement = connection.prepareStatement(QueryStatement.ADD_EMPLOYE);
@@ -53,6 +62,11 @@ public class DBUtil {
 	
 
 	
+	/**
+	 * Méthode pour les modifications des donnés des employés
+	 * @param employe objet de la classe mère employé qui récupère les valeurs de ses attributs pour la modification des donnés d'un employé
+	 * @throws SQLException gère les erreurs sql
+	 */
 	public static void updateEmploye(Employe employe) throws SQLException {
 		connection = ConnectionFactory.getConnection();
 		preparedStatement = connection.prepareStatement(QueryStatement.UPDATE_EMPLOYE);
@@ -77,6 +91,11 @@ public class DBUtil {
 	
 	
 	
+	/**
+	 * Cette méthode récupère l'identifiant de l'employé à supprimmer
+	 * @param employe objet de la classe mère employé 
+	 * @throws SQLException gère les erreurs sql
+	 */
 	public static void deleteEmploye(Employe employe) throws SQLException {
 		connection = ConnectionFactory.getConnection();
 		preparedStatement = connection.prepareStatement(QueryStatement.DELETE_EMPLOYE_QUERY);
@@ -116,9 +135,13 @@ public class DBUtil {
 			}
 			
 	
-	// @param variable length array of strings as student properties
+
 	
-		private static void setPreparedStatementProperties(String... strArgs) throws SQLException {
+		/**Cette méthode augmente le performance des requêtes sql en la réutilisant
+		 * @param strArgs variable longueur du tableau of de type string 
+		 * @throws SQLException gère les erreurs sql
+		 */
+		private static void setPreparedStatementProperties(String... strArgs)throws SQLException {  
 			for (int i = 0; i < strArgs.length; i++) {
 				preparedStatement.setString(i + 1, strArgs[i]);
 			}
@@ -126,6 +149,10 @@ public class DBUtil {
 	
 	
 	
+		/**
+		 * Cette méthode ferme la connexion après l'exécution d'une requête
+		 * @throws SQLException gére les erreurs sql
+		 */
 		private static void closeConnections() throws SQLException {
 			if (resultSet != null) {
 				resultSet.close();
@@ -140,7 +167,12 @@ public class DBUtil {
 
 	//pour fiche de paie
 		
-		//Méthode qui ajoute fiche de paie
+		
+		/**
+		 * Méthode qui ajoute fiche de paie en récupérant les valeurs des attributs de l'objet saisies
+		 * @param fiche objet de la classe mère FicheDepaie
+		 * @throws SQLException gère les erreurs sql
+		 */
 		public static void addFiche(FicheDePaie fiche) throws SQLException {
 			connection = ConnectionFactory.getConnection();
 			preparedStatement = connection.prepareStatement(QueryStatement.Add_FICHE);

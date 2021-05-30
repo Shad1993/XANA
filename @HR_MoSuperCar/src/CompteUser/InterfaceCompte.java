@@ -1,5 +1,6 @@
 package CompteUser;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -39,6 +40,13 @@ import java.awt.Font;
 import javax.swing.JPanel;
 
 
+
+/**
+ * Cette Classe génère les comptes utilisateurs des employés
+ * @author Lionel
+ *
+ */
+
 public class InterfaceCompte {
 
 	private JFrame frame;
@@ -56,6 +64,7 @@ public class InterfaceCompte {
 	public String noEmp;
 	private JButton btnModifier;
 	private JButton btnAjouter;
+	
 
 	
 	CompteAdmin compte = new CompteAdmin ();
@@ -81,8 +90,12 @@ public class InterfaceCompte {
 	private static PreparedStatement preparedStatement;
 	private static ResultSet resultSet = null;
 	private JPasswordField txtConfirmerX;
+	private JTextField txtId;
 	/**
-	 * Launch the application.
+	 * Démare l'application.
+	 */
+	/**
+	 * @param login variable login de type String qui stock le login de l'utilisateur connecté
 	 */
 	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
@@ -100,20 +113,27 @@ public class InterfaceCompte {
 	/**
 	 * Create the application.
 	 */
+	/**
+	 * @param login variable login de type String qui stock le login de l'utilisateur connecté
+	 */
 	public InterfaceCompte(String login) {
 		initialize(login);
-		btnModifier.setEnabled(false);
+		btnModifier.setEnabled(false);		
+		txtId = new JTextField();
+		txtId.setBounds(364, 709, 96, 20);
+		frame.getContentPane().add(txtId);
+		txtId.setColumns(10);
 		//btnAjouter.setEnabled(false);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @param login 
+	 * Initialise les contenus du frame
+	 * @param login variable type String qui stock le login de l'utilisateur connecté
 	 */
 	private void initialize(String login) {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(144, 238, 144));
-		frame.setBounds(100, 100, 1230, 684);
+		frame.setBounds(100, 100, 1230, 726);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		layeredPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -121,10 +141,12 @@ public class InterfaceCompte {
 		frame.getContentPane().add(layeredPane);
 		
 		JLabel lblNewLabel = new JLabel("No Employe");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel.setBounds(10, 59, 96, 14);
 		layeredPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Id User");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(10, 20, 71, 14);
 		layeredPane.add(lblNewLabel_1);
 		
@@ -135,6 +157,7 @@ public class InterfaceCompte {
 		txtidUser.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Login");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_2.setBounds(10, 105, 96, 14);
 		layeredPane.add(lblNewLabel_2);
 		
@@ -144,6 +167,7 @@ public class InterfaceCompte {
 		txtLogin.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Mot de passe");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_3.setBounds(10, 158, 96, 14);
 		layeredPane.add(lblNewLabel_3);
 		
@@ -158,10 +182,12 @@ public class InterfaceCompte {
 		layeredPane.add(cmbNoEmp);
 		
 		JLabel lblNewLabel_5 = new JLabel("(Auto-G\u00E9n\u00E9r\u00E9)");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setBounds(61, 20, 93, 14);
 		layeredPane.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Confirmer mot de passe");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_6.setBounds(10, 211, 144, 28);
 		layeredPane.add(lblNewLabel_6);
 		
@@ -182,6 +208,7 @@ public class InterfaceCompte {
 		frame.getContentPane().add(layeredPane_1);
 		
 		btnAjouter = new JButton("Ajouter Compte");
+		btnAjouter.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -234,14 +261,10 @@ public class InterfaceCompte {
 		layeredPane_1.add(btnAjouter);
 		
 		JButton bntEffacerChamps = new JButton("Effacer Champs");
+		bntEffacerChamps.setFont(new Font("Tahoma", Font.BOLD, 12));
 		bntEffacerChamps.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				btnAjouter.setEnabled(true);
-						txtidUser.setText("");
-						txtLogin.setText("");
-						txtMdp.setText("");
-						cmbNoEmp.setSelectedIndex(0);
-						//txtidUser.requestFocusInWindow();
+				effaceChamps();
 				
 			}
 		});
@@ -249,26 +272,52 @@ public class InterfaceCompte {
 		layeredPane_1.add(bntEffacerChamps);
 		
 		 btnModifier = new JButton("Modifier Compte");
+		 btnModifier.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				compte.idUser = txtidUser.getText();
-			    getCompteInfos();
-				 String updateQuery = "UPDATE compteutilisateur SET No_emp =?, login =?, mdp =? WHERE Id_User =?";
+					
+					mdp = String.copyValueOf(txtMdp.getPassword());
+					compte.setMdp(mdp);
+					confirmerMdp = 	String.copyValueOf(txtConfirmerX.getPassword());
+				 String updateQuery = "UPDATE compteutilisateur SET login =?, mdp =? WHERE Id_User =?";
 				try {
 					java.sql.Connection connection = ConnectionFactory.getConnection();
 				
 			         PreparedStatement  ps= connection.prepareStatement(updateQuery);
 			         
-			         ps.setString(1, compte.noEmp);
-			         ps.setString(2,compte.login);
-			         ps.setString(3,compte.hashMdp(compte.getMdp()));// compte.getMdp
-			         ps.setString(4, compte.idUser);
-			         ps.executeUpdate();
-						
-						JOptionPane.showMessageDialog(frame,"Compte Utilisateur Modifié)");
-						
+			         //ps.setString(1, compte.noEmp = txtId.getText());
+			         ps.setString(1,compte.login  = txtLogin.getText());
+			         ps.setString(2,compte.hashMdp(compte.getMdp()));// compte.getMdp
+			         ps.setString(3, compte.idUser =	txtidUser.getText());
+			         
+			    	 if (!EMAIL_PATTERN.matcher(compte.login).matches() ){
+						 
+						 JFrame frame = new JFrame("retour");
+						 JOptionPane.showMessageDialog(frame,"ERREUR EMAIL INVALIDE");
+						 txtLogin.requestFocusInWindow();
+							
+					 }else if (!PASSWORD_PATTERN.matcher(compte.getMdp()).matches()) {
+						 
+						 
+						 JFrame frame = new JFrame("retour");
+						 JOptionPane.showMessageDialog(frame,"ERREUR MDP INVALIDE");
+						 txtMdp.requestFocusInWindow();
+						 
+						 
+					 }else if  (!mdp.toString().equals(confirmerMdp.toString()))  {
+						 
+						 JFrame frame = new JFrame("retour");
+						 JOptionPane.showMessageDialog(frame,"Les 2 mdp ne correspondent pas..");
+						     
+					 }else {
+			         
+			         
+			            ps.executeUpdate();
+			            JOptionPane.showMessageDialog(frame,"Compte Utilisateur Modifié!)");
 						compte.getAllComptes(table);	
 					
+					 }	
+						
 				} catch (SQLException e1) {
 					JFrame frame = new JFrame("error");
 					JOptionPane.showMessageDialog(frame, e1);
@@ -281,6 +330,7 @@ public class InterfaceCompte {
 		layeredPane_1.add(btnModifier);
 		
 		JButton btnSupprimer = new JButton("Supprimer Compte");
+		btnSupprimer.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSupprimer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				compte.idUser = txtidUser.getText();
@@ -295,9 +345,9 @@ public class InterfaceCompte {
 			         ps.executeUpdate();
 						JFrame frame = new JFrame("retour");
 						
-						JOptionPane.showMessageDialog(frame,"compte utilisateur supprimé");
-						
-                          compte.getAllComptes(table);	// mise à jour de la table > affichage					
+						JOptionPane.showMessageDialog(frame,"compte utilisateur supprimmé");
+						effaceChamps();
+                          compte.getAllComptes(table);	// mise ï¿½ jour de la table > affichage					
 	
 				} catch (SQLException e1) {
 					JFrame frame = new JFrame("error");
@@ -311,7 +361,8 @@ public class InterfaceCompte {
 		layeredPane_1.add(btnSupprimer);
 		
 		JButton btnRechercher = new JButton("Rechercher");
-		btnRechercher.setBounds(667, 112, 142, 31);
+		btnRechercher.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnRechercher.setBounds(771, 111, 142, 31);
 		frame.getContentPane().add(btnRechercher);
 		scrollPane.setFont(new Font("Tahoma", Font.BOLD, 12));
 		scrollPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -323,15 +374,20 @@ public class InterfaceCompte {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				btnModifier.setEnabled(true);
+				btnAjouter.setEnabled(false);
 				
 				int i = table.getSelectedRow();
 		        TableModel model = table.getModel();
 		          //Display Slected Row In JTexteFields
 		        ///"id User", "No Employe", "Login", "mdp"
 		        txtidUser.setText(model.getValueAt(i,0).toString());
+		        //cmbNoEmp.removeAllItems();
 			    cmbNoEmp.setSelectedItem(model.getValueAt(i,1).toString());
+			    txtId.setText(model.getValueAt(i, 1).toString());
 		        txtLogin.setText(model.getValueAt(i,2).toString());
 		        txtMdp.setText(model.getValueAt(i,3).toString());
+		        String X = String.copyValueOf(txtMdp.getPassword());
+		        txtConfirmerX.setText(X);
 	
 			}
 		});
@@ -344,7 +400,7 @@ public class InterfaceCompte {
 		 }
 		
 		txtRechercher = new JTextField();
-		txtRechercher.setBounds(387, 113, 256, 29);
+		txtRechercher.setBounds(491, 113, 256, 29);
 		frame.getContentPane().add(txtRechercher);
 		txtRechercher.setColumns(10);
 		
@@ -405,6 +461,10 @@ public class InterfaceCompte {
 		});
 	}
 	
+	/**
+	 * Cette méthode affiche le numéro employé,le nom et prénom concaténé de tous les employés de la base de données en ordre Décroissant dans le menu déroulant
+	 * @throws SQLException gère les erreurs sql
+	 */
 	@SuppressWarnings("unchecked")
 	public void comboEmp() throws SQLException{
 		 String searchQuery = "SELECT No_employe,Prenom,Nom FROM employes ORDER BY No_employe DESC";
@@ -431,6 +491,9 @@ public class InterfaceCompte {
 	}
 	
 
+	/**
+	 * Méthode qui récupère les saisies de l'utilisateur pour la création du compte utilisateur
+	 */
 	public void getCompteInfos() {
 	    compte.idUser =	txtidUser.getText();
 		compte.login  = txtLogin.getText();
@@ -447,13 +510,40 @@ public class InterfaceCompte {
 		 
 	}catch(Exception e) {
 		
-		JOptionPane.showMessageDialog(frame, "ERREUR, selcetionnez un département..");
+		JOptionPane.showMessageDialog(frame, "ERREUR, selcetionnez un dï¿½partement..");
 
 		
 	}
 	}
 	
-	// Méthode qui recoit valeur rechercher par paramètre (val)
+	
+	public void getCompteInfosModif() {
+	    compte.idUser =	txtidUser.getText();
+		compte.login  = txtLogin.getText();
+		mdp = String.copyValueOf(txtMdp.getPassword());
+		compte.setMdp(mdp);
+		confirmerMdp = 	String.copyValueOf(txtConfirmerX.getPassword());
+		
+	
+	}
+	
+	public void effaceChamps() {
+		btnAjouter.setEnabled(true);
+		txtidUser.setText("");
+		txtLogin.setText("");
+		txtMdp.setText("");
+		cmbNoEmp.setSelectedIndex(0);
+		//txtidUser.requestFocusInWindow();
+	
+	}
+	
+	 
+				/**
+				 * Méthode qui recoit valeur Ã  rechercher saisie par paramètre (val) pour exécuter la requête sql pour obtenir un compte à rechercher
+				 * @param val variable de type String qui contient la valeur lié au compte À rechercher
+				 * @return retourne le résultat du tableau d'objet comptelist
+				 * @throws SQLException gère les erreurs sql
+				 */
 				public static ArrayList<Compte> allComptes(String val) throws SQLException {
 					//val ="10";
 			        String searchQuery = "SELECT* FROM compteutilisateur WHERE CONCAT (`Id_User`,`login`,`mdp`,`No_emp`) LIKE'%"+val+"%'";
@@ -465,10 +555,10 @@ public class InterfaceCompte {
 					
 					ArrayList<Compte> compteList = new ArrayList<Compte>();
 					
-				if (!resultSet.isBeforeFirst() ) { // si pas de résultat
+				if (!resultSet.isBeforeFirst() ) { // si pas de rï¿½sultat
 					
-					JFrame frame = new JFrame("0 résultat");
-					JOptionPane.showMessageDialog(frame,"Aucun résultat obtenu..");
+					JFrame frame = new JFrame("0 rï¿½sultat");
+					JOptionPane.showMessageDialog(frame,"Aucun rï¿½sultat obtenu..");
 					txtRechercher.requestFocusInWindow();
 					
 					txtRechercher.requestFocusInWindow(); //place curseur dans txtbox rechercher
@@ -495,7 +585,11 @@ public class InterfaceCompte {
 					
 				}
 	
-				 public void findCompte() throws SQLException {
+				 /**
+				  * Méthode qui affiche le(s) résultat(s) obtenus dans le tableau
+				 * @throws SQLException gère les errreurs sql
+				 */
+				public void findCompte() throws SQLException {
 				        ArrayList<Compte> compte = allComptes(txtRechercher.getText());
 				        DefaultTableModel model = new DefaultTableModel();
 				        model.setColumnIdentifiers(new Object[]{"Id compte", "No Emp", "Login","mdp"});

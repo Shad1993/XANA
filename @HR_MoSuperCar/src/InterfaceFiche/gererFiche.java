@@ -1,4 +1,11 @@
 package InterfaceFiche;
+
+/**
+ * Ce programme génère les fiches de paie des employés en format pdf
+ * @author Lionel Perrine
+ *
+ */
+
 import Fiche.*;
 import java.awt.EventQueue;
 import java.sql.Connection;
@@ -9,26 +16,33 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.example.constants.CRUDMode;
 //import com.example.constants.CRUDMode;
 //import com.example.constants.QueryStatement;
 import com.example.db.ConnectionFactory;
+import com.example.utilities.DBUtil;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Find;
 
-import Employe.gererEmployes;
+import CompteUser.InterfaceEmployes;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -40,11 +54,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
+
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
-
-
 
 public class gererFiche {
 
@@ -97,6 +111,7 @@ public class gererFiche {
     
 	/**
 	 * Launch the application.
+	 * @param args l'argument du main
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -112,8 +127,9 @@ public class gererFiche {
 	}
 
 	/**
-	 * Create the application.
-	 * @throws SQLException 
+	 * Créer l'application.
+	 * @throws SQLException gère les erreurs SQL
+	 * 
 	 */
 	public gererFiche() throws SQLException {
 		initialize();
@@ -122,92 +138,10 @@ public class gererFiche {
 	}
 	
 	
-	// fonction controle de saisie
-	
-	//private boolean controleSaisie(boolean SignalErreur) {
-		
-		//if (Pattern.matches("^(0|[1-9]\\\\d*)(\\\\.\\\\d+)?$",bonus) == false) {
-
-		//	JOptionPane.showMessageDialog(frame, "ERREUR, bonus INVALIDE");
-			//txtBonus.setBackground(new Color(255, 186, 186));
-			//txtBonus.requestFocusInWindow();
-			
-			//SignalErreur = true;
-			
-		
-		//} else if (Pattern.matches("^(0|[1-9]\\\\d*)(\\\\.\\\\d+)?$", heureSup) == false ) {
-			//JOptionPane.showMessageDialog(frame, "ERREUR,heure supplémetaire INVALIDE");
-			//txtHeureSup.setBackground(new Color(255, 186, 186));
-			//txtHeureSup.requestFocusInWindow();
-			
-			//SignalErreur = true;
-
-		//}else if (Pattern.matches("^(0|[1-9]\\\\d*)(\\\\.\\\\d+)?$", commission) == false) {
-		//	JOptionPane.showMessageDialog(frame, "ERREUR, commission INVALIDE");
-			//txtCommission.setBackground(new Color(255, 186, 186));
-			//txtCommission.requestFocusInWindow();
-			//SignalErreur = true;
-
-		//}else if (Pattern.matches("^(0|[1-9]\\\\d*)(\\\\.\\\\d+)?$", deduction) == false ) {
-			//JOptionPane.showMessageDialog(frame, "ERREUR, déduction INVALIDE");
-			
-			//txtDeduction.setBackground(new Color(255, 186, 186));
-			//txtDeduction.requestFocusInWindow();
-			//SignalErreur = true;
-			
-
-		//}else if(no_Emp.isEmpty()) {
-			
-			//JOptionPane.showMessageDialog(frame, "ERREUR, vous n'avez pas sélectionné un ID,INVALIDE");
-
-			//
-			//SignalErreur = true;
-
-		//}
-			
-		
-		
-		
-	   
-		//return SignalErreur;
-	//}	
-	
-	
-	
-	
-	
-	
-	
-	
-	//private static FicheDePaie ficheInfos(CRUDMode mode) {
-		//FicheDePaie fiche = new FicheDePaie();
-		
-		// opérations
-
-		//CRUDMode.UPDATE n'a pas marché a été enlevé, autre soulution trouvée.. dans bouton Modifié
-		//if (mode.equals(CRUDMode.ADD) || mode.equals(CRUDMode.DELETE)) {
-			
-			//if (mode.equals(CRUDMode.DELETE)) {
-				//fiche.set_idFiche(idFiche);
-			//}
-			
-			
-		// fonctions set permettant de manipuler les variables privés
-			//fiche.set_Bonus(bonus);
-			//fiche.set_Commission(commission);
-			//fiche.set_Deduction(deduction);
-			//fiche.set_heureSup(heureSup);
-			//fiche.set_idFiche(idFiche);
-			//fiche.set_Mois(mois);
-			//fiche.set_noEmp(no_Emp);
-		
-	  // }
-		//return fiche;
-		
-
-	//}
-	
-	public void getFicheInfos() {
+	/**
+	 * Cette Méthode récupère tous les infos de la fiche de paie saisies par l'utilisateurs  
+	 */
+	public void getFicheInfos() { 
 		
 		no_Emp = cmbNoEmp.getSelectedItem().toString();
 		heureSup = txtHeureSup.getText();
@@ -220,19 +154,24 @@ public class gererFiche {
 		String month = mCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
 	
 	     mois = month;
+			
+	}
+	
+	public void EffaceChamps() {
 		
-		
-		
-		
-		
+		txtDeduction.setText("");
+		txtBonus.setText("");
+		txtCommission.setText("");
+		txtHeureSup.setText("");
 		
 	}
 	
-
+	
 	/**
-	 * Initialize the contents of the frame.
-	 * @throws SQLException 
+	 * Initialize les contenus du frame
+	 * @throws SQLException : stop le programme en cas d'erreurs sql
 	 */
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(238, 232, 170));
@@ -294,14 +233,22 @@ public class gererFiche {
 		JButton btnRehcercher = new JButton("Rechercher");
 		btnRehcercher.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		btnRehcercher.addActionListener(new ActionListener() {
+			
+			
 			public void actionPerformed(ActionEvent e) {
-				
+			
+			  try {
 				no_Emp = cmbNoEmp.getSelectedItem().toString();
 				  String input_string = no_Emp;
 				  int number_output = Integer.parseInt(input_string.replaceAll("[^0-9]", ""));
 				  no_Emp = String.valueOf(number_output);
 				  System.out.print(no_Emp);
+			  }catch(Exception ex) {
 				  
+					JOptionPane.showMessageDialog(null,"ERREUR!! vous n'avez pas sélectionné le numéro de l'employé");
+
+				  
+			  }
 				 String searchQuery = "SELECT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction,Id_fch FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND F.No_Emp = ?"; 
 				 	 
 				 		
@@ -331,7 +278,7 @@ public class gererFiche {
 							no_Emp = cmbNoEmp.getSelectedItem().toString();
                           //gererEmployes E = new gererEmployes();
                           try {
-							gererEmployes.decryptClef();
+							InterfaceEmployes.decryptClef();
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -341,7 +288,7 @@ public class gererFiche {
 						    Prenom = resultSet.getString(3);
 						    NoDep = resultSet.getString(6);
 						    Dep = resultSet.getString(7);
-						    Salaire = gererEmployes.decryptInString(resultSet.getString(5),gererEmployes.getMasterKey());
+						    Salaire = InterfaceEmployes.decryptInString(resultSet.getString(5),InterfaceEmployes.getMasterKey());
 						    mois  = resultSet.getString(8);
 						    Titre  = resultSet.getString(4);
 						    deduction  = resultSet.getString(12);
@@ -350,6 +297,12 @@ public class gererFiche {
 						    txtIdFiche.setText(id_Fiche);
 						    
 
+							
+						}else {
+							JOptionPane.showMessageDialog(null, "Aucun résultat rétrouvé");
+
+						    EffaceChamps();
+						
 							
 						}
 							
@@ -378,20 +331,211 @@ public class gererFiche {
 				
 			}
 		});
-		btnRehcercher.setBounds(454, 6, 106, 32);
+		btnRehcercher.setBounds(445, 6, 115, 32);
 		layeredPane.add(btnRehcercher);
 		
 		JButton btnGenereFiche = new JButton("G\u00E9nerer Fiche de paie");
-		btnGenereFiche.setBounds(386, 247, 174, 31);
+		btnGenereFiche.setBounds(386, 201, 174, 31);
 		layeredPane.add(btnGenereFiche);
 		btnGenereFiche.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		btnGenereFiche.addActionListener(new ActionListener() {
+		
+		JButton btnGenereToutes = new JButton("Générer toutes les fiches de paie");
+		btnGenereToutes.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnGenereToutes.setBounds(329, 247, 231, 31);
+		layeredPane.add(btnGenereToutes);
+		btnGenereToutes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
-				 
+				// obtenir Mois actuel
+				Calendar mCalendar = Calendar.getInstance();    
+				String month = mCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+			
+			     String moisActuel = month;
+				 String searchQuery = "SELECT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction,Id_fch FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND Mois = ?"; 
+				 	 
+				 		
+					Connection connection = null;
+					try {
+						connection = ConnectionFactory.getConnection();
+					
+						PreparedStatement	preparedStatement = connection.prepareStatement(searchQuery);
+						
+						preparedStatement.setString(1, moisActuel); 
+						
+						ResultSet resultSet = preparedStatement.executeQuery();
+						
+						while (resultSet.next()) {
+							
+							heureSup = (resultSet.getString("HeureSup"));
+							bonus = (resultSet.getString("Bonus"));
+							commission = (resultSet.getString("Commission"));
+							deduction =(resultSet.getString("Deduction"));
+							no_Emp =(resultSet.getString("Deduction"));
 
+							
+							  //System.out.print(resultSet.getString("HeureSup"));
+
+							
+							//bonus = txtDeduction.getText();
+							//commission = txtCommission.getText();
+							//heureSup = txtHeureSup.getText();
+							//no_Emp = cmbNoEmp.getSelectedItem().toString();
+                        //gererEmployes E = new gererEmployes();
+                        try {
+							InterfaceEmployes.decryptClef();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+                        
+						    Nom = resultSet.getString(2);
+						    Prenom = resultSet.getString(3);
+						    NoDep = resultSet.getString(6);
+						    Dep = resultSet.getString(7);
+						    Salaire = InterfaceEmployes.decryptInString(resultSet.getString(5),InterfaceEmployes.getMasterKey());
+						    mois  = resultSet.getString(8);
+						    Titre  = resultSet.getString(4);
+						    deduction  = resultSet.getString(12);
+						    id_Fiche  = resultSet.getString(13);	
+						    
+						    txtIdFiche.setText(id_Fiche);
+
+							
+							  /**
+							   * JFileChooser dialog = new JFileChooser();
+							   *   dialog.setSelectedFile(new File(Prenom +" "+ Nom+"-Fiche_de_paie"+".pdf"));
+					         int dialogResult = dialog.showSaveDialog(null);
+					         if (dialogResult==JFileChooser.APPROVE_OPTION){
+					            String filePath = dialog.getSelectedFile().getPath()
+							   */
+							;
+							 
+					        String filePath = "C:\\Users\\user\\Documents\\@FicheDePaie\\" + Prenom +" "+ Nom+"-Fiche_de_paie"+".pdf";
+					            
+					         try {
+					             
+					             
+					        	 double salTot = Double.parseDouble(Salaire);
+						            
+						            double deduc = Double.parseDouble(deduction);
+						            double salBrut = salTot -deduc;
+						            
+						            double tax = 0.10 * salBrut;
+						            double salNet = salBrut - tax;
+						            
+						            double com =Double.parseDouble(commission);
+						            double  bon =Double.parseDouble(bonus);
+
+						            double paieTot = salNet + com + bon;
+						            
+						            //double payTot = salNet+ bonus.valueOf(i)+ commission;
+					        	
+					             //String val = String.valueOf(x);
+					             
+					       
+					            Document myDocument = new Document();
+					            PdfWriter myWriter = PdfWriter.getInstance(myDocument, new FileOutputStream(filePath));
+					            
+					          
+					          
+								
+								fiche.set_noEmp(no_Emp);
+					            myDocument.open();
+					            myDocument.add(new Paragraph("-----------------------------Supercar LTD------------------------------",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD)));
+					            myDocument.add(new Paragraph("FICHE DE PAIE",FontFactory.getFont(FontFactory.TIMES_BOLD,17,Font.BOLD )));
+					            myDocument.add(new Paragraph("Mois:"+ " "+mois,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
+					            myDocument.add(new Paragraph("No fiche:"+ " "+"0000"+id_Fiche,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
+					            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
+					            myDocument.add((new Paragraph("DÉTAILS DE L'EMPLOYÉ(E)",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD))));
+					            myDocument.add((new Paragraph("No Employé: "+no_Emp,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
+					            myDocument.add((new Paragraph("Nom: " + Prenom + " "+Nom,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
+					            myDocument.add((new Paragraph("Titre: "+Titre,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
+					            myDocument.add((new Paragraph("Département: "+NoDep+ " " +Dep,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
+					            myDocument.add(new Paragraph("Salaire de base: RS"+ " " +Salaire,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+
+					            myDocument.add((new Paragraph("-------------------------------------------------------------------------------------------")));
+					            myDocument.add((new Paragraph("À PAYER:",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD))));
+					            myDocument.add(new Paragraph("Salaire Brut: RS "+ " "+ salBrut,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+					            myDocument.add(new Paragraph("Salaire Net: RS"+ " "+ salNet,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+					            myDocument.add(new Paragraph("Heures supplémentaires: "+ heureSup+" Heures",FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+					            myDocument.add(new Paragraph("Bonus: Rs"+ " "+ bonus,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+					            myDocument.add(new Paragraph("Commission: Rs"+ " "+ commission,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+					            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
+					            myDocument.add(new Paragraph("DÉDUCTION",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
+					            myDocument.add(new Paragraph("Détails de déduction: "+"Tax:",FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+					            myDocument.add(new Paragraph("Déductions Totale : RS"+" " + deduction ,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+					            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
+					            myDocument.add(new Paragraph("PAIEMENT TOTAL",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
+					            myDocument.add(new Paragraph("Totale : RS" +" " + paieTot,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
+					            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
+					            
+					            
+					            myDocument.newPage();
+					            myDocument.close();  
+					            
+					            JOptionPane op = new JOptionPane("Fiches de paie générées avec succès", JOptionPane.INFORMATION_MESSAGE);
+				                JDialog dialogx = op.createDialog("server self-test exception");
+				        
+				                 // Create a new timer
+				        Timer timer = new Timer();
+				 
+				                 // Perform this task after 30 seconds
+				        timer.schedule(new TimerTask() {
+				            public void run() {
+				                dialogx.setVisible(false);
+				                dialogx.dispose();
+				            }
+				        }, 3000);
+				 
+				        dialogx.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				        dialogx.setAlwaysOnTop(true);
+				        dialogx.setModal(false);
+				        dialogx.setVisible(true);
+				    
+
+					            
+					        
+					         }catch(Exception e1){
+					             JOptionPane.showMessageDialog(null,e1);
+					          
+					          
+					         } finally {
+					     
+					             
+					             try{
+					          
+					                 }catch(Exception e1){
+					                   JOptionPane.showMessageDialog(null,e1);
+					          
+					             }
+					         }
+					    
+						    
+						  	
+						}	
+					}
+					 catch (SQLException e1) {
+							
+				
+						
+						
+						// TODO Auto-generated catch block
+						
+						e1.printStackTrace();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			    
+
+			}
+		});
+		btnGenereFiche.addActionListener(new ActionListener() {
+			/**
+			 *
+			 */
+			public void actionPerformed(ActionEvent e) {
+				
 					 JFileChooser dialog = new JFileChooser();
 			         dialog.setSelectedFile(new File(Prenom +" "+ Nom+"-Fiche_de_paie"+".pdf"));
 			         int dialogResult = dialog.showSaveDialog(null);
@@ -442,15 +586,15 @@ public class gererFiche {
 			            myDocument.add((new Paragraph("Département: "+NoDep+ " " +Dep,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD))));
 			            myDocument.add(new Paragraph("Salaire de base: RS"+ " " +Salaire,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 
-			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-			            myDocument.add(new Paragraph("À PAYER ",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
+			            myDocument.add((new Paragraph("-------------------------------------------------------------------------------------------")));
+			            myDocument.add((new Paragraph("À PAYER:",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD))));
 			            myDocument.add(new Paragraph("Salaire Brut: RS "+ " "+ salBrut,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("Salaire Net: RS"+ " "+ salNet,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("Heures supplémentaires: "+ heureSup+" Heures",FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("Bonus: Rs"+ " "+ bonus,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("Commission: Rs"+ " "+ commission,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
-			            myDocument.add(new Paragraph("DEDUCTION",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
+			            myDocument.add(new Paragraph("DÉDUCTION",FontFactory.getFont(FontFactory.TIMES_ROMAN,15,Font.BOLD)));
 			            myDocument.add(new Paragraph("Détails de déduction: "+"Tax:",FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("Déductions Totale : RS"+" " + deduction ,FontFactory.getFont(FontFactory.TIMES_ROMAN,10,Font.BOLD)));
 			            myDocument.add(new Paragraph("-------------------------------------------------------------------------------------------"));
@@ -461,11 +605,11 @@ public class gererFiche {
 			            
 			            myDocument.newPage();
 			            myDocument.close();  
-			            JOptionPane.showMessageDialog(null,"Fiche de paie généré avec suuccès");
+			            JOptionPane.showMessageDialog(null,"Fiche de paie génère avec succès");
 			            
-			      }
-			         catch(Exception e1){
-			             JOptionPane.showMessageDialog(null,e1);
+			      }catch(Exception e1){
+			        JOptionPane.showMessageDialog(null,e1);
+			         
 			          
 			          
 			      }
@@ -474,11 +618,11 @@ public class gererFiche {
 			             try{
 			               
 			                 
-			             }
-			             catch(Exception e1){
-			             JOptionPane.showMessageDialog(null,e1);
-			          
-			             }
+			             }catch(Exception e1){
+				             JOptionPane.showMessageDialog(null,e1);
+					          
+					     }
+			             
 			      }
 			    } 
 				
@@ -487,7 +631,7 @@ public class gererFiche {
 			}
 		});
 		layeredPane_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		layeredPane_1.setBounds(10, 66, 132, 204);
+		layeredPane_1.setBounds(10, 66, 132, 247);
 		frame.getContentPane().add(layeredPane_1);
 		
 		JButton btnAjouter = new JButton("Ajouter");
@@ -513,17 +657,21 @@ public class gererFiche {
 						fiche.set_idFiche(idFiche);
 						fiche.set_Mois(mois);
 						
-						
+						try {
 						  String input_string = no_Emp;
 						  int number_output = Integer.parseInt(input_string.replaceAll("[^0-9]", ""));
 						  no_Emp = String.valueOf(number_output);
 						
-						fiche.set_noEmp(no_Emp);
-						
+						  fiche.set_noEmp(no_Emp);
+						}catch(Exception e1) {
+							
+							 JOptionPane.showMessageDialog(frame,"ERREUR.. REMPLISSEZ TOUS LES CHAMPS..");
+
+		
+						}
 						
 						 if (!MONTANT_PATTERN.matcher(fiche.get_Bonus()).matches() ){
 							 
-							 JFrame frame = new JFrame("retour");
 							 JOptionPane.showMessageDialog(frame,"ERREUR.. MONTANT BONUS INVALIDE");
 							 txtBonus.requestFocusInWindow();
 								
@@ -586,37 +734,20 @@ public class gererFiche {
 
 			         ps.setString(1, idFiche);
 			         
-			        // ps.setString(2,Prenom);
-			        // ps.setString(3, NIC);
-			        // ps.setString(4,DOB);
-			        // ps.setString(5, Sexe);
-			        // ps.setString(6,Adresse);
-			        // ps.setString(7,Email);
-			        // ps.setString(8, NoContact);
-			        // ps.setString(9,Titre);
-			        // ps.setString(10, Salaire);
-			        // ps.setString(11,Embauche);
-			        // ps.setString(12,Commission);
-			        // ps.setString(13,Dep);
-			        // ps.setString(14,NoEmp);
-			         
-			         
-					//boolean error = false;
-
+					 int confirm = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment effacer cet enregistrement?","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+						if (confirm == JOptionPane.YES_OPTION) {
 					
-					
-					//if (controleSaisie(error) == false) {
-					
-			         ps.executeUpdate();
-						JFrame frame = new JFrame("retour");
+							ps.executeUpdate();
 						
-						JOptionPane.showMessageDialog(frame,"Fiche de paie Effacée)");
-                         // fiche.get						
-						//txtNomDep.setVisible(false);
-
-					
-		        //}
-					
+						JOptionPane.showMessageDialog(frame,"Fiche de paie supprimmée)");
+                      
+                         EffaceChamps();
+						}else {
+							
+							System.out.print("");
+							
+						}
+	
 					
 				} catch (SQLException e1) {
 					JFrame frame = new JFrame("error");
@@ -630,13 +761,25 @@ public class gererFiche {
 		butSupprimer.setBounds(10, 74, 112, 31);
 		layeredPane_1.add(butSupprimer);
 		
-		JButton btnNewButton = new JButton("Modifier");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnModifier = new JButton("Modifier");
+		btnModifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+			try {	
 				//no_Emp = cmbNoEmp.getSelectedItem().toString();
 				idFiche = txtIdFiche.getText();
 				getFicheInfos();
+				
+			}catch(Exception ex) {
+				
+				JOptionPane.showMessageDialog(frame,"EURREUR!! Les champs sont vides...");
+
+			}
+				
+				
+				
+				
+				
 				 String UpdateQuery = "UPDATE fch_de_paie SET Mois=?,HeureSup=?,Bonus=?,Commission=?,Deduction=? WHERE Id_fch=?";
 				try {
 					Connection connection = ConnectionFactory.getConnection();
@@ -649,54 +792,36 @@ public class gererFiche {
 			         ps.setString(4,commission);
 			         ps.setString(5, deduction);
 			         ps.setString(6,idFiche);
-			        
-			         
-					//boolean error = false;
-
-					
-					
-					//if (controleSaisie(error) == false) {
+			        	
 					
 			             ps.executeUpdate();
-					JFrame frame = new JFrame("retour");
 						
 						JOptionPane.showMessageDialog(frame,"Employé(e) modifié(e)");
 						
-						
-						//txtNomDep.setVisible(false);
-
-					
-				//}
-					
+							
 					
 				} catch (SQLException e1) {
 					JFrame frame = new JFrame("error");
 					JOptionPane.showMessageDialog(frame, e1);
 					e1.printStackTrace();
 				}
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+					
 			}
 		});
-		btnNewButton.setActionCommand("Modifier");
-		btnNewButton.setBounds(10, 130, 112, 31);
-		layeredPane_1.add(btnNewButton);
+		btnModifier.setActionCommand("Modifier");
+		btnModifier.setBounds(10, 145, 112, 31);
+		layeredPane_1.add(btnModifier);
+		
+		JButton btnEffaceChamps = new JButton("Effacer Champs");
+		btnEffaceChamps.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				EffaceChamps();
+			}
+		});
+		btnEffaceChamps.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		btnEffaceChamps.setBounds(10, 205, 112, 31);
+		layeredPane_1.add(btnEffaceChamps);
 		
 		JButton btnNewButton_1 = new JButton("Retour");
 		btnNewButton_1.addActionListener(new ActionListener() {
