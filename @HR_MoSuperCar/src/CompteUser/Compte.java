@@ -24,10 +24,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.example.constants.QueryStatement;
-import com.example.db.ConnectionFactory;
-
 import CompteUser.Compte;
+import connexionBDD.ConnectionFactory;
+import operationSQL.QueryStatement;
 
 
 /**

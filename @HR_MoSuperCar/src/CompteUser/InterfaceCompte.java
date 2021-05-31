@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import com.example.db.ConnectionFactory;
 import com.sun.jdi.connect.spi.Connection;
 
+import connexionBDD.ConnectionFactory;
 
 import javax.swing.JComboBox;
 import javax.swing.JLayeredPane;

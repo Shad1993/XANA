@@ -1,8 +1,8 @@
-com.example.constants
-com.example.db
-com.example.model
-com.example.utilities
 CompteUser
+connexionBDD
 Departements
+employes
+executeurOpSql
 Fiche
 InterfaceFiche
+operationSQL

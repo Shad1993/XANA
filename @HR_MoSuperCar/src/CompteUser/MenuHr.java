@@ -16,10 +16,9 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import com.example.model.Employe;
-
 import CompteUser.InterfaceCompte;
 import CompteUser.Login;
+import employes.Employe;
 
 import javax.swing.border.CompoundBorder;
 import javax.swing.JLabel;

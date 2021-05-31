@@ -17,10 +17,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import com.example.db.ConnectionFactory;
-import com.example.utilities.DBUtil;
-
 import Departements.Dep;
+import connexionBDD.ConnectionFactory;
+import executeurOpSql.DBUtil;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;

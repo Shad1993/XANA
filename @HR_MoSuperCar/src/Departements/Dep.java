@@ -5,18 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.example.constants.CRUDMode;
-import com.example.db.ConnectionFactory;
-import com.example.model.Employe;
 import com.sun.jdi.connect.spi.Connection;
 
 import CompteUser.*;
+import connexionBDD.ConnectionFactory;
+import employes.Employe;
+import operationSQL.CRUDMode;
+import operationSQL.QueryStatement;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import com.example.constants.QueryStatement;
 
  
 

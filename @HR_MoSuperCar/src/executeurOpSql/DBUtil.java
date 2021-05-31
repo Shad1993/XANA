@@ -1,5 +1,9 @@
-package com.example.utilities;
+package executeurOpSql;
 import Fiche.*;
+import connexionBDD.ConnectionFactory;
+import employes.Employe;
+import operationSQL.QueryStatement;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,10 +15,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import com.example.constants.QueryStatement;
-import com.example.db.ConnectionFactory;
-import com.example.model.Employe;
 
 import Departements.Dep;
 

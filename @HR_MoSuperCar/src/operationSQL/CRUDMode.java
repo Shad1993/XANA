@@ -1,4 +1,4 @@
-package com.example.constants;
+package operationSQL;
 
 /**Cette classe contient toutes les opération sql
  * @author Lionel

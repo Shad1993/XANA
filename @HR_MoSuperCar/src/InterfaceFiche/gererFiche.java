@@ -7,6 +7,10 @@ package InterfaceFiche;
  */
 
 import Fiche.*;
+import connexionBDD.ConnectionFactory;
+import executeurOpSql.DBUtil;
+import operationSQL.CRUDMode;
+
 import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.Date;
@@ -29,11 +33,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import com.example.constants.CRUDMode;
-//import com.example.constants.CRUDMode;
-//import com.example.constants.QueryStatement;
-import com.example.db.ConnectionFactory;
-import com.example.utilities.DBUtil;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -575,6 +574,7 @@ public class gererFiche {
 						
 						fiche.set_noEmp(no_Emp);
 			            myDocument.open();
+			            myDocument.add(new Paragraph("-----------------------------Supercar LTD------------------------------",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD)));
 			            myDocument.add(new Paragraph("FICHE DE PAIE",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD )));
 			            myDocument.add(new Paragraph("Mois:"+ " "+mois,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
 			            myDocument.add(new Paragraph("No fiche:"+ " "+"0000"+id_Fiche,FontFactory.getFont(FontFactory.TIMES_BOLD,12,Font.ITALIC )));
@@ -704,6 +704,9 @@ public class gererFiche {
 						
 							 
 							 fiche.addFiche();// appel méthode de la classe mère FiecheDePaie
+							 EffaceChamps();
+							 JOptionPane.showMessageDialog(frame,"recherchez la fiche nouvelle fiche de paie pour la générée..");
+
 						 }
 							 
 						

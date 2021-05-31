@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import com.example.db.ConnectionFactory;
+import connexionBDD.ConnectionFactory;
 
 /**
  * Cette classe instantie les objets pour la génération des fiches de paie
@@ -84,7 +84,7 @@ public class FicheDePaie {
 				}
 				
 				catch(SQLException e1) {
-				JOptionPane.showMessageDialog(null, e1);
+				JOptionPane.showMessageDialog(null, "ERREUR!!,Remplissez tous les champs avant de créer la fiche de paie..");
 						
 				}	
 			

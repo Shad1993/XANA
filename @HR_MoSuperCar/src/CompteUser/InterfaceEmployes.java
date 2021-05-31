@@ -51,14 +51,15 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import com.example.constants.CRUDMode;
-import com.example.constants.QueryStatement;
-import com.example.db.ConnectionFactory;
-import com.example.model.Employe;
-import com.example.utilities.DBUtil;
+
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import InterfaceFiche.gererFiche;
+import connexionBDD.ConnectionFactory;
+import employes.Employe;
+import executeurOpSql.DBUtil;
+import operationSQL.CRUDMode;
+import operationSQL.QueryStatement;
 
 /**
  * Cette classe est l'interface qui gère les données des employés, chiffre et déchiffre leurs salaires

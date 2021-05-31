@@ -1,4 +1,4 @@
-package com.example.constants;
+package operationSQL;
 
 /**
  * Cette classe contient tous les requêtes sql à utiliser par les autres classe pour les exécuter
