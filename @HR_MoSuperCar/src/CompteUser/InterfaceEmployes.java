@@ -55,7 +55,7 @@ import javax.swing.table.TableModel;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import InterfaceFiche.GererFiche;
-import connexionBDD.ConnectionFactory;
+import connexionBDD.ConnectionFactoryX;
 import employes.Employe;
 import executeurOpSql.Executeur;
 import operationSQL.Operation;
@@ -988,7 +988,7 @@ public class InterfaceEmployes {
 				getEmpInfos();
 				 String UpdateQuery = "UPDATE employes SET Nom=?,Prenom=?,NIC=?,DOB=?,Sexe=?,Adresse=?,AdresseEmail=?,No_contact=?,Titre=?,Salaire=?,DateDembauche=?,Comission=?,Nodept=? WHERE No_employe=?";
 				try {
-					Connection connection = ConnectionFactory.getConnection();
+					Connection connection = ConnectionFactoryX.getConnection();
 				
 			         PreparedStatement  ps= connection.prepareStatement(UpdateQuery);
 
@@ -1128,7 +1128,7 @@ public class InterfaceEmployes {
 	// Méthode qui recoit valeur rechercher par paramètre (val)
 		public static ArrayList<Employe> AllEmployes(String val) throws SQLException {
 	        String searchQuery = "SELECT No_employe,Nom,Prenom,NIC,DOB,Sexe,Adresse,AdresseEmail,No_contact,Titre,Salaire,DateDembauche,Comission,Nodept,Nom_dept FROM employes E, departement D WHERE E.Nodept = D.No_dept AND CONCAT(`Nom`,`Prenom`,`No_employe`,`Nodept`,`Titre`,`Nom_dept`,`Adresse`) LIKE'%"+val+"%'";
-			Connection connection = ConnectionFactory.getConnection();
+			Connection connection = ConnectionFactoryX.getConnection();
 			//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 	      java.sql.Statement  preparedStatement = connection.createStatement();
 
@@ -1248,7 +1248,7 @@ public class InterfaceEmployes {
 							"No_employe", "Nom", "Prenom", "NIC", "DOB", "Sexe","Adresse", "AdresseEmail","No_contact","Titre","Salaire","DateDembauche","Comission",
 							"No_departement","Departement"
 						});
-				connection = ConnectionFactory.getConnection();
+				connection = ConnectionFactoryX.getConnection();
 				preparedStatement = connection.prepareStatement(RequeteStatement.SELECT_ALL_EMPLOYES_QUERY);
 				
 				resultSet = preparedStatement.executeQuery();
@@ -1298,7 +1298,7 @@ public class InterfaceEmployes {
 			public void comboDep() throws SQLException{
 				
 				 String searchQuery = "SELECT No_dept, Nom_dept FROM departement ORDER BY No_dept DESC";
-				java.sql.Connection	 connection = ConnectionFactory.getConnection();
+				java.sql.Connection	 connection = ConnectionFactoryX.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 			        Statement preparedStatement = connection.createStatement();
 

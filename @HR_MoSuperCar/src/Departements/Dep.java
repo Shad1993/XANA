@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import com.sun.jdi.connect.spi.Connection;
 
 import CompteUser.*;
-import connexionBDD.ConnectionFactory;
+import connexionBDD.ConnectionFactoryX;
 import employes.Employe;
 import operationSQL.Operation;
 import operationSQL.RequeteStatement;
@@ -63,7 +63,7 @@ public class Dep {
 					"No Departement", "Nom", "No contact", "Adressse"
 					
 				});
-		java.sql.Connection connection = ConnectionFactory.getConnection();
+		java.sql.Connection connection = ConnectionFactoryX.getConnection();
 		PreparedStatement	preparedStatement = connection.prepareStatement(RequeteStatement.AFFICHER_DEPARTEMENT);
 		
 		ResultSet resultSet = preparedStatement.executeQuery();
@@ -93,7 +93,7 @@ public class Dep {
 			
 			try {	
 				 String insertDep = "INSERT INTO departement(No_dept,Nom_dept,NoContact,AdresseDep) VALUES(?,?,?,?)";
-					java.sql.Connection connection = ConnectionFactory.getConnection();
+					java.sql.Connection connection = ConnectionFactoryX.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 			     
 					

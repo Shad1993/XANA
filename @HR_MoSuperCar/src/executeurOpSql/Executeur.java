@@ -1,6 +1,6 @@
 package executeurOpSql;
 import Fiche.*;
-import connexionBDD.ConnectionFactory;
+import connexionBDD.ConnectionFactoryX;
 import employes.Employe;
 import operationSQL.RequeteStatement;
 
@@ -40,7 +40,7 @@ public class Executeur {
 	 * @throws SQLException gère les erreurs sql
 	 */
 	public static void addEmploye(Employe employe) throws SQLException {
-		connection = ConnectionFactory.getConnection();
+		connection = ConnectionFactoryX.getConnection();
 		preparedStatement = connection.prepareStatement(RequeteStatement.ADD_EMPLOYE);
 		setPreparedStatementProperties(employe.getNom(),
                                        employe.getPrenom(),
@@ -68,7 +68,7 @@ public class Executeur {
 	 * @throws SQLException gère les erreurs sql
 	 */
 	public static void updateEmploye(Employe employe) throws SQLException {
-		connection = ConnectionFactory.getConnection();
+		connection = ConnectionFactoryX.getConnection();
 		preparedStatement = connection.prepareStatement(RequeteStatement.UPDATE_EMPLOYE);
 		setPreparedStatementProperties(employe.getNom(),
                                        employe.getPrenom(),
@@ -97,7 +97,7 @@ public class Executeur {
 	 * @throws SQLException gère les erreurs sql
 	 */
 	public static void deleteEmploye(Employe employe) throws SQLException {
-		connection = ConnectionFactory.getConnection();
+		connection = ConnectionFactoryX.getConnection();
 		preparedStatement = connection.prepareStatement(RequeteStatement.DELETE_EMPLOYE_QUERY);
 
 		setPreparedStatementProperties(employe.getNo_employe());
@@ -174,7 +174,7 @@ public class Executeur {
 		 * @throws SQLException gère les erreurs sql
 		 */
 		public static void addFiche(FicheDePaie fiche) throws SQLException {
-			connection = ConnectionFactory.getConnection();
+			connection = ConnectionFactoryX.getConnection();
 			preparedStatement = connection.prepareStatement(RequeteStatement.Add_FICHE);
 			setPreparedStatementProperties(fiche.get_NoEmp(),// attribut privé
 	                                       fiche.get_Bonus(),
@@ -194,7 +194,7 @@ public class Executeur {
 
 		//Méthode qui éfface constructeur
 		public static void deleteFiche(FicheDePaie fiche) throws SQLException {
-			connection = ConnectionFactory.getConnection();
+			connection = ConnectionFactoryX.getConnection();
 			preparedStatement = connection.prepareStatement(RequeteStatement.DELETE_FICHE);
 
 			setPreparedStatementProperties(fiche.get_idFiche());
@@ -226,7 +226,7 @@ public class Executeur {
 	
 		public static void addDepartement(Dep dept)throws SQLException {
 			
-			connection = ConnectionFactory.getConnection();
+			connection = ConnectionFactoryX.getConnection();
 			preparedStatement = connection.prepareStatement(RequeteStatement.ADD_EMPLOYE);
 			setPreparedStatementProperties(dept.noDep,
 	                                       dept.dep,

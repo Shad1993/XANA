@@ -25,7 +25,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import CompteUser.Compte;
-import connexionBDD.ConnectionFactory;
+import connexionBDD.ConnectionFactoryX;
 import operationSQL.RequeteStatement;
 
 
@@ -139,7 +139,7 @@ class CompteAdmin extends Compte {
 					"id User", "No Employe", "Login", "mdp"
 					
 				});
-		java.sql.Connection connection = ConnectionFactory.getConnection();
+		java.sql.Connection connection = ConnectionFactoryX.getConnection();
 		PreparedStatement	preparedStatement = connection.prepareStatement(RequeteStatement.AFFICHE_COMPTES);
 		
 		ResultSet resultSet = preparedStatement.executeQuery();
@@ -167,7 +167,7 @@ class CompteAdmin extends Compte {
 		 //getFicheInfos();
 			try {	
 				 String insertCompte = "INSERT INTO compteutilisateur(login,mdp,No_emp) VALUES(?,?,?)";
-					java.sql.Connection connection = ConnectionFactory.getConnection();
+					java.sql.Connection connection = ConnectionFactoryX.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 					PreparedStatement preparedStatement = connection.prepareStatement(insertCompte);
 					//preparedStatement.setString(1, idUser);

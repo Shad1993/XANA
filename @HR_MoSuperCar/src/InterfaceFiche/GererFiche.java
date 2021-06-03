@@ -7,7 +7,7 @@ package InterfaceFiche;
  */
 
 import Fiche.*;
-import connexionBDD.ConnectionFactory;
+import connexionBDD.ConnectionFactoryX;
 import executeurOpSql.Executeur;
 import operationSQL.Operation;
 
@@ -102,7 +102,7 @@ public class GererFiche {
 
 
 	
-	Connection connection = ConnectionFactory.getConnection();
+	Connection connection = ConnectionFactoryX.getConnection();
 	//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
     java.sql.Statement  preparedStatement = connection.createStatement();
     private JTextField txtIdFiche;
@@ -258,7 +258,7 @@ public class GererFiche {
 				 		
 					Connection connection = null;
 					try {
-						connection = ConnectionFactory.getConnection();
+						connection = ConnectionFactoryX.getConnection();
 					
 						PreparedStatement	preparedStatement = connection.prepareStatement(searchQuery);
 						
@@ -362,7 +362,7 @@ public class GererFiche {
 				 		
 					Connection connection = null;
 					try {
-						connection = ConnectionFactory.getConnection();
+						connection = ConnectionFactoryX.getConnection();
 					
 						PreparedStatement	preparedStatement = connection.prepareStatement(searchQuery);
 						
@@ -738,7 +738,7 @@ public class GererFiche {
 
 				 String delQuery = "DELETE FROM fch_de_paie WHERE Id_fch =?";
 				try {
-					Connection connection = ConnectionFactory.getConnection();
+					Connection connection = ConnectionFactoryX.getConnection();
 				
 			         PreparedStatement  ps= connection.prepareStatement(delQuery);
 
@@ -792,7 +792,7 @@ public class GererFiche {
 				
 				 String UpdateQuery = "UPDATE fch_de_paie SET Mois=?,HeureSup=?,Bonus=?,Commission=?,Deduction=? WHERE Id_fch=?";
 				try {
-					Connection connection = ConnectionFactory.getConnection();
+					Connection connection = ConnectionFactoryX.getConnection();
 				
 			         PreparedStatement  ps= connection.prepareStatement(UpdateQuery);
 
@@ -861,7 +861,7 @@ public class GererFiche {
 	public void comboEmp() throws SQLException{
 		
 		 String searchQuery = "SELECT No_employe,Prenom,Nom FROM employes";
-			 connection = ConnectionFactory.getConnection();
+			 connection = ConnectionFactoryX.getConnection();
 			//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 	        preparedStatement = connection.createStatement();
 

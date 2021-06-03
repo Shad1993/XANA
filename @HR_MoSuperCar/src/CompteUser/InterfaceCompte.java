@@ -10,7 +10,7 @@ import javax.swing.SwingUtilities;
 
 import com.sun.jdi.connect.spi.Connection;
 
-import connexionBDD.ConnectionFactory;
+import connexionBDD.ConnectionFactoryX;
 
 import javax.swing.JComboBox;
 import javax.swing.JLayeredPane;
@@ -281,7 +281,7 @@ public class InterfaceCompte {
 					confirmerMdp = 	String.copyValueOf(txtConfirmerX.getPassword());
 				 String updateQuery = "UPDATE compteutilisateur SET login =?, mdp =? WHERE Id_User =?";
 				try {
-					java.sql.Connection connection = ConnectionFactory.getConnection();
+					java.sql.Connection connection = ConnectionFactoryX.getConnection();
 				
 			         PreparedStatement  ps= connection.prepareStatement(updateQuery);
 			         
@@ -337,7 +337,7 @@ public class InterfaceCompte {
 				//getEmpInfos();
 				 String delQuery = "DELETE FROM compteutilisateur WHERE Id_User =?";
 				try {
-					java.sql.Connection connection = ConnectionFactory.getConnection();
+					java.sql.Connection connection = ConnectionFactoryX.getConnection();
 				
 			         PreparedStatement  ps= connection.prepareStatement(delQuery);
 
@@ -468,7 +468,7 @@ public class InterfaceCompte {
 	@SuppressWarnings("unchecked")
 	public void comboEmp() throws SQLException{
 		 String searchQuery = "SELECT No_employe,Prenom,Nom FROM employes ORDER BY No_employe DESC";
-		java.sql.Connection	 connection = ConnectionFactory.getConnection();
+		java.sql.Connection	 connection = ConnectionFactoryX.getConnection();
 			//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 	        Statement preparedStatement = connection.createStatement();
 
@@ -547,7 +547,7 @@ public class InterfaceCompte {
 				public static ArrayList<Compte> allComptes(String val) throws SQLException {
 					//val ="10";
 			        String searchQuery = "SELECT* FROM compteutilisateur WHERE CONCAT (`Id_User`,`login`,`mdp`,`No_emp`) LIKE'%"+val+"%'";
-					java.sql.Connection connection = ConnectionFactory.getConnection();
+					java.sql.Connection connection = ConnectionFactoryX.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 			      java.sql.Statement  preparedStatement = connection.createStatement();
 

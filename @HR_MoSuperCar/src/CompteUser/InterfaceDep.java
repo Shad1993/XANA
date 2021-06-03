@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import Departements.Dep;
-import connexionBDD.ConnectionFactory;
+import connexionBDD.ConnectionFactoryX;
 import executeurOpSql.Executeur;
 
 import javax.swing.JLabel;
@@ -239,7 +239,7 @@ public class InterfaceDep {
 			    getDepInfos();
 				 String updateQuery = "UPDATE departement SET Nom_dept =?, AdresseDep =?, NoContact =? WHERE No_dept =?";
 				try {
-					Connection connection = ConnectionFactory.getConnection();
+					Connection connection = ConnectionFactoryX.getConnection();
 				
 			         PreparedStatement  ps= connection.prepareStatement(updateQuery);
 			         
@@ -272,7 +272,7 @@ public class InterfaceDep {
 				//getEmpInfos();
 				 String delQuery = "DELETE FROM departement WHERE No_dept =?";
 				try {
-					Connection connection = ConnectionFactory.getConnection();
+					Connection connection = ConnectionFactoryX.getConnection();
 			         PreparedStatement  ps= connection.prepareStatement(delQuery);
 			         ps.setString(1, dept.noDep);
 			         ps.executeUpdate();
@@ -458,7 +458,7 @@ public class InterfaceDep {
 			public static ArrayList<Dep> allDepts(String val) throws SQLException {
 				//val ="10";
 		        String searchQuery = "SELECT* FROM departement WHERE CONCAT (`No_dept`,`Nom_dept`,`NoContact`,`AdresseDep`) LIKE'%"+val+"%'";
-				java.sql.Connection connection = ConnectionFactory.getConnection();
+				java.sql.Connection connection = ConnectionFactoryX.getConnection();
 				//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 		      java.sql.Statement  preparedStatement = connection.createStatement();
 

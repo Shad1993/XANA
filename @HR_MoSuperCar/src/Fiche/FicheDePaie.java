@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import connexionBDD.ConnectionFactory;
+import connexionBDD.ConnectionFactoryX;
 
 /**
  * Cette classe instantie les objets pour la génération des fiches de paie
@@ -60,7 +60,7 @@ public class FicheDePaie {
 			
 			try {	
 				 String insertFiche = "INSERT INTO fch_de_paie(Mois,HeureSup,Bonus,Commission,Deduction,No_Emp) VALUES(?,?,?,?,?,?)";
-					Connection connection = ConnectionFactory.getConnection();
+					Connection connection = ConnectionFactoryX.getConnection();
 					//PreparedStatement preparedStatement = connection.prepareStatement(QueryStatement.searchQuery);
 			     
 					

@@ -24,7 +24,7 @@ import java.util.Properties;
  * @author Lionel
  *
  */
-public class ConnectionFactory {
+public class ConnectionFactoryX {
 	private static String driverClassName;
 	private static String connectionUrl;
 	private static String dbUser;
