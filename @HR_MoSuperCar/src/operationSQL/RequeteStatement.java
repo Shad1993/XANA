@@ -5,7 +5,7 @@ package operationSQL;
  * @author Lionel
  *
  */
-public class QueryStatement {
+public class RequeteStatement {
 	
 	public final static String ADD_EMPLOYE = "INSERT INTO employes(Nom,Prenom,NIC,DOB,Sexe,Adresse,AdresseEmail,No_contact,Titre,Salaire,DateDembauche,Comission,Nodept) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
 	

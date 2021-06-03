@@ -4,7 +4,7 @@ package operationSQL;
  * @author Lionel
  *
  */
-public enum CRUDMode {
+public enum Operation {
 	ADD, 
 	UPDATE, 
 	DELETE, 

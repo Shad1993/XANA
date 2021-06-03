@@ -54,12 +54,12 @@ import javax.swing.table.TableModel;
 
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
-import InterfaceFiche.gererFiche;
+import InterfaceFiche.GererFiche;
 import connexionBDD.ConnectionFactory;
 import employes.Employe;
-import executeurOpSql.DBUtil;
-import operationSQL.CRUDMode;
-import operationSQL.QueryStatement;
+import executeurOpSql.Executeur;
+import operationSQL.Operation;
+import operationSQL.RequeteStatement;
 
 /**
  * Cette classe est l'interface qui gère les données des employés, chiffre et déchiffre leurs salaires
@@ -87,7 +87,6 @@ public class InterfaceEmployes {
 	private JButton btnCreerCompte;
 	private JButton btnAjouter;
 	private JButton btnModifier;
-	private JButton btnEffChamps;
 	private JButton btnRetour1;
 	private static Key masterKey;
 	private static Connection connection;
@@ -266,7 +265,7 @@ public class InterfaceEmployes {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//gererEmployes.this.frame.setVisible(false);
-				gererFiche.main(null);
+				GererFiche.main(null);
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -322,7 +321,9 @@ public class InterfaceEmployes {
 		frame.getContentPane().add(lblNewLabel_6);
 		
 		txtnoDep = new JTextField();
-		txtnoDep.setBounds(214, 823, 96, 20);
+		txtnoDep.setEnabled(false);
+		txtnoDep.setVisible(false);
+		txtnoDep.setBounds(211, 850, 96, 20);
 		frame.getContentPane().add(txtnoDep);
 		txtnoDep.setColumns(10);
 		
@@ -333,14 +334,14 @@ public class InterfaceEmployes {
 	 * @param mode variable qui stock le mode d'opération SQL:ADD,DELETE,EDIT etc..
 	 * 
 	 */
-	private static Employe empInfos(CRUDMode mode) { 
+	private static Employe empInfos(Operation mode) { 
 		Employe employe = new Employe();
 		// opÃ©rations
 
 		//CRUDMode.UPDATE n'a pas marché a été enlevé, autre soulution trouvée.. dans bouton Modifier
-		if (mode.equals(CRUDMode.ADD) || mode.equals(CRUDMode.DELETE)) {
+		if (mode.equals(Operation.ADD) || mode.equals(Operation.DELETE)) {
 			
-			if (mode.equals(CRUDMode.DELETE)) {
+			if (mode.equals(Operation.DELETE)) {
 				employe.setNo_employe(NoEmp);
 			}
 			
@@ -595,7 +596,7 @@ public class InterfaceEmployes {
 	private void initialize(String login) throws SQLException {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.activeCaption);
-		frame.setBounds(100, 100, 1603, 842);
+		frame.setBounds(100, 100, 1611, 878);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -917,7 +918,7 @@ public class InterfaceEmployes {
 					
 					
 						 						
-						DBUtil.addEmploye(empInfos(CRUDMode.ADD));
+						Executeur.addEmploye(empInfos(Operation.ADD));
 						
 						//JFrame frame = new JFrame("retour");
 						JOptionPane.showMessageDialog(frame, "Employé(e) ajouté(e)");
@@ -1069,7 +1070,7 @@ public class InterfaceEmployes {
 						int confirm = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment supprimmer cet enregistrement?","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
 						
 					if (confirm == JOptionPane.YES_OPTION) {
-						DBUtil.deleteEmploye(empInfos(CRUDMode.DELETE));
+						Executeur.deleteEmploye(empInfos(Operation.DELETE));
 						JFrame frame = new JFrame("retour");
 						JOptionPane.showMessageDialog(frame, "Employé(e) supprimé(e)");
 						getAllEmployees(table);
@@ -1100,7 +1101,7 @@ public class InterfaceEmployes {
 		txtRechercher.addFocusListener(new FocusAdapter() {
 					
 		});
-		txtRechercher.setBounds(434, 119, 331, 29);
+		txtRechercher.setBounds(391, 120, 331, 29);
 		frame.getContentPane().add(txtRechercher);
 		txtRechercher.setColumns(10);
 		
@@ -1118,7 +1119,7 @@ public class InterfaceEmployes {
 				}
 			}
 		});
-		btnRechercher.setBounds(785, 119, 111, 29);
+		btnRechercher.setBounds(744, 119, 173, 29);
 		frame.getContentPane().add(btnRechercher);
 
 		//checkAnn();
@@ -1137,8 +1138,8 @@ public class InterfaceEmployes {
 			
 		if (!resultSet.isBeforeFirst() ) { // si pas de rÃ©sultat
 			
-			JFrame frame = new JFrame("0 rÃ©sultat");
-			JOptionPane.showMessageDialog(frame,"Aucun rÃ©sultat obtenu..");
+			JFrame frame = new JFrame("0 résultat");
+			JOptionPane.showMessageDialog(frame,"Aucun résultat obtenu..");
 			
 			 txtRechercher.requestFocusInWindow(); //place curseur dans txtbox rechercher
 			 txtRechercher.setText("");//effacer textbox recherche
@@ -1248,7 +1249,7 @@ public class InterfaceEmployes {
 							"No_departement","Departement"
 						});
 				connection = ConnectionFactory.getConnection();
-				preparedStatement = connection.prepareStatement(QueryStatement.SELECT_ALL_EMPLOYES_QUERY);
+				preparedStatement = connection.prepareStatement(RequeteStatement.SELECT_ALL_EMPLOYES_QUERY);
 				
 				resultSet = preparedStatement.executeQuery();
 				

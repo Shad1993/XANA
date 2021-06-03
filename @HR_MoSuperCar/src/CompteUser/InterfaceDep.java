@@ -19,7 +19,7 @@ import javax.swing.table.TableModel;
 
 import Departements.Dep;
 import connexionBDD.ConnectionFactory;
-import executeurOpSql.DBUtil;
+import executeurOpSql.Executeur;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;

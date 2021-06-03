@@ -10,8 +10,8 @@ import com.sun.jdi.connect.spi.Connection;
 import CompteUser.*;
 import connexionBDD.ConnectionFactory;
 import employes.Employe;
-import operationSQL.CRUDMode;
-import operationSQL.QueryStatement;
+import operationSQL.Operation;
+import operationSQL.RequeteStatement;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -64,7 +64,7 @@ public class Dep {
 					
 				});
 		java.sql.Connection connection = ConnectionFactory.getConnection();
-		PreparedStatement	preparedStatement = connection.prepareStatement(QueryStatement.AFFICHER_DEPARTEMENT);
+		PreparedStatement	preparedStatement = connection.prepareStatement(RequeteStatement.AFFICHER_DEPARTEMENT);
 		
 		ResultSet resultSet = preparedStatement.executeQuery();
 		

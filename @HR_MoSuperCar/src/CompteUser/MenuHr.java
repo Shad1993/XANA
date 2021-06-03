@@ -185,7 +185,7 @@ public class MenuHr {
 			public void actionPerformed(ActionEvent e) {
 				
 				// message de confirmation de sortir du programme
-				 int x = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment vous dï¿½connecter??","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+				 int x = JOptionPane.showConfirmDialog(null,"voulez-vous vraiment vous déconnecter??","fermer",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
 				if(x == JOptionPane.YES_OPTION) { // Si choix "oui"
 					
 				 System.exit(0); // sortir du programme

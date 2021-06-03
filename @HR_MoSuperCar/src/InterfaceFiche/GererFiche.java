@@ -8,8 +8,8 @@ package InterfaceFiche;
 
 import Fiche.*;
 import connexionBDD.ConnectionFactory;
-import executeurOpSql.DBUtil;
-import operationSQL.CRUDMode;
+import executeurOpSql.Executeur;
+import operationSQL.Operation;
 
 import java.awt.EventQueue;
 import java.sql.Connection;
@@ -41,6 +41,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Find;
 
+import CompteUser.InterfaceCompte;
 import CompteUser.InterfaceEmployes;
 
 import javax.swing.JButton;
@@ -59,7 +60,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
 
-public class gererFiche {
+public class GererFiche {
 
 	private JFrame frame;
 	private final JLayeredPane layeredPane = new JLayeredPane();
@@ -116,7 +117,7 @@ public class gererFiche {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					gererFiche window = new gererFiche();
+					GererFiche window = new GererFiche();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -130,7 +131,7 @@ public class gererFiche {
 	 * @throws SQLException gère les erreurs SQL
 	 * 
 	 */
-	public gererFiche() throws SQLException {
+	public GererFiche() throws SQLException {
 		initialize();
 		comboEmp();
 		
@@ -235,6 +236,10 @@ public class gererFiche {
 			
 			
 			public void actionPerformed(ActionEvent e) {
+				Calendar mCalendar = Calendar.getInstance();    
+				String month = mCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+			
+			     String moisActuel = month;
 			
 			  try {
 				no_Emp = cmbNoEmp.getSelectedItem().toString();
@@ -248,7 +253,7 @@ public class gererFiche {
 
 				  
 			  }
-				 String searchQuery = "SELECT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction,Id_fch FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND F.No_Emp = ?"; 
+				 String searchQuery = "SELECT No_employe,Nom,Prenom,Titre,Salaire,Nodept,Nom_dept,Mois,HeureSup,Bonus,Commission,Deduction,Id_fch FROM employes E, departement D, fch_de_paie F WHERE E.Nodept = D.No_dept AND E.No_employe = F.No_Emp AND F.No_Emp = ? AND Mois = ?"; 
 				 	 
 				 		
 					Connection connection = null;
@@ -258,6 +263,8 @@ public class gererFiche {
 						PreparedStatement	preparedStatement = connection.prepareStatement(searchQuery);
 						
 						preparedStatement.setString(1, no_Emp); 
+						preparedStatement.setString(2, moisActuel); 
+
 						
 						ResultSet resultSet = preparedStatement.executeQuery();
 						
@@ -369,7 +376,7 @@ public class gererFiche {
 							bonus = (resultSet.getString("Bonus"));
 							commission = (resultSet.getString("Commission"));
 							deduction =(resultSet.getString("Deduction"));
-							no_Emp =(resultSet.getString("Deduction"));
+							no_Emp =(resultSet.getString("No_employe"));
 
 							
 							  //System.out.print(resultSet.getString("HeureSup"));
@@ -409,7 +416,7 @@ public class gererFiche {
 							   */
 							;
 							 
-					        String filePath = "C:\\Users\\user\\Documents\\@FicheDePaie\\" + Prenom +" "+ Nom+"-Fiche_de_paie"+".pdf";
+					        String filePath = "C:\\Users\\user\\Documents\\@FicheDePaie\\" + Prenom +" "+ Nom+"-Fiche_de_paie-" + mois + ".pdf";
 					            
 					         try {
 					             
@@ -536,7 +543,7 @@ public class gererFiche {
 			public void actionPerformed(ActionEvent e) {
 				
 					 JFileChooser dialog = new JFileChooser();
-			         dialog.setSelectedFile(new File(Prenom +" "+ Nom+"-Fiche_de_paie"+".pdf"));
+			         dialog.setSelectedFile(new File(Prenom +" "+ Nom+"-Fiche_de_paie" + mois+".pdf"));
 			         int dialogResult = dialog.showSaveDialog(null);
 			         if (dialogResult==JFileChooser.APPROVE_OPTION){
 			             String filePath = dialog.getSelectedFile().getPath();
@@ -547,13 +554,13 @@ public class gererFiche {
 			        	 double salTot = Double.parseDouble(Salaire);
 				            
 				            double deduc = Double.parseDouble(deduction);
-				            double salBrut = salTot -deduc;
+				            double salBrut = salTot - deduc;
 				            
 				            double tax = 0.10 * salBrut;
 				            double salNet = salBrut - tax;
 				            
-				            double com =Double.parseDouble(commission);
-				            double  bon =Double.parseDouble(bonus);
+				            double com = Double.parseDouble(commission);
+				            double  bon = Double.parseDouble(bonus);
 
 				            double paieTot = salNet + com + bon;
 				            
@@ -830,7 +837,7 @@ public class gererFiche {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				gererFiche.this.frame.setVisible(false);
+				GererFiche.this.frame.setVisible(false);
 				
 				
 			}

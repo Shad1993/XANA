@@ -2,7 +2,7 @@ package executeurOpSql;
 import Fiche.*;
 import connexionBDD.ConnectionFactory;
 import employes.Employe;
-import operationSQL.QueryStatement;
+import operationSQL.RequeteStatement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ import Departements.Dep;
  * @author Lionel
  *
  */
-public class DBUtil {
+public class Executeur {
 	private static Connection connection;
 	private static PreparedStatement preparedStatement;
 	private static ResultSet resultSet = null;
@@ -41,7 +41,7 @@ public class DBUtil {
 	 */
 	public static void addEmploye(Employe employe) throws SQLException {
 		connection = ConnectionFactory.getConnection();
-		preparedStatement = connection.prepareStatement(QueryStatement.ADD_EMPLOYE);
+		preparedStatement = connection.prepareStatement(RequeteStatement.ADD_EMPLOYE);
 		setPreparedStatementProperties(employe.getNom(),
                                        employe.getPrenom(),
                                        employe.getNIC(), 	
@@ -69,7 +69,7 @@ public class DBUtil {
 	 */
 	public static void updateEmploye(Employe employe) throws SQLException {
 		connection = ConnectionFactory.getConnection();
-		preparedStatement = connection.prepareStatement(QueryStatement.UPDATE_EMPLOYE);
+		preparedStatement = connection.prepareStatement(RequeteStatement.UPDATE_EMPLOYE);
 		setPreparedStatementProperties(employe.getNom(),
                                        employe.getPrenom(),
                                        employe.getNIC(), 	
@@ -98,7 +98,7 @@ public class DBUtil {
 	 */
 	public static void deleteEmploye(Employe employe) throws SQLException {
 		connection = ConnectionFactory.getConnection();
-		preparedStatement = connection.prepareStatement(QueryStatement.DELETE_EMPLOYE_QUERY);
+		preparedStatement = connection.prepareStatement(RequeteStatement.DELETE_EMPLOYE_QUERY);
 
 		setPreparedStatementProperties(employe.getNo_employe());
 		preparedStatement.executeUpdate();
@@ -115,7 +115,7 @@ public class DBUtil {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public void populate(JComboBox combo) throws SQLException {
 				DefaultComboBoxModel Model = (DefaultComboBoxModel) combo.getModel();
-				preparedStatement = connection.prepareStatement(QueryStatement.SELECT_DEPT_QUERY);
+				preparedStatement = connection.prepareStatement(RequeteStatement.SELECT_DEPT_QUERY);
 				resultSet = preparedStatement.executeQuery();
 
 				Model.addElement("");
@@ -175,7 +175,7 @@ public class DBUtil {
 		 */
 		public static void addFiche(FicheDePaie fiche) throws SQLException {
 			connection = ConnectionFactory.getConnection();
-			preparedStatement = connection.prepareStatement(QueryStatement.Add_FICHE);
+			preparedStatement = connection.prepareStatement(RequeteStatement.Add_FICHE);
 			setPreparedStatementProperties(fiche.get_NoEmp(),// attribut privé
 	                                       fiche.get_Bonus(),
 	                                       fiche.get_Commission(),
@@ -195,7 +195,7 @@ public class DBUtil {
 		//Méthode qui éfface constructeur
 		public static void deleteFiche(FicheDePaie fiche) throws SQLException {
 			connection = ConnectionFactory.getConnection();
-			preparedStatement = connection.prepareStatement(QueryStatement.DELETE_FICHE);
+			preparedStatement = connection.prepareStatement(RequeteStatement.DELETE_FICHE);
 
 			setPreparedStatementProperties(fiche.get_idFiche());
 			preparedStatement.executeUpdate();
@@ -207,7 +207,7 @@ public class DBUtil {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		public void afficheNoEmp(JComboBox combox) throws SQLException {
 			DefaultComboBoxModel Modelx = (DefaultComboBoxModel) combox.getModel();
-			preparedStatement = connection.prepareStatement(QueryStatement.SELECT_NO_EMP);
+			preparedStatement = connection.prepareStatement(RequeteStatement.SELECT_NO_EMP);
 			resultSet = preparedStatement.executeQuery();
 
 			Modelx.addElement("");
@@ -227,7 +227,7 @@ public class DBUtil {
 		public static void addDepartement(Dep dept)throws SQLException {
 			
 			connection = ConnectionFactory.getConnection();
-			preparedStatement = connection.prepareStatement(QueryStatement.ADD_EMPLOYE);
+			preparedStatement = connection.prepareStatement(RequeteStatement.ADD_EMPLOYE);
 			setPreparedStatementProperties(dept.noDep,
 	                                       dept.dep,
 	                                       dept.adresse, 	 

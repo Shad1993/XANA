@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 import CompteUser.Compte;
 import connexionBDD.ConnectionFactory;
-import operationSQL.QueryStatement;
+import operationSQL.RequeteStatement;
 
 
 /**
@@ -140,7 +140,7 @@ class CompteAdmin extends Compte {
 					
 				});
 		java.sql.Connection connection = ConnectionFactory.getConnection();
-		PreparedStatement	preparedStatement = connection.prepareStatement(QueryStatement.AFFICHE_COMPTES);
+		PreparedStatement	preparedStatement = connection.prepareStatement(RequeteStatement.AFFICHE_COMPTES);
 		
 		ResultSet resultSet = preparedStatement.executeQuery();
 		
