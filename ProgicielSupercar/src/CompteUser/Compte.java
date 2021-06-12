@@ -289,7 +289,7 @@ class CompteAdmin extends Compte {
 						//System.out.print(login);
 						MenuHr.main(login);
 						//Vente
-					}else if (c.getTypeCompte().contains("Administrateur")) {
+					}else if (c.getTypeCompte().contains("Vendeur")) {
 						JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êres connecté en tant que "+" "+ c.getTypeCompte());
 
 						frame.setVisible(false);

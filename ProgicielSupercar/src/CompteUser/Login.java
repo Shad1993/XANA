@@ -34,7 +34,7 @@ import java.awt.Color;
 
 public class Login {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	private JTextField txtLogin;
 	private JPasswordField txtMdp;

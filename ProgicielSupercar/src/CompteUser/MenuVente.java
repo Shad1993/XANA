@@ -1,4 +1,4 @@
-package vente;
+package CompteUser;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -17,6 +17,13 @@ import executeurOpSql.DBUtil;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
+
+import CompteUser.CompteAdmin;
+import CompteUser.InterfaceDep;
+import CompteUser.Login;
+import CompteUser.MenuAdm;
+import CompteUser.MenuHr;
 
 public class MenuVente {
 
@@ -32,7 +39,7 @@ public class MenuVente {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuVente window = new MenuVente();
+					MenuVente window = new MenuVente(login);
 					window.frmDepartementsDeVente.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,22 +50,68 @@ public class MenuVente {
 
 	/**
 	 * Create the application.
+	 * @param login 
 	 * @throws SQLException 
 	 */
-	public MenuVente() throws SQLException {
-		initialize();
+	public MenuVente(String login) throws SQLException {
+		initialize(login);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 * @throws SQLException 
 	 */
-	private void initialize() throws SQLException {
+	private void initialize(String login) throws SQLException {
+		
 		frmDepartementsDeVente = new JFrame();
 		frmDepartementsDeVente.setTitle("Departements de Vente");
 		frmDepartementsDeVente.setBounds(100, 100, 1118,672);
 		frmDepartementsDeVente.getContentPane().setBackground(new Color(128, 0, 0));
 		frmDepartementsDeVente.getContentPane().setLayout(null);
+		
+		
+		
+		CompteAdmin A = new CompteAdmin();
+		
+		try {
+			A.DatabaseConnexionHR(login, null, null, frmDepartementsDeVente);
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		   if (A.getTypeCompte().contains("Administrateur")) {
+			   
+				JButton btnRetourAdm = new JButton("Retour au menu Admin");
+				btnRetourAdm.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				btnRetourAdm.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						frmDepartementsDeVente.setVisible(false);
+						MenuAdm.main(login);
+					}
+				});
+				btnRetourAdm.setFont(new Font("Tahoma", Font.BOLD, 12));
+				btnRetourAdm.setBounds(735, 15, 179, 33);
+				frmDepartementsDeVente.getContentPane().add(btnRetourAdm);
+			     
+		   }else {
+			   
+				JButton btnMenuHr = new JButton("Déconnecter");
+				btnMenuHr.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						frmDepartementsDeVente.setVisible(false);
+						Login.main(null);	
+					}
+				});
+				btnMenuHr.setFont(new Font("Tahoma", Font.BOLD, 11));
+				btnMenuHr.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				btnMenuHr.setBounds(744, 11, 151, 36);
+				frmDepartementsDeVente.getContentPane().add(btnMenuHr);   
+		   }
+		
+		
+		
 		
 		JButton btnNewButton = new JButton("Voir les vente");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -113,6 +166,8 @@ public class MenuVente {
 				
 				Login login = null;
 				login = new Login();
+				login.frame.setVisible(true);
+
 				frmDepartementsDeVente.setVisible(false); //you can't see me!
 				frmDepartementsDeVente.dispose(); //Destroy the JFrame object
 				

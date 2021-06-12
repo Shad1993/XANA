@@ -115,7 +115,7 @@ public class ListClient {
 			public void actionPerformed(ActionEvent e) {
 				MenuVente home = null;
 				try {
-					home = new MenuVente();
+					home = new MenuVente(null);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

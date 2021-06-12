@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import CompteUser.MenuHr;
+import vente.MenuVente;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -144,5 +145,21 @@ public class MenuAdm {
 		});
 		butComptes.setBounds(25, 82, 442, 42);
 		Employes.add(butComptes);
+		
+		JButton btnVente = new JButton("Menu Vente");
+		btnVente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuAdm.this.frame.setVisible(false);
+				MenuVente.main(login);
+			}
+		});
+		btnVente.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVente.setBounds(25, 188, 442, 42);
+		Employes.add(btnVente);
+		
+		JButton btnMenuComptabilit = new JButton("Menu Comptabilit\u00E9");
+		btnMenuComptabilit.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnMenuComptabilit.setBounds(25, 241, 442, 42);
+		Employes.add(btnMenuComptabilit);
 	}
 }
