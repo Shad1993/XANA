@@ -39,7 +39,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.mysql.cj.x.protobuf.MysqlxCrud.Find;
+//import com.mysql.cj.x.protobuf.MysqlxCrud.Find;
 
 import CompteUser.InterfaceCompte;
 import CompteUser.InterfaceEmployes;
