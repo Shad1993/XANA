@@ -1,4 +1,4 @@
-package vente;
+package CompteUser;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -34,11 +34,11 @@ public class AjouterVoiture {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AjouterVoiture window = new AjouterVoiture();
+					AjouterVoiture window = new AjouterVoiture(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,15 +51,15 @@ public class AjouterVoiture {
 	 * Create the application.
 	 * @throws SQLException 
 	 */
-	public AjouterVoiture() throws SQLException {
-		initialize();
+	public AjouterVoiture(String login) throws SQLException {
+		initialize(login);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 * @throws SQLException 
 	 */
-	private void initialize() throws SQLException {
+	private void initialize(String login) throws SQLException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1118,672);
 		frame.getContentPane().setBackground(new Color(140, 0, 0));
@@ -77,7 +77,7 @@ public class AjouterVoiture {
 			public void actionPerformed(ActionEvent e) {
 				ListVoiture voiture = null;
 				try {
-					voiture = new ListVoiture();
+					voiture = new ListVoiture(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -258,7 +258,7 @@ public class AjouterVoiture {
 						
 						ListVoiture voiture1 = null;
 						try {
-							voiture1 = new ListVoiture();
+							voiture1 = new ListVoiture(login);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

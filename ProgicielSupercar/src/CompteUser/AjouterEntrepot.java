@@ -1,4 +1,4 @@
-package vente;
+package CompteUser;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -26,11 +26,11 @@ public class AjouterEntrepot {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AjouterEntrepot window = new AjouterEntrepot();
+					AjouterEntrepot window = new AjouterEntrepot(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,14 +42,14 @@ public class AjouterEntrepot {
 	/**
 	 * Create the application.
 	 */
-	public AjouterEntrepot() {
-		initialize();
+	public AjouterEntrepot(String login) {
+		initialize(login);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String login) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1118,672);
 		frame.getContentPane().setBackground(new Color(140, 0, 0));
@@ -68,7 +68,7 @@ public class AjouterEntrepot {
 				
 				ListEntrepot entrepot = null;
 				try {
-					entrepot = new ListEntrepot();
+					entrepot = new ListEntrepot(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -132,7 +132,7 @@ public class AjouterEntrepot {
 					if(	DBUtil.addEntrepot(entrepot)) {
 						ListEntrepot Entrepot = null;
 						try {
-							Entrepot = new ListEntrepot();
+							Entrepot = new ListEntrepot(login);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

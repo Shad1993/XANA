@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import CompteUser.MenuHr;
-import vente.MenuVente;
+
 
 import java.awt.Font;
 import javax.swing.JButton;

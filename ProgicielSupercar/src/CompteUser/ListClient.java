@@ -1,4 +1,4 @@
-package vente;
+package CompteUser;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -54,11 +54,11 @@ public class ListClient {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListClient window = new ListClient();
+					ListClient window = new ListClient(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,15 +71,15 @@ public class ListClient {
 	 * Create the application.
 	 * @throws SQLException 
 	 */
-	public ListClient() throws SQLException {
-		initialize();
+	public ListClient(String login) throws SQLException {
+		initialize(login);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 * @throws SQLException 
 	 */
-	private void initialize() throws SQLException {
+	private void initialize(String login) throws SQLException {
 		frame =  new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,7 +100,7 @@ public class ListClient {
 		JButton btnAjouter = new JButton("Ajout\u00E9 un Client");
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AjouterClient ajouterClient = new AjouterClient();
+				AjouterClient ajouterClient = new AjouterClient(login);
 				ajouterClient.frame.setVisible(true);
 				frame.setVisible(false); //you can't see me!
 				frame.dispose(); //Destroy the JFrame object

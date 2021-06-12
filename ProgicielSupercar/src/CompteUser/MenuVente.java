@@ -119,7 +119,7 @@ public class MenuVente {
 			public void actionPerformed(ActionEvent e) {
 				ListDesVentes home = null;
 				try {
-					home = new ListDesVentes();
+					home = new ListDesVentes(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -145,7 +145,7 @@ public class MenuVente {
 				
 				ListClient client = null;
 				try {
-					client = new ListClient();
+					client = new ListClient(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -183,7 +183,7 @@ public class MenuVente {
 			public void actionPerformed(ActionEvent e) {
 				ListVoiture voiture = null;
 				try {
-					voiture = new ListVoiture();
+					voiture = new ListVoiture(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -261,7 +261,7 @@ public class MenuVente {
 			
 			ListEntrepot entrepot = null;
 			try {
-				entrepot = new ListEntrepot();
+				entrepot = new ListEntrepot(login);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -278,7 +278,7 @@ public class MenuVente {
 			public void actionPerformed(ActionEvent e) {
 				ListStock stock = null;
 				try {
-					stock = new ListStock();
+					stock = new ListStock(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -297,7 +297,7 @@ public class MenuVente {
 			public void actionPerformed(ActionEvent e) {
 				ListArchiveVoiture arhiveVoiture = null;
 				try {
-					arhiveVoiture = new ListArchiveVoiture();
+					arhiveVoiture = new ListArchiveVoiture(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import CompteUser.Compte;
 import connexionBDD.ConnectionFactoryX;
 import operationSQL.RequeteStatement;
-import vente.MenuVente;
+
 
 
 /**

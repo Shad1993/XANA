@@ -1,4 +1,4 @@
-package vente;
+package CompteUser;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -33,11 +33,11 @@ public class ListArchiveVoiture {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListArchiveVoiture window = new ListArchiveVoiture();
+					ListArchiveVoiture window = new ListArchiveVoiture(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,15 +50,15 @@ public class ListArchiveVoiture {
 	 * Create the application.
 	 * @throws SQLException 
 	 */
-	public ListArchiveVoiture() throws SQLException {
-		initialize();
+	public ListArchiveVoiture(String login) throws SQLException {
+		initialize(login);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 * @throws SQLException 
 	 */
-	private void initialize() throws SQLException {
+	private void initialize(String login) throws SQLException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1039, 565);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +81,7 @@ public class ListArchiveVoiture {
 			public void actionPerformed(ActionEvent e) {
 				MenuVente home = null;
 				try {
-					home = new MenuVente();
+					home = new MenuVente(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

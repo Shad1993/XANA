@@ -1,4 +1,4 @@
-package vente;
+package CompteUser;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -30,11 +30,11 @@ public class AjouterClient {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AjouterClient window = new AjouterClient();
+					AjouterClient window = new AjouterClient(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,14 +46,14 @@ public class AjouterClient {
 	/**
 	 * Create the application.
 	 */
-	public AjouterClient() {
-		initialize();
+	public AjouterClient(String login) {
+		initialize(login);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String login) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1118,672);
 		frame.getContentPane().setBackground(new Color(140, 0, 0));
@@ -71,7 +71,7 @@ public class AjouterClient {
 			public void actionPerformed(ActionEvent e) {
 				ListClient client = null;
 				try {
-					client = new ListClient();
+					client = new ListClient(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -103,7 +103,7 @@ public class AjouterClient {
 					if(	DBUtil.addClient(client)) {
 						ListClient client1 = null;
 						try {
-							client1 = new ListClient();
+							client1 = new ListClient(login);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

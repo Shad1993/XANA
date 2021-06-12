@@ -1,4 +1,4 @@
-package vente;
+package CompteUser;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -32,11 +32,11 @@ public class ListStock {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String login) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListStock window = new ListStock();
+					ListStock window = new ListStock(login);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,15 +49,15 @@ public class ListStock {
 	 * Create the application.
 	 * @throws SQLException 
 	 */
-	public ListStock() throws SQLException {
-		initialize();
+	public ListStock(String login) throws SQLException {
+		initialize(login);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 * @throws SQLException 
 	 */
-	private void initialize() throws SQLException {
+	private void initialize(String login) throws SQLException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1039, 565);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,7 +80,7 @@ public class ListStock {
 			public void actionPerformed(ActionEvent e) {
 				MenuVente home = null;
 				try {
-					home = new MenuVente();
+					home = new MenuVente(login);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
