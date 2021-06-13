@@ -297,12 +297,12 @@ class CompteAdmin extends Compte {
 						MenuVente.main(login);
 					}
 					//comptabilite
-					else if (c.getTypeCompte().contains("Administrateur")) {
+					else if (c.getTypeCompte().contains("Comptable")) {
 						JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êres connecté en tant que "+" "+ c.getTypeCompte());
 
 						frame.setVisible(false);
 						//System.out.print(login);
-						MenuHr.main(login);
+						Menu.main(login);
 					}
 
 				} else {
