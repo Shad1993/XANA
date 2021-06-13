@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 
 import employes.Voiture;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+//import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Statement;
 
 import junit.framework.Assert;
 

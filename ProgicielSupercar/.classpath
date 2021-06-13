@@ -6,22 +6,22 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Azhar/OneDrive/Documents/lib/mysql-connector-java-5.1.12-bin.jar">
+	<classpathentry kind="lib" path="C:/Users/user/git/XANA/ProgicielSupercar/activation.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Azhar/Downloads/itextpdf-5.5.4.jar">
+	<classpathentry kind="lib" path="C:/Users/user/git/XANA/ProgicielSupercar/itextpdf-5.5.4.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Azhar/OneDrive/Desktop/javax.mail/javax.mail.jar">
+	<classpathentry kind="lib" path="C:/Users/user/git/XANA/ProgicielSupercar/mysql-connector-java-8.0.21.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Azhar/OneDrive/Desktop/mailactivation/activation.jar">
+	<classpathentry kind="lib" path="C:/Users/user/git/XANA/ProgicielSupercar/javax.mail.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
