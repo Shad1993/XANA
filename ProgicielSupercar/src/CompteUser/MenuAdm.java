@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import CompteUser.MenuHr;
-
+import entrepotEtCommandes.commandes;
+import entrepotEtCommandes.entrepots;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -157,9 +158,30 @@ public class MenuAdm {
 		btnVente.setBounds(25, 188, 442, 42);
 		Employes.add(btnVente);
 		
-		JButton btnMenuComptabilit = new JButton("Menu Comptabilit\u00E9");
-		btnMenuComptabilit.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnMenuComptabilit.setBounds(25, 241, 442, 42);
-		Employes.add(btnMenuComptabilit);
+		JButton btnEntrepot = new JButton("Entrep\u00F4ts");
+		btnEntrepot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MenuAdm.this.frame.setVisible(false);
+				entrepots.main(null);
+				
+				
+			}
+		});
+		btnEntrepot.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEntrepot.setBounds(25, 241, 442, 42);
+		Employes.add(btnEntrepot);
+		
+		JButton btnCommandes = new JButton("Commandes");
+		btnCommandes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuAdm.this.frame.setVisible(false);
+				commandes.main(null);
+				
+			}
+		});
+		btnCommandes.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCommandes.setBounds(25, 294, 442, 42);
+		Employes.add(btnCommandes);
 	}
 }

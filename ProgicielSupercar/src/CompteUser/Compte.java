@@ -177,12 +177,12 @@ class CompteAdmin extends Compte {
 			preparedStatement.setString(3, noEmp);
 			preparedStatement.executeUpdate();
 			JFrame frame = new JFrame("retour");
-			JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajoutï¿½ï¿½ï¿½!");
+			JOptionPane.showMessageDialog(frame,"Compte Utilisateur ajouté!");
 		}
 		catch(SQLException e1) {
 			JFrame frame = new JFrame("retour");
 
-			JOptionPane.showMessageDialog(frame,"cet utilsateur possï¿½ï¿½ï¿½de dï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ un compte...");
+			JOptionPane.showMessageDialog(frame,"cet utilsateur posséde déja un compte...");
 			//JOptionPane.showMessageDialog(frame,e1);
 		}	
 	}
