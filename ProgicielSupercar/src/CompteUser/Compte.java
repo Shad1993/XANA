@@ -274,7 +274,7 @@ class CompteAdmin extends Compte {
 					c.DatabaseConnexionHR(login, null, null, frame);
 
 					if(c.getTypeCompte().contains("Administrateur")) {
-						JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous connecté connecté en tant qu' "+" "+ c.getTypeCompte());
+						JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecté connecté en tant qu' "+" "+ c.getTypeCompte());
 
 						frame.setVisible(false);
 						//System.out.print(login);
@@ -283,14 +283,14 @@ class CompteAdmin extends Compte {
 
 						//Ressource humaine
 					}else if (c.getTypeCompte().contains("Administrateur")){
-						JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êres connecté en tant que "+" "+ c.getTypeCompte());
+						JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecté en tant que "+" "+ c.getTypeCompte());
 
 						frame.setVisible(false);
 						//System.out.print(login);
 						MenuHr.main(login);
 						//Vente
 					}else if (c.getTypeCompte().contains("Vendeur")) {
-						JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êres connecté en tant que "+" "+ c.getTypeCompte());
+						JOptionPane.showMessageDialog(frame, "Bienvenu!! vous vous êtes connecté en tant que "+" "+ c.getTypeCompte());
 
 						frame.setVisible(false);
 						//System.out.print(login);

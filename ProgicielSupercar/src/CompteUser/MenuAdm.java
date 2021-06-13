@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import CompteUser.MenuHr;
-import entrepotEtCommandes.commandes;
-import entrepotEtCommandes.entrepots;
+//import entrepotEtCommandes.commandes;
+//import entrepotEtCommandes.entrepots;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -163,7 +163,7 @@ public class MenuAdm {
 			public void actionPerformed(ActionEvent e) {
 				
 				MenuAdm.this.frame.setVisible(false);
-				entrepots.main(null);
+				entrepots.main(login);
 				
 				
 			}
@@ -176,7 +176,7 @@ public class MenuAdm {
 		btnCommandes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MenuAdm.this.frame.setVisible(false);
-				commandes.main(null);
+				commandes.main(login);
 				
 			}
 		});
